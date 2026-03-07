@@ -23,10 +23,37 @@ export const metadata = buildMetadata({
     "football training product",
     "improve shooting accuracy football",
   ],
-  image: "/images/products/goal-installed-4.jpg",
+  image: "/images/products/hero-goal-target.jpg",
 });
 
 export default function ProductPage() {
+  const productGallery = [
+    {
+      src: "/images/products/hero-goal-target.jpg",
+      alt: "Product hero photo of the TopCorner goal target attached to the top corner of a goal",
+    },
+    {
+      src: "/images/products/goal-target-angle.jpg",
+      alt: "Angled football goal photo showing the TopCorner target on the frame",
+    },
+    {
+      src: "/images/products/goal-target-wide.jpg",
+      alt: "Wide football pitch shot with the TopCorner target installed on the goal",
+    },
+    {
+      src: "/images/products/goal-installed-4.jpg",
+      alt: "Installed TopCorner target shown from close range",
+    },
+    {
+      src: "/images/products/product-detail-joint.jpg",
+      alt: "Close-up product detail of the joint and frame",
+    },
+    {
+      src: "/images/products/product-straps.jpg",
+      alt: "Close-up of the TopCorner target straps and fixings",
+    },
+  ];
+
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -39,6 +66,9 @@ export default function ProductPage() {
     },
     category: "Soccer training equipment",
     image: [
+      absoluteUrl("/images/products/hero-goal-target.jpg"),
+      absoluteUrl("/images/products/goal-target-angle.jpg"),
+      absoluteUrl("/images/products/goal-target-wide.jpg"),
       absoluteUrl("/images/products/goal-installed-4.jpg"),
       absoluteUrl("/images/products/product-single-flat.jpg"),
       absoluteUrl("/images/products/product-double-flat.jpg"),
@@ -116,15 +146,26 @@ export default function ProductPage() {
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
             <div className="relative aspect-[5/4]">
               <Image
-                src="/images/products/goal-installed-4.jpg"
-                alt="Football goal with corner target installed in the top corner"
+                src="/images/products/hero-goal-target.jpg"
+                alt="Football goal with the TopCorner target fixed to the top corner"
                 fill
                 priority
+                sizes="(min-width: 1024px) 42vw, 100vw"
                 className="object-cover"
               />
             </div>
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
+            <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
+              <div className="relative aspect-square">
+                <Image
+                  src="/images/products/goal-target-angle.jpg"
+                  alt="Angled product photo of the TopCorner target attached to a goal"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
             <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
               <div className="relative aspect-square">
                 <Image
@@ -135,17 +176,42 @@ export default function ProductPage() {
                 />
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
-              <div className="relative aspect-square">
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
+        <div className="max-w-3xl">
+          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+            Product gallery
+          </p>
+          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+            More angles. More proof.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+            Buyers should be able to see the fit on the goal, the scale from a
+            distance, and the small product details that make the setup feel
+            credible before they reach checkout.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {productGallery.map((image) => (
+            <article
+              key={image.src}
+              className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
+            >
+              <div className="relative aspect-[5/4]">
                 <Image
-                  src="/images/products/product-double-flat.jpg"
-                  alt="Double corner target product shot"
+                  src={image.src}
+                  alt={image.alt}
                   fill
+                  sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw"
                   className="object-cover"
                 />
               </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -263,7 +329,7 @@ export default function ProductPage() {
             muted
             playsInline
             preload="metadata"
-            poster="/images/products/goal-installed-4.jpg"
+            poster="/images/products/hero-goal-target.jpg"
           >
             <source src={siteConfig.customerDemoVideo} type="video/mp4" />
           </video>

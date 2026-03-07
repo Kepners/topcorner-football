@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { navLinks } from "@/content/site";
@@ -7,8 +8,14 @@ export default function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[rgba(8,10,13,0.74)] backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-gold)]/50 bg-[var(--color-gold)]/10 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">
-            TC
+          <span className="relative inline-flex h-11 w-11 overflow-hidden rounded-full border border-[var(--color-gold)]/50 bg-[var(--color-gold)]/10 shadow-[0_0_30px_rgba(255,196,71,0.16)]">
+            <Image
+              src="/images/brand/topcorner-og.jpg"
+              alt="TopCorner Football logo"
+              fill
+              sizes="44px"
+              className="object-cover"
+            />
           </span>
           <span className="leading-none">
             <span className="block font-display text-2xl uppercase tracking-[0.18em] text-[var(--color-cream)]">

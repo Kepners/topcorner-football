@@ -71,6 +71,21 @@ export default function HomePage() {
     faqSchema,
   ];
 
+  const heroMediaCards = [
+    {
+      title: "Installed view",
+      body: "Show buyers the actual fit on the goal instead of another piece of brand artwork.",
+      src: "/images/products/goal-target-angle.jpg",
+      alt: "Angled field photo of the TopCorner training target attached to a goal",
+    },
+    {
+      title: "Distance test",
+      body: "A wider field shot gives immediate scale and makes the target feel like real training equipment.",
+      src: "/images/products/goal-target-wide.jpg",
+      alt: "Wide football pitch photo showing the TopCorner training target fixed to the goal",
+    },
+  ];
+
   return (
     <>
       <JsonLd data={siteSchema} />
@@ -78,97 +93,140 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(69,193,198,0.18),transparent_28%),radial-gradient(circle_at_20%_20%,rgba(255,196,71,0.18),transparent_20%)]" />
-        <div className="mx-auto grid w-full max-w-7xl gap-14 px-4 pb-18 pt-10 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-24 lg:pt-16">
-          <div className="relative z-10 space-y-8">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
-              Cinematic football training gear
-            </div>
-            <div className="space-y-5">
-              <h1 className="max-w-3xl font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl lg:text-8xl">
-                Train Your Shot. Hit The Top Corner.
-              </h1>
-              <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
-                Turn any goal into a professional shooting training setup with a
-                strap-on football corner target built for sharper finishing,
-                cleaner repetition, and faster sessions.
-              </p>
-            </div>
+        <div className="mx-auto w-full max-w-7xl px-4 pb-18 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
+          <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="relative z-10 space-y-8">
+              <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
+                Cinematic football training gear
+              </div>
+              <div className="space-y-5">
+                <h1 className="max-w-3xl font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl lg:text-8xl">
+                  Train Your Shot. Hit The Top Corner.
+                </h1>
+                <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
+                  Turn any goal into a professional shooting training setup with
+                  a strap-on football corner target built for sharper finishing,
+                  cleaner repetition, and faster sessions.
+                </p>
+              </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/product"
-                className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
-              >
-                Shop now
-              </Link>
-              <Link
-                href="/blog"
-                className="rounded-full border border-white/15 bg-white/5 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
-              >
-                Read training guides
-              </Link>
-            </div>
-
-            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-gold)]">
-              Free UK shipping included at checkout
-            </p>
-
-            <div className="grid gap-4 sm:grid-cols-3">
-              {heroHighlights.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[1.6rem] border border-white/10 bg-white/5 p-4 text-sm leading-7 text-[var(--color-mist)]"
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Link
+                  href="/product"
+                  className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
                 >
-                  {item}
+                  Shop now
+                </Link>
+                <Link
+                  href="/blog"
+                  className="rounded-full border border-white/15 bg-white/5 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
+                >
+                  Read training guides
+                </Link>
+              </div>
+
+              <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                Free UK shipping included at checkout
+              </p>
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                {heroHighlights.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-[1.6rem] border border-white/10 bg-white/5 p-4 text-sm leading-7 text-[var(--color-mist)]"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative z-10 lg:pt-8">
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+                <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,196,71,0.15),transparent_40%)]" />
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/images/products/hero-goal-target.jpg"
+                    alt="Hero product photo of the TopCorner training target strapped to the top corner of a goal"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
-              ))}
+                <div className="absolute bottom-5 left-5 rounded-full border border-white/10 bg-[rgba(8,10,13,0.78)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                  Fast setup. Visible target. Better reps.
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="relative z-10 grid gap-5 lg:pt-8">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
-              <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,196,71,0.15),transparent_40%)]" />
-              <div className="relative aspect-[4/5]">
-                <Image
-                  src="/images/brand/topcorner-og.jpg"
-                  alt="Football corner target in use on a goal"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute bottom-5 left-5 rounded-full border border-white/10 bg-[rgba(8,10,13,0.78)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-                Fast setup. Visible target. Better reps.
-              </div>
-            </div>
+          <div className="relative z-10 mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {heroMediaCards.map((card) => (
+              <article
+                key={card.src}
+                className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
+              >
+                <div className="relative aspect-[5/4]">
+                  <Image
+                    src={card.src}
+                    alt={card.alt}
+                    fill
+                    sizes="(min-width: 1280px) 22vw, (min-width: 768px) 42vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="space-y-3 p-5">
+                  <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
+                    {card.title}
+                  </p>
+                  <p className="text-sm leading-7 text-[var(--color-mist)]">
+                    {card.body}
+                  </p>
+                </div>
+              </article>
+            ))}
 
-            <div className="grid gap-5 sm:grid-cols-[1.1fr_0.9fr]">
-              <div className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
-                <video
-                  className="aspect-video h-full w-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="/images/brand/topcorner-og.jpg"
-                >
-                  <source src={siteConfig.customerDemoVideo} type="video/mp4" />
-                </video>
-              </div>
-              <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6">
-                <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
-                  Why it works
+            <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
+              <video
+                className="aspect-[5/4] h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/images/products/hero-goal-target.jpg"
+              >
+                <source src={siteConfig.customerDemoVideo} type="video/mp4" />
+              </video>
+              <div className="space-y-3 p-5">
+                <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
+                  Customer footage
                 </p>
-                <p className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)]">
-                  Clear target. Cleaner finishing.
-                </p>
-                <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
-                  The target gives players a fixed visual cue in the hardest
-                  area for keepers to reach, so each rep becomes easier to
-                  judge, coach, and repeat.
+                <p className="text-sm leading-7 text-[var(--color-mist)]">
+                  Real session footage keeps the page grounded in how the target
+                  looks when players actually use it.
                 </p>
               </div>
+            </article>
+
+            <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 md:p-7">
+              <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
+                Why it works
+              </p>
+              <p className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)]">
+                Clear target. Cleaner finishing.
+              </p>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
+                The target gives players a fixed visual cue in the hardest area
+                for keepers to reach, so every strike is easier to repeat,
+                judge, and coach.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm leading-7 text-[var(--color-cream)]">
+                <li>+ Easier visual focus at full speed</li>
+                <li>+ Better solo sessions without extra setup</li>
+                <li>+ More convincing proof for first-time buyers</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -460,7 +518,7 @@ export default function HomePage() {
               muted
               playsInline
               preload="metadata"
-              poster="/images/brand/topcorner-og.jpg"
+              poster="/images/products/hero-goal-target.jpg"
             >
               <source src={siteConfig.customerDemoVideo} type="video/mp4" />
             </video>
