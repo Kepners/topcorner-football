@@ -23,7 +23,7 @@ export const siteConfig = {
   brand: "CalcioKx",
   company: "Rhinoceros Lime Ltd",
   domain: "topcorner.football",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://topcorner.football",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
   description:
     "Football goal corner training targets for players and coaches who want sharper finishing, better shooting drills, and faster setup sessions.",
   defaultOgImage: "/images/brand/topcorner-og.jpg",
