@@ -1,24 +1,77 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
+
+import { siteConfig } from "@/content/site";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const bodyFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+const displayFont = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+});
+
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
-  title: "TopCorner.football | CalcioKx Corner Targets",
-  description:
-    "Train smarter. Hit the corners. CalcioKx curved corner targets attach to any goal post — perfect for precision shooting practice. UK delivery only.",
-  keywords:
-    "football corner targets, goal corner targets, shooting practice, CalcioKx, football training aids UK",
-  openGraph: {
-    title: "TopCorner.football | CalcioKx Corner Targets",
-    description:
-      "Curved corner targets that clip onto any goal post. Train your precision.",
-    url: "https://topcorner.football",
-    siteName: "TopCorner.football",
-    locale: "en_GB",
-    type: "website",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [
+    "football shooting drills",
+    "football training drills",
+    "top corner football",
+    "improve shooting accuracy football",
+    "football finishing drills",
+    "solo football training",
+  ],
+  authors: [{ name: siteConfig.company }],
+  creator: siteConfig.company,
+  publisher: siteConfig.name,
+  category: "Sports",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
+    images: [
+      {
+        url: siteConfig.defaultOgImage,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.defaultOgImage],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  verification: googleVerification
+    ? {
+        google: googleVerification,
+      }
+    : undefined,
 };
 
 export default function RootLayout({
@@ -27,8 +80,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+    <html lang="en-GB">
+      <head>
+        <link
+          rel="preload"
+          href="/videos/topcorner-intro.mp4"
+          as="video"
+          type="video/mp4"
+        />
+      </head>
+      <body className={`${bodyFont.variable} ${displayFont.variable} antialiased`}>
+        {children}
+        {gaId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        ) : null}
+      </body>
     </html>
   );
 }

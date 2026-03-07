@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe, PRODUCTS } from "@/lib/stripe";
+
+import { PRODUCTS, stripe } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
       },
     ],
     success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${siteUrl}/#products`,
+    cancel_url: `${siteUrl}/product`,
     metadata: {
       productId,
       productName: product.name,

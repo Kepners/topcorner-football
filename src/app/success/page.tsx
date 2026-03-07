@@ -2,45 +2,56 @@ import Link from "next/link";
 
 export default function SuccessPage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center px-4">
-      <div className="max-w-lg text-center">
-        <div className="w-20 h-20 bg-[#1B5E20] rounded-full flex items-center justify-center text-4xl mx-auto mb-8">
-          ⚽
-        </div>
-        <h1 className="text-4xl font-black mb-4">Order Confirmed!</h1>
-        <p className="text-gray-300 text-lg mb-4">
-          You&apos;re going to be hitting top corners in no time.
+    <div className="min-h-screen bg-[var(--color-ink)] px-4 py-16 text-[var(--color-cream)] sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-8 sm:p-10">
+        <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+          Order confirmed
         </p>
-        <p className="text-gray-400 mb-8">
-          We&apos;ve received your order and we&apos;ll get it packed and shipped shortly.
-          Check your email for confirmation. UK delivery typically takes{" "}
-          <strong className="text-white">2–5 working days</strong>.
+        <h1 className="mt-4 font-display text-5xl uppercase tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
+          Your order is in.
+        </h1>
+        <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--color-mist)]">
+          Thanks for ordering from TopCorner.football. We have received the
+          payment and the order will move into packing and dispatch shortly.
         </p>
-        <div className="bg-[#111] border border-white/10 rounded-2xl p-6 mb-8 text-left space-y-3">
-          <h2 className="font-bold text-lg mb-4">What happens next</h2>
-          <div className="flex gap-3 text-sm text-gray-300">
-            <span className="text-[#FFD700]">1.</span>
-            <span>You&apos;ll receive an order confirmation email shortly.</span>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-6">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+              What happens next
+            </p>
+            <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+              <li>1. You should receive a confirmation email shortly.</li>
+              <li>2. Orders are typically dispatched within 1-2 working days.</li>
+              <li>3. UK delivery usually lands within 2-5 working days.</li>
+            </ul>
           </div>
-          <div className="flex gap-3 text-sm text-gray-300">
-            <span className="text-[#FFD700]">2.</span>
-            <span>We pack your CalcioKx targets and dispatch within 1–2 working days.</span>
-          </div>
-          <div className="flex gap-3 text-sm text-gray-300">
-            <span className="text-[#FFD700]">3.</span>
-            <span>Delivery arrives within 2–5 working days via Royal Mail.</span>
-          </div>
-          <div className="flex gap-3 text-sm text-gray-300">
-            <span className="text-[#FFD700]">4.</span>
-            <span>Set up takes 2 minutes — then aim for the top corner.</span>
+
+          <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-6">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+              While you wait
+            </p>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
+              The fastest next step is to browse the shooting guides so the
+              first session with the target already has structure.
+            </p>
           </div>
         </div>
-        <Link
-          href="/"
-          className="inline-block border border-white/20 hover:border-white/40 text-white font-semibold px-8 py-3 rounded-full transition-colors"
-        >
-          Back to TopCorner.football
-        </Link>
+
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <Link
+            href="/blog"
+            className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]"
+          >
+            Read training guides
+          </Link>
+          <Link
+            href="/product"
+            className="rounded-full border border-white/15 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-cream)]"
+          >
+            Back to product page
+          </Link>
+        </div>
       </div>
     </div>
   );

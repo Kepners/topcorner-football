@@ -35,7 +35,7 @@ export default function BuyButton({ productId, label }: BuyButtonProps) {
     <button
       onClick={handleClick}
       disabled={loading}
-      className="w-full bg-[#1B5E20] hover:bg-[#2E7D32] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-xl transition-colors text-center"
+      className="w-full rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)] transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {loading ? "Redirecting to checkout..." : label}
     </button>
