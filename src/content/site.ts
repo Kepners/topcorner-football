@@ -88,7 +88,7 @@ export const productVariants: ProductVariant[] = [
 export const heroHighlights = [
   "Built for strikers, coaches, and solo players",
   "Fits most football goals with strap-on setup",
-  "Designed in the UK for fast, repeatable sessions",
+  "Free UK shipping included for launch orders",
 ];
 
 export const problemPoints = [
@@ -220,11 +220,11 @@ export const productSpecs = [
   { label: "Goal fit", value: "Most standard round and square posts" },
   { label: "Setup time", value: "Under 2 minutes" },
   { label: "Origin", value: "Designed in the United Kingdom" },
-  { label: "Shipping", value: "United Kingdom only" },
+  { label: "Shipping", value: "Free United Kingdom shipping" },
 ];
 
 export const shippingFacts = [
-  "Flat UK shipping rate configured in Stripe checkout",
+  "Free UK shipping is included at checkout",
   "Dispatch target: 1-2 working days after order confirmation",
   "Typical delivery window: 2-5 working days",
   "Checkout currently collects UK addresses only",

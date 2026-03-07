@@ -7,9 +7,9 @@ type ProductConfig = {
 };
 
 export const SHIPPING = {
-  amount: 500,
+  amount: 0,
   currency: "gbp",
-  displayName: "UK Shipping",
+  displayName: "Free UK Shipping",
   minBusinessDays: 2,
   maxBusinessDays: 5,
 } as const;

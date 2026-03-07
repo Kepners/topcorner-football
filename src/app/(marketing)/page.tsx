@@ -109,6 +109,10 @@ export default function HomePage() {
               </Link>
             </div>
 
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-gold)]">
+              Free UK shipping included at checkout
+            </p>
+
             <div className="grid gap-4 sm:grid-cols-3">
               {heroHighlights.map((item) => (
                 <div
@@ -190,10 +194,10 @@ export default function HomePage() {
           </div>
           <div>
             <p className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-gold)]">
-              UK
+              Free
             </p>
             <p className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-mist)]">
-              Delivery coverage today
+              UK shipping
             </p>
           </div>
         </div>
@@ -348,7 +352,7 @@ export default function HomePage() {
                       </p>
                     </div>
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                      {variant.shortName} pack
+                      Free UK shipping
                     </p>
                   </div>
 

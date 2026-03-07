@@ -88,7 +88,7 @@ export default function ProductPage() {
             {[
               "Fits most standard round and square posts",
               "Ready for use in under 2 minutes",
-              "Available in single and double pack options",
+              "Free UK shipping included at checkout",
             ].map((item) => (
               <div
                 key={item}
@@ -201,6 +201,9 @@ export default function ProductPage() {
                       </p>
                       <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                         {variant.priceLabel}
+                      </p>
+                      <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
+                        Free UK shipping
                       </p>
                     </div>
 
