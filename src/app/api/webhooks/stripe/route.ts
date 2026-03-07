@@ -70,15 +70,6 @@ export async function POST(req: NextRequest) {
   if (event.type === "checkout.session.completed") {
     const resendApiKey = process.env.RESEND_API_KEY;
     const ownerEmail = process.env.OWNER_EMAIL;
-
-    if (!resendApiKey || !ownerEmail) {
-      return NextResponse.json(
-        { error: "Missing RESEND_API_KEY or OWNER_EMAIL" },
-        { status: 500 },
-      );
-    }
-
-    const resend = new Resend(resendApiKey);
     const session = event.data.object as Stripe.Checkout.Session;
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
       limit: 10,
@@ -106,38 +97,46 @@ export async function POST(req: NextRequest) {
       process.env.RESEND_FROM_EMAIL ||
       "TopCorner.football <orders@topcorner.football>";
 
-    await resend.emails.send({
-      from: fromEmail,
-      to: ownerEmail,
-      subject: `New order: ${session.metadata?.productName ?? "TopCorner.football"}`,
-      html: `
-        <h2>New order received</h2>
-        <p><strong>Items:</strong><br />${lineItemSummary}</p>
-        <p><strong>Total paid:</strong> ${formatMoney(session.amount_total)}</p>
-        <p><strong>Customer:</strong> ${escapeHtml(customerName)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(customerEmail ?? "Not provided")}</p>
-        <p><strong>Phone:</strong> ${escapeHtml(customerPhone ?? "Not provided")}</p>
-        <p><strong>Shipping address:</strong><br />${formatAddress(shippingAddress)}</p>
-        <p><strong>Stripe session:</strong> ${escapeHtml(session.id)}</p>
-      `,
-    });
+    if (resendApiKey && ownerEmail) {
+      const resend = new Resend(resendApiKey);
 
-    if (customerEmail) {
-      await resend.emails.send({
-        from: fromEmail,
-        to: customerEmail,
-        subject: "Order confirmed - TopCorner.football",
-        html: `
-          <h2>Thanks for your order</h2>
-          <p>We have received your order for <strong>${escapeHtml(
-            session.metadata?.productName ?? "your training target",
-          )}</strong>.</p>
-          <p>Total paid: <strong>${formatMoney(session.amount_total)}</strong></p>
-          <p>We will ship to:</p>
-          <p>${formatAddress(shippingAddress)}</p>
-          <p>UK delivery typically takes 2-5 working days once dispatched.</p>
-        `,
-      });
+      try {
+        await resend.emails.send({
+          from: fromEmail,
+          to: ownerEmail,
+          subject: `New order: ${session.metadata?.productName ?? "TopCorner.football"}`,
+          html: `
+            <h2>New order received</h2>
+            <p><strong>Items:</strong><br />${lineItemSummary}</p>
+            <p><strong>Total paid:</strong> ${formatMoney(session.amount_total)}</p>
+            <p><strong>Customer:</strong> ${escapeHtml(customerName)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(customerEmail ?? "Not provided")}</p>
+            <p><strong>Phone:</strong> ${escapeHtml(customerPhone ?? "Not provided")}</p>
+            <p><strong>Shipping address:</strong><br />${formatAddress(shippingAddress)}</p>
+            <p><strong>Stripe session:</strong> ${escapeHtml(session.id)}</p>
+          `,
+        });
+
+        if (customerEmail) {
+          await resend.emails.send({
+            from: fromEmail,
+            to: customerEmail,
+            subject: "Order confirmed - TopCorner.football",
+            html: `
+              <h2>Thanks for your order</h2>
+              <p>We have received your order for <strong>${escapeHtml(
+                session.metadata?.productName ?? "your training target",
+              )}</strong>.</p>
+              <p>Total paid: <strong>${formatMoney(session.amount_total)}</strong></p>
+              <p>We will ship to:</p>
+              <p>${formatAddress(shippingAddress)}</p>
+              <p>UK delivery typically takes 2-5 working days once dispatched.</p>
+            `,
+          });
+        }
+      } catch (error) {
+        console.error("Failed to send order email", error);
+      }
     }
   }
 
