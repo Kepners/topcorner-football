@@ -202,9 +202,6 @@ export default function ProductPage() {
                       <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                         {variant.priceLabel}
                       </p>
-                      <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                        {variant.inventory}
-                      </p>
                     </div>
 
                     <div>
@@ -238,6 +235,35 @@ export default function ProductPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-18 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8 lg:py-24">
+        <div>
+          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+            Real customer footage
+          </p>
+          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+            See the target used in a live session.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+            This is the clearest proof point for buyers who want to see the
+            target on the goal, the pace of the setup, and how the finish looks
+            in a normal training environment.
+          </p>
+        </div>
+
+        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+          <video
+            className="aspect-video h-full w-full object-cover"
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            poster="/images/products/goal-installed-4.jpg"
+          >
+            <source src={siteConfig.customerDemoVideo} type="video/mp4" />
+          </video>
         </div>
       </section>
 

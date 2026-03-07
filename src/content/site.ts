@@ -8,7 +8,6 @@ export type ProductVariant = {
   tagline: string;
   image: string;
   badge?: string;
-  inventory: string;
   contents: string[];
   benefits: string[];
 };
@@ -27,6 +26,7 @@ export const siteConfig = {
   description:
     "Football goal corner training targets for players and coaches who want sharper finishing, better shooting drills, and faster setup sessions.",
   defaultOgImage: "/images/brand/topcorner-og.jpg",
+  customerDemoVideo: "/videos/customer-training-demo.mp4",
   supportEmail: "orders@topcorner.football",
   locale: "en_GB",
 };
@@ -50,7 +50,6 @@ export const productVariants: ProductVariant[] = [
       "A single top-corner target for focused repetition on one side of the goal.",
     tagline: "One corner. One clear target. Fast reps.",
     image: "/images/products/product-single-nobg.png",
-    inventory: "90 units available",
     contents: [
       "1 curved corner target",
       "3 hook-and-loop fixing straps",
@@ -73,7 +72,6 @@ export const productVariants: ProductVariant[] = [
     tagline: "Both corners covered for realistic finishing patterns.",
     image: "/images/products/product-double-nobg.png",
     badge: "Best value",
-    inventory: "40 units available",
     contents: [
       "2 curved corner targets",
       "6 hook-and-loop fixing straps",

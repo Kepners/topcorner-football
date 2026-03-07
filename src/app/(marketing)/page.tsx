@@ -149,7 +149,7 @@ export default function HomePage() {
                   preload="metadata"
                   poster="/images/brand/topcorner-og.jpg"
                 >
-                  <source src="/videos/topcorner-intro.mp4" type="video/mp4" />
+                  <source src={siteConfig.customerDemoVideo} type="video/mp4" />
                 </video>
               </div>
               <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6">
@@ -174,10 +174,10 @@ export default function HomePage() {
         <div className="mx-auto grid w-full max-w-7xl gap-5 px-4 py-6 text-center sm:grid-cols-3 sm:px-6 lg:px-8">
           <div>
             <p className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-gold)]">
-              130+
+              2
             </p>
             <p className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-mist)]">
-              Units currently available
+              Pack options
             </p>
           </div>
           <div>
@@ -348,7 +348,7 @@ export default function HomePage() {
                       </p>
                     </div>
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                      {variant.inventory}
+                      {variant.shortName} pack
                     </p>
                   </div>
 
@@ -437,7 +437,7 @@ export default function HomePage() {
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-              Demo video
+              Real customer footage
             </p>
             <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
               Show the target. Show the finish.
@@ -458,7 +458,7 @@ export default function HomePage() {
               preload="metadata"
               poster="/images/brand/topcorner-og.jpg"
             >
-              <source src="/videos/topcorner-intro.mp4" type="video/mp4" />
+              <source src={siteConfig.customerDemoVideo} type="video/mp4" />
             </video>
           </div>
         </div>

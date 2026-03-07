@@ -19,10 +19,10 @@ export default function BuyButton({ productId, label }: BuyButtonProps) {
         body: JSON.stringify({ productId }),
       });
       const data = await res.json();
-      if (data.url) {
+      if (res.ok && data.url) {
         window.location.href = data.url;
       } else {
-        alert("Something went wrong. Please try again.");
+        alert(data.error || "Something went wrong. Please try again.");
         setLoading(false);
       }
     } catch {

@@ -1,30 +1,51 @@
 import Stripe from "stripe";
 
-// Lazy getter — avoids throwing at build time when env vars aren't present
+type ProductConfig = {
+  name: string;
+  description: string;
+  unitAmount: number;
+};
+
+export const SHIPPING = {
+  amount: 500,
+  currency: "gbp",
+  displayName: "UK Shipping",
+  minBusinessDays: 2,
+  maxBusinessDays: 5,
+} as const;
+
 let _stripe: Stripe | null = null;
+
 export function getStripe(): Stripe {
   if (!_stripe) {
-    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error("Missing STRIPE_SECRET_KEY");
+    }
+
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: "2026-02-25.clover",
     });
   }
+
   return _stripe;
 }
 
-// Keep named export for backwards compat with existing imports
 export const stripe = new Proxy({} as Stripe, {
   get(_target, prop) {
     return getStripe()[prop as keyof Stripe];
   },
 });
 
-export const PRODUCTS = {
+export const PRODUCTS: Record<"single" | "double", ProductConfig> = {
   single: {
     name: "CalcioKx Single Corner Target",
-    priceId: process.env.STRIPE_PRICE_ID_SINGLE!,
+    description: "Single top-corner target for focused solo shooting work.",
+    unitAmount: 2500,
   },
   double: {
     name: "CalcioKx Double Corner Target",
-    priceId: process.env.STRIPE_PRICE_ID_DOUBLE!,
+    description:
+      "Double pack for running both corners in team and striker sessions.",
+    unitAmount: 4000,
   },
 };

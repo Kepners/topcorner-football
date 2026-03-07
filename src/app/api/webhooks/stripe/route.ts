@@ -1,23 +1,65 @@
+import type Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
-export async function POST(req: NextRequest) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  const body = await req.text();
-  const sig = req.headers.get("stripe-signature")!;
+function formatMoney(amount: number | null | undefined) {
+  return `GBP ${((amount ?? 0) / 100).toFixed(2)}`;
+}
 
-  let event;
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatAddress(address?: Stripe.Address | null) {
+  if (!address) {
+    return "Not provided";
+  }
+
+  return [
+    address.line1,
+    address.line2,
+    [address.city, address.postal_code].filter(Boolean).join(" "),
+    address.state,
+    address.country,
+  ]
+    .filter(Boolean)
+    .join("<br />");
+}
+
+export async function POST(req: NextRequest) {
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!webhookSecret) {
+    return NextResponse.json(
+      { error: "Missing STRIPE_WEBHOOK_SECRET" },
+      { status: 500 },
+    );
+  }
+
+  const body = await req.text();
+  const sig = req.headers.get("stripe-signature");
+
+  if (!sig) {
+    return NextResponse.json(
+      { error: "Missing Stripe signature" },
+      { status: 400 },
+    );
+  }
+
+  const stripe = getStripe();
+  let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET!,
-    );
+    event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch {
     return NextResponse.json(
       { error: "Webhook signature failed" },
@@ -26,37 +68,74 @@ export async function POST(req: NextRequest) {
   }
 
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const ownerEmail = process.env.OWNER_EMAIL;
+
+    if (!resendApiKey || !ownerEmail) {
+      return NextResponse.json(
+        { error: "Missing RESEND_API_KEY or OWNER_EMAIL" },
+        { status: 500 },
+      );
+    }
+
+    const resend = new Resend(resendApiKey);
+    const session = event.data.object as Stripe.Checkout.Session;
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
+      limit: 10,
+    });
+
     const customerEmail = session.customer_details?.email;
-    const productName = session.metadata?.productName;
-    const amount = ((session.amount_total ?? 0) / 100).toFixed(2);
+    const customerName =
+      session.collected_information?.shipping_details?.name ??
+      session.customer_details?.name ??
+      "Customer";
+    const customerPhone = session.customer_details?.phone;
+    const shippingAddress =
+      session.collected_information?.shipping_details?.address ??
+      session.customer_details?.address;
+    const lineItemSummary =
+      lineItems.data.length > 0
+        ? lineItems.data
+            .map((item) => {
+              const quantity = item.quantity ?? 1;
+              return `${escapeHtml(item.description ?? "TopCorner.football order")} x${quantity}`;
+            })
+            .join("<br />")
+        : escapeHtml(session.metadata?.productName ?? "TopCorner.football order");
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL ||
+      "TopCorner.football <orders@topcorner.football>";
 
     await resend.emails.send({
-      from: "TopCorner.football <orders@topcorner.football>",
-      to: process.env.OWNER_EMAIL!,
-      subject: `New order: ${productName}`,
+      from: fromEmail,
+      to: ownerEmail,
+      subject: `New order: ${session.metadata?.productName ?? "TopCorner.football"}`,
       html: `
-        <h2>New order received!</h2>
-        <p><strong>Product:</strong> ${productName}</p>
-        <p><strong>Total paid:</strong> GBP ${amount}</p>
-        <p><strong>Customer email:</strong> ${customerEmail ?? "not provided"}</p>
-        <p><strong>Stripe session:</strong> ${session.id}</p>
-        <p>Check your Stripe dashboard for shipping address and fulfillment.</p>
+        <h2>New order received</h2>
+        <p><strong>Items:</strong><br />${lineItemSummary}</p>
+        <p><strong>Total paid:</strong> ${formatMoney(session.amount_total)}</p>
+        <p><strong>Customer:</strong> ${escapeHtml(customerName)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(customerEmail ?? "Not provided")}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(customerPhone ?? "Not provided")}</p>
+        <p><strong>Shipping address:</strong><br />${formatAddress(shippingAddress)}</p>
+        <p><strong>Stripe session:</strong> ${escapeHtml(session.id)}</p>
       `,
     });
 
     if (customerEmail) {
       await resend.emails.send({
-        from: "TopCorner.football <orders@topcorner.football>",
+        from: fromEmail,
         to: customerEmail,
         subject: "Order confirmed - TopCorner.football",
         html: `
-          <h2>Thanks for your order!</h2>
-          <p>We've received your order for <strong>${productName}</strong>.</p>
-          <p>We'll get it packed and shipped to you shortly. UK delivery typically takes 2-5 working days.</p>
-          <p>Any questions? Reply to this email.</p>
-          <br />
-          <p>- TopCorner.football</p>
+          <h2>Thanks for your order</h2>
+          <p>We have received your order for <strong>${escapeHtml(
+            session.metadata?.productName ?? "your training target",
+          )}</strong>.</p>
+          <p>Total paid: <strong>${formatMoney(session.amount_total)}</strong></p>
+          <p>We will ship to:</p>
+          <p>${formatAddress(shippingAddress)}</p>
+          <p>UK delivery typically takes 2-5 working days once dispatched.</p>
         `,
       });
     }
