@@ -16,14 +16,12 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 - **Name**: CalcioKx 1x Curved Corner Target & Bag
 - **SKU**: 5065017325008
 - **Price**: £25.00
-- **Stock**: 90 units
 - **Contents**: 1x corner target + velcro straps + storage bag
 
 ### Double Corner Target
 - **Name**: CalcioKx 2x Curved Corner Target & Bag
 - **SKU**: 5065017325015
 - **Price**: £40.00
-- **Stock**: 40 units
 - **Contents**: 2x corner targets + velcro straps + storage bag
 
 ### Product Details
@@ -97,7 +95,7 @@ OWNER_EMAIL=kepners@gmail.com
 
 ---
 
-## Photos Available (F:\RhinocerosLime.Ltd\Images\)
+## Photos Available (local product image archive)
 - `DSC_1619.JPG` — single target installed on goal post, outdoor
 - `DSC_1626.JPG` — wide shot, installed on goal, blue sky
 - `DSC_1629.JPG` — close-up installed on post

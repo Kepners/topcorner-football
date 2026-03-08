@@ -15,7 +15,7 @@ export default function SiteFooter() {
             helping players train with clearer targets and better repetition.
           </p>
           <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-sky)]">
-            {siteConfig.brand} is a product of {siteConfig.company}
+            Official home of the {siteConfig.brand} football corner target
           </p>
         </div>
 

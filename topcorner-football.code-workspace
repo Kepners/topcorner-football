@@ -6,15 +6,15 @@
   ],
   "settings": {
     "workbench.colorCustomizations": {
-      "titleBar.activeBackground": "#1B5E20",
-      "titleBar.activeForeground": "#FFD700",
-      "titleBar.inactiveBackground": "#1B5E20CC",
-      "activityBar.background": "#0A2E11",
-      "activityBar.foreground": "#FFD700",
-      "statusBar.background": "#2E7D32",
-      "statusBar.foreground": "#ffffff",
-      "sideBar.background": "#0D1F0F",
-      "editorGroupHeader.tabsBackground": "#0A1A0C"
+      "titleBar.activeBackground": "#F4EEF8",
+      "titleBar.activeForeground": "#3C3144",
+      "titleBar.inactiveBackground": "#E7DDED",
+      "activityBar.background": "#F6F1FA",
+      "activityBar.foreground": "#3C3144",
+      "statusBar.background": "#ECE2F2",
+      "statusBar.foreground": "#3C3144",
+      "sideBar.background": "#FBF7FD",
+      "editorGroupHeader.tabsBackground": "#F0E6F5"
     }
   }
 }

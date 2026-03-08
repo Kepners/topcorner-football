@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
         },
       ],
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/product`,
+      cancel_url: `${siteUrl}/product/${productId}`,
       metadata: {
         productId,
         productName: product.name,

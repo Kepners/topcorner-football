@@ -20,7 +20,6 @@ export type FaqItem = {
 export const siteConfig = {
   name: "TopCorner.football",
   brand: "CalcioKx",
-  company: "Rhinoceros Lime Ltd",
   domain: "topcorner.football",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
   description:
@@ -33,7 +32,7 @@ export const siteConfig = {
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/product", label: "Product" },
+  { href: "/product", label: "Products" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
@@ -88,7 +87,7 @@ export const productVariants: ProductVariant[] = [
 export const heroHighlights = [
   "Built for strikers, coaches, and solo players",
   "Fits most football goals with strap-on setup",
-  "Free UK shipping included for launch orders",
+  "Free UK shipping included at checkout",
 ];
 
 export const problemPoints = [
@@ -144,21 +143,21 @@ export const homeBenefits = [
   "Easy to install, remove, and store between sessions",
 ];
 
-export const reviews = [
+export const useCases = [
   {
-    title: "Placeholder review slot",
-    quote:
-      "Replace this with a short coach testimonial about setup speed and the quality of the finishing reps.",
+    title: "Solo finishing",
+    body:
+      "Use one live corner for repeated curlers, laces finishes, and first-time strikes when you want one clear point of aim.",
   },
   {
-    title: "Placeholder review slot",
-    quote:
-      "Replace this with a player quote about how the target makes top-corner practice feel more focused.",
+    title: "Coach-led sessions",
+    body:
+      "Keep both sides of the goal active with the double pack for alternating near-post and far-post patterns.",
   },
   {
-    title: "Placeholder review slot",
-    quote:
-      "Replace this with a team or academy note on using the double pack for group shooting sessions.",
+    title: "Portable training",
+    body:
+      "Pack it down quickly after training and bring it back out whenever you want a reliable target for clubs, schools, or garden sessions.",
   },
 ];
 
@@ -210,7 +209,7 @@ export const faqPageItems: FaqItem[] = [
   {
     question: "Where do you ship?",
     answer:
-      "The current checkout flow is set up for United Kingdom delivery only, with a flat shipping rate.",
+      "The current checkout flow is set up for United Kingdom delivery only, with free shipping included at checkout.",
   },
 ];
 
@@ -242,14 +241,14 @@ export const aboutPrinciples = [
       "If a tool takes too long to install, players and coaches stop using it. The product is designed to go on quickly and come off quickly.",
   },
   {
-    title: "A niche product still needs a serious brand",
+    title: "Football training gear should feel purposeful",
     body:
-      "TopCorner.football is being built as a focused football training brand with clear product messaging, useful content, and clean buying flow.",
+      "A focused training product earns its place when it solves a real problem and stays simple enough to use every week.",
   },
 ];
 
 export const blogLeadIn = {
-  title: "Build authority through useful football training content",
+  title: "Training guides",
   body:
-    "The product page converts intent. The blog brings new intent into the site through practical shooting and finishing guides that link back to the training target.",
+    "Read practical articles on shooting technique, finishing drills, and solo sessions built around sharper top-corner repetition.",
 };

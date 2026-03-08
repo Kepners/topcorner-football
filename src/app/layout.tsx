@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     "football finishing drills",
     "solo football training",
   ],
-  authors: [{ name: siteConfig.company }],
-  creator: siteConfig.company,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
   publisher: siteConfig.name,
   category: "Sports",
   alternates: {

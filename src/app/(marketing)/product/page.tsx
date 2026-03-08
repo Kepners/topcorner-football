@@ -4,255 +4,146 @@ import Link from "next/link";
 import BuyButton from "@/components/BuyButton";
 import JsonLd from "@/components/JsonLd";
 import {
-  faqPageItems,
-  productSpecs,
-  productVariants,
-  shippingFacts,
-  siteConfig,
-} from "@/content/site";
+  getProductVariantById,
+  productCompareRows,
+  productDetailContent,
+} from "@/content/products";
+import { faqPageItems, productVariants, shippingFacts } from "@/content/site";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Football Goal Corner Training Target",
+  title: "Products",
   description:
-    "Shop the CalcioKx football goal corner training target for solo sessions, striker drills, and coach-led finishing practice.",
+    "Browse the CalcioKx single and double corner target packs, compare the setup that fits your sessions, and go straight to checkout.",
   path: "/product",
   keywords: [
-    "football goal corner training target",
-    "football corner target",
-    "football training product",
-    "improve shooting accuracy football",
+    "football corner target products",
+    "calciokx single corner target",
+    "calciokx double corner target",
+    "football training target packs",
   ],
   image: "/images/products/hero-goal-target.jpg",
 });
 
-export default function ProductPage() {
-  const productGallery = [
-    {
-      src: "/images/products/hero-goal-target.jpg",
-      alt: "Product hero photo of the TopCorner goal target attached to the top corner of a goal",
-    },
-    {
-      src: "/images/products/goal-target-angle.jpg",
-      alt: "Angled football goal photo showing the TopCorner target on the frame",
-    },
-    {
-      src: "/images/products/goal-target-wide.jpg",
-      alt: "Wide football pitch shot with the TopCorner target installed on the goal",
-    },
-    {
-      src: "/images/products/goal-installed-4.jpg",
-      alt: "Installed TopCorner target shown from close range",
-    },
-    {
-      src: "/images/products/product-detail-joint.jpg",
-      alt: "Close-up product detail of the joint and frame",
-    },
-    {
-      src: "/images/products/product-straps.jpg",
-      alt: "Close-up of the TopCorner target straps and fixings",
-    },
-  ];
+function formatPrice(value: number) {
+  return `GBP ${value}`;
+}
 
-  const productSchema = {
+export default function ProductPage() {
+  const singlePack = getProductVariantById("single");
+
+  if (!singlePack) {
+    return null;
+  }
+
+  const productListSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: "CalcioKx Football Goal Corner Training Target",
+    "@type": "CollectionPage",
+    name: "CalcioKx Corner Target Packs",
     description:
-      "Football goal corner training target for players and coaches who want clearer finishing drills and better shooting accuracy.",
-    brand: {
-      "@type": "Brand",
-      name: siteConfig.brand,
+      "Browse the CalcioKx single and double corner target packs for solo sessions, coach-led drills, and group finishing work.",
+    url: absoluteUrl("/product"),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: productVariants.map((variant, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: absoluteUrl(`/product/${variant.id}`),
+        item: {
+          "@type": "Product",
+          name: variant.name,
+          image: absoluteUrl(variant.image),
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "GBP",
+            price: variant.priceValue.toFixed(2),
+            url: absoluteUrl(`/product/${variant.id}`),
+          },
+        },
+      })),
     },
-    category: "Soccer training equipment",
-    image: [
-      absoluteUrl("/images/products/hero-goal-target.jpg"),
-      absoluteUrl("/images/products/goal-target-angle.jpg"),
-      absoluteUrl("/images/products/goal-target-wide.jpg"),
-      absoluteUrl("/images/products/goal-installed-4.jpg"),
-      absoluteUrl("/images/products/product-single-flat.jpg"),
-      absoluteUrl("/images/products/product-double-flat.jpg"),
-    ],
-    offers: productVariants.map((variant) => ({
-      "@type": "Offer",
-      url: absoluteUrl("/product"),
-      priceCurrency: "GBP",
-      price: variant.priceValue.toFixed(2),
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition",
-      name: variant.name,
-      seller: {
-        "@type": "Organization",
-        name: siteConfig.name,
-      },
-    })),
-    additionalProperty: productSpecs.map((spec) => ({
-      "@type": "PropertyValue",
-      name: spec.label,
-      value: spec.value,
-    })),
   };
 
   return (
     <>
-      <JsonLd data={productSchema} />
+      <JsonLd data={productListSchema} />
 
-      <section className="mx-auto grid w-full max-w-7xl gap-12 px-4 pb-18 pt-8 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-24">
-        <div className="space-y-7">
-          <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
-            Product page
-          </div>
-          <div className="space-y-5">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-20">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+              Products
+            </p>
             <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
-              Football goal corner training target
+              Choose the pack that fits your sessions.
             </h1>
             <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)]">
-              The CalcioKx corner target gives players and coaches a clean
-              top-corner aim point for shooting drills, finishing circuits, and
-              solo repetition. It straps onto the goal quickly and comes off
-              just as fast when the session ends.
+              Start with one live corner for focused solo repetition, or step
+              up to both corners ready at once for coach-led drills and group
+              finishing work. This page is the fastest way to compare both
+              CalcioKx packs and pick the right setup.
             </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
             {[
-              "Fits most standard round and square posts",
-              "Ready for use in under 2 minutes",
-              "Free UK shipping included at checkout",
+              "Free UK shipping included",
+              "Dispatch target: 1-2 working days",
+              "Secure checkout with Stripe",
             ].map((item) => (
               <div
                 key={item}
-                className="rounded-[1.5rem] border border-white/10 bg-[var(--color-panel)] p-5 text-sm leading-7 text-[var(--color-cream)]"
+                className="rounded-[1.7rem] border border-white/10 bg-[var(--color-panel)] p-5 text-sm leading-7 text-[var(--color-cream)]"
               >
                 {item}
               </div>
             ))}
           </div>
-
-          <div className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
-              Why buyers care
-            </p>
-            <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
-              <li>+ Clear top-corner target for more deliberate finishing work</li>
-              <li>+ Faster setup than improvised cone or tape solutions</li>
-              <li>+ Useful for clubs, schools, coaches, and home practice</li>
-              <li>+ Supports product-led conversions from blog traffic</li>
-            </ul>
-          </div>
         </div>
 
-        <div className="grid gap-5">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
-            <div className="relative aspect-[5/4]">
-              <Image
-                src="/images/products/hero-goal-target.jpg"
-                alt="Football goal with the TopCorner target fixed to the top corner"
-                fill
-                priority
-                sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
-              <div className="relative aspect-square">
-                <Image
-                  src="/images/products/goal-target-angle.jpg"
-                  alt="Angled product photo of the TopCorner target attached to a goal"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
-              <div className="relative aspect-square">
-                <Image
-                  src="/images/products/product-single-flat.jpg"
-                  alt="Single corner target product shot"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          {productVariants.map((variant) => {
+            const detail = productDetailContent[variant.id];
+            const detailHref = `/product/${variant.id}`;
+            const compareAtValue =
+              variant.id === "double" ? singlePack.priceValue * 2 : null;
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
-        <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Product gallery
-          </p>
-          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            More angles. More proof.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            Buyers should be able to see the fit on the goal, the scale from a
-            distance, and the small product details that make the setup feel
-            credible before they reach checkout.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {productGallery.map((image) => (
-            <article
-              key={image.src}
-              className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
-            >
-              <div className="relative aspect-[5/4]">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-              Choose your pack
-            </p>
-            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-              Buy the format that matches your sessions.
-            </h2>
-          </div>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {productVariants.map((variant) => (
+            return (
               <article
                 key={variant.id}
-                className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-6"
+                className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-[var(--color-panel)] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,196,71,0.08),transparent_28%)]" />
+
+                <div className="relative flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
-                      {variant.shortName} pack
+                      {detail.eyebrow}
                     </p>
-                    <h3 className="mt-3 font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+                    <h2 className="mt-3 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
                       {variant.name}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
-                      {variant.tagline}
+                    </h2>
+                    <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--color-mist)]">
+                      {variant.description}
                     </p>
                   </div>
-                  {variant.badge ? (
-                    <span className="rounded-full bg-[var(--color-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
-                      {variant.badge}
-                    </span>
-                  ) : null}
+
+                  <div className="flex flex-col items-end gap-3">
+                    {variant.badge ? (
+                      <span className="rounded-full bg-[var(--color-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
+                        {variant.badge}
+                      </span>
+                    ) : null}
+                    {detail.savingsLine ? (
+                      <span className="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                        {detail.savingsLine}
+                      </span>
+                    ) : null}
+                  </div>
                 </div>
 
-                <div className="mt-6 grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-white">
+                <div className="relative mt-6 grid gap-6 md:grid-cols-[0.82fr_1.18fr]">
+                  <div className="relative aspect-square overflow-hidden rounded-[1.7rem] bg-white">
                     <Image
                       src={variant.image}
                       alt={variant.name}
@@ -260,122 +151,164 @@ export default function ProductPage() {
                       className="object-contain p-6"
                     />
                   </div>
+
                   <div className="space-y-5">
-                    <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-mist)]">
-                        Price
+                    <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-5">
+                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+                        Offer
                       </p>
-                      <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
+                      <p className="mt-3 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                         {variant.priceLabel}
                       </p>
-                      <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                        Free UK shipping
+                      {compareAtValue ? (
+                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
+                          <span className="line-through">
+                            {formatPrice(compareAtValue)}
+                          </span>{" "}
+                          as two single packs
+                        </p>
+                      ) : null}
+                      <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                        {detail.offerLine}
+                      </p>
+                      <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-sky)]">
+                        {detail.unitLine}
                       </p>
                     </div>
 
-                    <div>
+                    <div className="rounded-[1.6rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-5">
                       <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-cream)]">
-                        Included
+                        Why pick this pack
                       </p>
-                      <ul className="mt-3 space-y-2 text-sm leading-7 text-[var(--color-mist)]">
-                        {variant.contents.map((item) => (
-                          <li key={item}>+ {item}</li>
-                        ))}
-                      </ul>
+                      <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
+                        {detail.choiceLine}
+                      </p>
                     </div>
 
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-cream)]">
-                        Best for
-                      </p>
-                      <ul className="mt-3 space-y-2 text-sm leading-7 text-[var(--color-mist)]">
-                        {variant.benefits.map((item) => (
-                          <li key={item}>+ {item}</li>
-                        ))}
-                      </ul>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      {detail.trustPoints.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1.2rem] border border-white/10 bg-[rgba(255,255,255,0.03)] px-4 py-3 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]"
+                        >
+                          {item}
+                        </div>
+                      ))}
                     </div>
 
-                    <BuyButton
-                      productId={variant.id}
-                      label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
-                    />
+                    <ul className="space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+                      {variant.benefits.map((benefit) => (
+                        <li key={benefit} className="flex gap-3">
+                          <span className="text-[var(--color-gold)]">+</span>
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <Link
+                        href={detailHref}
+                        className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
+                      >
+                        View pack details
+                      </Link>
+                      <BuyButton
+                        productId={variant.id}
+                        label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
+                      />
+                    </div>
                   </div>
                 </div>
               </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+              Compare packs
+            </p>
+            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+              Fast side-by-side comparison.
+            </h2>
+            <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+              If you want the lightest starting point, go single. If you want
+              both corners active and the stronger price-per-target value, go
+              double.
+            </p>
+          </div>
+
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
+            <div className="grid grid-cols-[0.9fr_1fr_1fr] border-b border-white/10 px-6 py-5 text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+              <div>Pack</div>
+              <div>Single</div>
+              <div>Double</div>
+            </div>
+
+            {productCompareRows.map((row) => (
+              <div
+                key={row.label}
+                className="grid grid-cols-[0.9fr_1fr_1fr] gap-4 border-b border-white/10 px-6 py-5 last:border-b-0"
+              >
+                <div className="text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+                  {row.label}
+                </div>
+                <div className="text-sm leading-7 text-[var(--color-mist)]">
+                  {row.single}
+                </div>
+                <div className="text-sm leading-7 text-[var(--color-mist)]">
+                  {row.double}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-18 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8 lg:py-24">
-        <div>
+      <section className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-18 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-24">
+        <div className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Real customer footage
+            Need a quick answer?
           </p>
           <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            See the target used in a live session.
+            Simple buying rule.
           </h2>
-          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            This is the clearest proof point for buyers who want to see the
-            target on the goal, the pace of the setup, and how the finish looks
-            in a normal training environment.
-          </p>
+          <div className="mt-6 space-y-4 text-sm leading-7 text-[var(--color-mist)]">
+            <p>
+              Choose <span className="text-[var(--color-cream)]">Single</span>{" "}
+              if you want one live corner, the lighter starting price, and a
+              pack that is easy to move between sessions.
+            </p>
+            <p>
+              Choose <span className="text-[var(--color-cream)]">Double</span>{" "}
+              if you want both corners ready at once, better value per target,
+              and less resetting during finishing patterns.
+            </p>
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/product/single"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30"
+            >
+              View single pack
+            </Link>
+            <Link
+              href="/product/double"
+              className="inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+            >
+              View double pack
+            </Link>
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
-          <video
-            className="aspect-video h-full w-full object-cover"
-            controls
-            muted
-            playsInline
-            preload="metadata"
-            poster="/images/products/hero-goal-target.jpg"
-          >
-            <source src={siteConfig.customerDemoVideo} type="video/mp4" />
-          </video>
-        </div>
-      </section>
-
-      <section className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-18 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
-        <div>
-          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Technical details
-          </p>
-          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Product details buyers want before checkout.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            Use this section to reduce hesitation. Buyers need to know the
-            setup method, compatibility, shipping model, and whether the
-            product fits their training environment.
-          </p>
-        </div>
-
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
-          <dl className="divide-y divide-white/10">
-            {productSpecs.map((spec) => (
-              <div key={spec.label} className="grid gap-3 px-6 py-5 sm:grid-cols-[0.42fr_0.58fr]">
-                <dt className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
-                  {spec.label}
-                </dt>
-                <dd className="text-sm leading-7 text-[var(--color-cream)]">
-                  {spec.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section className="bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div className="grid gap-5">
           <div className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-              Shipping info
+              Delivery and checkout
             </p>
-            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-              Simple delivery rules for the MVP.
-            </h2>
             <ul className="mt-6 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
               {shippingFacts.map((fact) => (
                 <li key={fact}>+ {fact}</li>
@@ -385,10 +318,10 @@ export default function ProductPage() {
 
           <div className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-              Support questions
+              Common questions
             </p>
             <div className="mt-6 space-y-4">
-              {faqPageItems.slice(0, 4).map((item) => (
+              {faqPageItems.slice(0, 3).map((item) => (
                 <details
                   key={item.question}
                   className="rounded-[1.4rem] border border-white/10 bg-white/5 p-5"

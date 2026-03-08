@@ -41,8 +41,8 @@ export default function FaqPage() {
             Football corner target questions, answered.
           </h1>
           <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            This page is designed to help buyers and search engines understand
-            the product clearly before purchase.
+            Everything players, coaches, and parents usually ask before buying
+            or using the target.
           </p>
         </div>
 

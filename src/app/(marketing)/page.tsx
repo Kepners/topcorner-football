@@ -13,16 +13,16 @@ import {
   howItWorksSteps,
   problemPoints,
   productVariants,
-  reviews,
   siteConfig,
   solutionPoints,
+  useCases,
 } from "@/content/site";
 import { buildMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Train Your Shot. Hit The Top Corner.",
   description:
-    "Cinematic football training site for the CalcioKx corner target, built to convert players and coaches who want better finishing sessions.",
+    "Football training site for the CalcioKx corner target, with product details, session ideas, and guides for sharper finishing practice.",
   path: "/",
   keywords: [
     "football shooting drills",
@@ -74,13 +74,13 @@ export default function HomePage() {
   const heroMediaCards = [
     {
       title: "Installed view",
-      body: "Show buyers the actual fit on the goal instead of another piece of brand artwork.",
+      body: "See how the target sits on the goal in a real outdoor setup before you take it into training.",
       src: "/images/products/goal-target-angle.jpg",
       alt: "Angled field photo of the TopCorner training target attached to a goal",
     },
     {
       title: "Distance test",
-      body: "A wider field shot gives immediate scale and makes the target feel like real training equipment.",
+      body: "A wider field view gives a better sense of scale from the edge of the box and beyond.",
       src: "/images/products/goal-target-wide.jpg",
       alt: "Wide football pitch photo showing the TopCorner training target fixed to the goal",
     },
@@ -204,8 +204,8 @@ export default function HomePage() {
                   Customer footage
                 </p>
                 <p className="text-sm leading-7 text-[var(--color-mist)]">
-                  Real session footage keeps the page grounded in how the target
-                  looks when players actually use it.
+                  A quick session clip shows how the target looks and reacts
+                  when players strike into it at speed.
                 </p>
               </div>
             </article>
@@ -225,7 +225,7 @@ export default function HomePage() {
               <ul className="mt-6 space-y-3 text-sm leading-7 text-[var(--color-cream)]">
                 <li>+ Easier visual focus at full speed</li>
                 <li>+ Better solo sessions without extra setup</li>
-                <li>+ More convincing proof for first-time buyers</li>
+                <li>+ Useful for players, coaches, and club sessions</li>
               </ul>
             </div>
           </div>
@@ -337,7 +337,7 @@ export default function HomePage() {
                 href="/product"
                 className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]"
               >
-                View product details
+                Browse packs
               </Link>
               <Link
                 href="/faq"
@@ -353,7 +353,7 @@ export default function HomePage() {
       <section id="shop" className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
         <div className="flex flex-col gap-4 text-center">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Shop the product
+            Browse the packs
           </p>
           <h2 className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
             One product family. Two pack options.
@@ -363,6 +363,14 @@ export default function HomePage() {
             pack is ideal for focused solo work. The double pack keeps both
             corners live for team and striker sessions.
           </p>
+          <div>
+            <Link
+              href="/product"
+              className="inline-flex rounded-full border border-white/15 bg-white/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
+            >
+              Compare all packs
+            </Link>
+          </div>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
@@ -423,10 +431,18 @@ export default function HomePage() {
                     ))}
                   </ul>
 
-                  <BuyButton
-                    productId={variant.id}
-                    label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
-                  />
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <Link
+                      href={`/product/${variant.id}`}
+                      className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
+                    >
+                      View pack
+                    </Link>
+                    <BuyButton
+                      productId={variant.id}
+                      label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
+                    />
+                  </div>
                 </div>
               </div>
             </article>
@@ -501,15 +517,15 @@ export default function HomePage() {
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
               Real customer footage
             </p>
-            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-              Show the target. Show the finish.
-            </h2>
-            <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-              The training target works best when the player can connect the
-              setup to the finished strike immediately. Keep this section fast,
-              visual, and easy to replay on mobile.
-            </p>
-          </div>
+          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+            Show the target. Show the finish.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+            Watch the target on the goal, see how the ball travels into the
+            pocket, and get a clearer feel for the setup in a normal training
+            environment.
+          </p>
+        </div>
 
           <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
             <video
@@ -529,24 +545,24 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
         <div className="max-w-2xl">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Social proof layout
+            Training ideas
           </p>
           <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Review slots ready for real customer proof.
+            Three straightforward ways to use the target.
           </h2>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {reviews.map((review) => (
+          {useCases.map((useCase) => (
             <article
-              key={review.quote}
+              key={useCase.title}
               className="rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-7"
             >
               <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-gold)]">
-                {review.title}
+                {useCase.title}
               </p>
               <p className="mt-5 text-base leading-8 text-[var(--color-cream)]">
-                {review.quote}
+                {useCase.body}
               </p>
             </article>
           ))}
@@ -561,12 +577,11 @@ export default function HomePage() {
                 FAQ
               </p>
               <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-                Answer the questions buyers search for.
+                Common questions before you order.
               </h2>
               <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-                These questions support conversion on-page and also help search
-                engines understand what the product is for, how it fits, and
-                who should use it.
+                From goal fit to setup time and shipping, these are the details
+                most players, parents, and coaches want to know first.
               </p>
               <Link
                 href="/faq"
@@ -601,7 +616,7 @@ export default function HomePage() {
             {blogLeadIn.title}
           </p>
           <h2 className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Blog content that can rank and feed the product page.
+            Drills, technique, and finishing ideas.
           </h2>
           <p className="max-w-3xl text-base leading-8 text-[var(--color-mist)]">
             {blogLeadIn.body}

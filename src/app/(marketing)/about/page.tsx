@@ -43,9 +43,9 @@ export default function AboutPage() {
             and finishing technique.
           </p>
           <p>
-            This brand sits under {siteConfig.company} and is being built as a
-            high-performance, search-friendly, conversion-focused football
-            storefront rather than a generic one-page product listing.
+            The aim is simple: offer football training gear and advice that
+            feel specific, practical, and easy to trust for players, coaches,
+            and parents looking for better finishing sessions.
           </p>
         </div>
       </div>

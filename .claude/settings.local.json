@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \":*)",
+      "Bash(powershell -Command \"$ws = New-Object -ComObject WScript.Shell; $desktop = [Environment]::GetFolderPath\\(''Desktop''\\); $shortcut = $ws.CreateShortcut\\($desktop + ''\\\\WIZZARDD.lnk''\\); $shortcut.TargetPath = ''C:\\\\Users\\\\kepne\\\\OneDrive\\\\Documents\\\\GitHub\\\\WIZZARDD\\\\WIZZARDD.code-workspace''; $shortcut.Description = ''AI Project Builder - WIZZARDD''; $shortcut.Save\\(\\); Write-Host \\(''Created at: '' + $desktop + ''\\\\WIZZARDD.lnk''\\)\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:/Users/kepne/AppData/Local/Temp/make-wizzardd-shortcut.ps1\")"
+    ]
+  }
+}
