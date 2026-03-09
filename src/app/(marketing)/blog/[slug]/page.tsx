@@ -147,6 +147,10 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             <Link href="/faq" className="text-[var(--color-gold)]">
               FAQ
             </Link>{" "}
+            and the{" "}
+            <Link href="/guides" className="text-[var(--color-gold)]">
+              guide collection
+            </Link>{" "}
             before you buy.
           </p>
         </div>

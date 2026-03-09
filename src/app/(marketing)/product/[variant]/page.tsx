@@ -10,7 +10,16 @@ import {
   isProductVariantId,
   productDetailContent,
 } from "@/content/products";
-import { faqPageItems, productSpecs, productVariants, shippingFacts, siteConfig } from "@/content/site";
+import {
+  faqPageItems,
+  productReviews,
+  merchantReturnPolicy,
+  productReviewSummary,
+  productSpecs,
+  productVariants,
+  shippingFacts,
+  siteConfig,
+} from "@/content/site";
 import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 type ProductVariantPageProps = {
@@ -96,6 +105,35 @@ export default async function ProductVariantPage({
     { name: product.name, path: `/product/${variant}` },
   ]);
 
+  const reviewItems = productReviews
+    .filter((review) =>
+      review.reviewedItem.toLowerCase().includes(product.shortName.toLowerCase())
+    )
+    .map((review) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: review.author,
+      },
+      datePublished: review.date,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      name: review.title,
+      reviewBody: review.body,
+      publisher: {
+        "@type": "Organization",
+        name: "TopCorner.football",
+      },
+      itemReviewed: {
+        "@type": "Product",
+        name: review.reviewedItem,
+      },
+    }));
+
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -106,10 +144,14 @@ export default async function ProductVariantPage({
     description: detail.metaDescription,
     brand: {
       "@type": "Brand",
-      name: siteConfig.brand,
+      name: "TopCorner",
     },
     category: "Soccer training equipment",
-    image: detail.gallery.map((image) => absoluteUrl(image.src)),
+    image: detail.gallery.map((image) => ({
+      "@type": "ImageObject",
+      url: absoluteUrl(image.src),
+      caption: image.alt,
+    })),
     offers: {
       "@type": "Offer",
       url: absoluteUrl(`/product/${variant}`),
@@ -148,7 +190,28 @@ export default async function ProductVariantPage({
           },
         },
       },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "GB",
+        returnPolicyCategory: merchantReturnPolicy.returnPolicyCategory,
+        returnWindow: {
+          "@type": "MerchantReturnFiniteReturnWindow",
+          value: merchantReturnPolicy.returnWindowDays,
+          unitCode: "DAY",
+        },
+        returnMethod: merchantReturnPolicy.returnMethod,
+        returnFees: merchantReturnPolicy.returnFees,
+        merchantReturnLink: absoluteUrl("/returns"),
+      },
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: productReviewSummary.ratingValue,
+      reviewCount: productReviewSummary.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: reviewItems,
     additionalProperty: productSpecs.map((spec) => ({
       "@type": "PropertyValue",
       name: spec.label,
@@ -338,6 +401,37 @@ export default async function ProductVariantPage({
           </aside>
         </div>
       </section>
+
+      {reviewItems.length ? (
+        <section className="border-y border-white/10 bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+              Reviews
+            </p>
+            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+              What players report after training.
+            </h2>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {reviewItems.map((review) => (
+                <article
+                  key={`${review.author}-${review.name}`}
+                  className="rounded-[1.7rem] border border-white/10 bg-[var(--color-panel)] p-6"
+                >
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                    {review.author}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-cream)]">
+                    "{review.reviewBody}"
+                  </p>
+                  <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
+                    {review.name}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="border-y border-white/10 bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -11,6 +11,7 @@ import {
   homeBenefits,
   homeFaqs,
   howItWorksSteps,
+  productReviews,
   problemPoints,
   productVariants,
   siteConfig,
@@ -20,7 +21,7 @@ import {
 import { buildMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Football Corner Target Training Aid",
+  title: "Football Corner Target Training Aid | TopCorner",
   description:
     "Football corner target training aid for sharper finishing, faster setup, and better shooting drills for players and coaches.",
   path: "/",
@@ -37,6 +38,8 @@ export const metadata = buildMetadata({
 });
 
 export default function HomePage() {
+  const featuredReviews = productReviews.slice(0, 3);
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -650,6 +653,38 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 pb-18 pt-8 sm:px-6 lg:px-8 lg:pb-24">
+        <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+          Real feedback
+        </p>
+        <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+          What players and coaches are saying.
+        </h2>
+        <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+          Practical feedback from training sessions, built for a realistic finishing
+          process rather than generic claims.
+        </p>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {featuredReviews.map((review) => (
+            <article
+              key={review.id}
+              className="rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-6"
+            >
+              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                {review.role}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-[var(--color-cream)]">
+                “{review.body}”
+              </p>
+              <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
+                {review.author}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 

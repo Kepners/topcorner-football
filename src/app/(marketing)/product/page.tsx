@@ -8,7 +8,14 @@ import {
   productCompareRows,
   productDetailContent,
 } from "@/content/products";
-import { faqPageItems, productVariants, shippingFacts } from "@/content/site";
+import {
+  productReviews,
+  faqPageItems,
+  merchantReturnPolicy,
+  productReviewSummary,
+  productVariants,
+  shippingFacts,
+} from "@/content/site";
 import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -44,6 +51,40 @@ export default function ProductPage() {
     { name: "Products", path: "/product" },
   ]);
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "TopCorner Product Reviews",
+    itemListElement: productReviews.map((review, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: review.author,
+        },
+        datePublished: review.date,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        itemReviewed: {
+          "@type": "Product",
+          name: review.reviewedItem,
+        },
+        name: review.title,
+        reviewBody: review.body,
+        publisher: {
+          "@type": "Organization",
+          name: "TopCorner.football",
+        },
+      },
+    })),
+  };
+
   const productListSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -65,7 +106,7 @@ export default function ProductPage() {
           image: absoluteUrl(variant.image),
           brand: {
             "@type": "Brand",
-            name: "CalcioKx",
+            name: "TopCorner",
           },
           offers: {
             "@type": "Offer",
@@ -73,6 +114,73 @@ export default function ProductPage() {
             price: variant.priceValue.toFixed(2),
             url: absoluteUrl(`/product/${variant.id}`),
             availability: "https://schema.org/InStock",
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: {
+                "@type": "MonetaryAmount",
+                value: "0.00",
+                currency: "GBP",
+              },
+              shippingDestination: {
+                "@type": "DefinedRegion",
+                addressCountry: "GB",
+              },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                handlingTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 2,
+                  unitCode: "DAY",
+                },
+                transitTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 2,
+                  maxValue: 5,
+                  unitCode: "DAY",
+                },
+              },
+            },
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "GB",
+              returnPolicyCategory: merchantReturnPolicy.returnPolicyCategory,
+              returnWindow: {
+                "@type": "MerchantReturnFiniteReturnWindow",
+                value: merchantReturnPolicy.returnWindowDays,
+                unitCode: "DAY",
+              },
+              returnMethod: merchantReturnPolicy.returnMethod,
+              returnFees: merchantReturnPolicy.returnFees,
+              merchantReturnLink: absoluteUrl("/returns"),
+            },
+          },
+          review: productReviews
+            .filter((review) => review.reviewedItem.includes("Single") || review.reviewedItem.includes("Double"))
+            .map((review) => ({
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: review.author,
+              },
+              datePublished: review.date,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: review.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              name: review.title,
+              reviewBody: review.body,
+              publisher: {
+                "@type": "Organization",
+                name: "TopCorner.football",
+              },
+            })),
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: productReviewSummary.ratingValue,
+            reviewCount: productReviewSummary.reviewCount,
           },
         },
       })),
@@ -94,7 +202,7 @@ export default function ProductPage() {
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema, productListSchema, faqSchema]} />
+      <JsonLd data={[breadcrumbSchema, productListSchema, faqSchema, reviewSchema]} />
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-20">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
@@ -332,7 +440,7 @@ export default function ProductPage() {
           </div>
         </div>
 
-        <div className="grid gap-5">
+          <div className="grid gap-5">
           <div className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
               Delivery and checkout

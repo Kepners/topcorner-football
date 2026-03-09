@@ -9,11 +9,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/product",
     "/product/single",
     "/product/double",
+    "/guides",
     "/blog",
+    "/how-to-hit-top-corner",
+    "/football-shooting-drills",
+    "/free-kick-training",
+    "/solo-striker-training",
+    "/improve-finishing-accuracy",
     "/faq",
     "/about",
     "/shipping",
     "/returns",
+    "/uk-football-training-target",
   ];
 
   const staticEntries = staticRoutes.map((path) => ({

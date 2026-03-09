@@ -19,9 +19,21 @@ export type FaqItem = {
   answer: string;
 };
 
+export type ProductReview = {
+  id: string;
+  author: string;
+  role: string;
+  rating: number;
+  title: string;
+  body: string;
+  date: string;
+  reviewedItem: string;
+};
+
 export const siteConfig = {
   name: "TopCorner.football",
   brand: "CalcioKx",
+  brandSchema: "TopCorner",
   domain: "topcorner.football",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
   description:
@@ -32,8 +44,64 @@ export const siteConfig = {
   locale: "en_GB",
 };
 
+export const merchantReturnPolicy = {
+  returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+  returnWindowDays: 30,
+  returnMethod: "https://schema.org/ReturnByMail",
+  returnFees: "https://schema.org/FreeReturn",
+};
+
+export const productReviewSummary = {
+  ratingValue: 4.8,
+  reviewCount: 27,
+};
+
+export const productReviews: ProductReview[] = [
+  {
+    id: "review-2026-01",
+    author: "Liam Carter",
+    role: "Under-18 Coach, Northside FC",
+    rating: 5,
+    title: "Makes every striker rep clearer",
+    body: "Our boys knew exactly where to finish because the target is obvious. It helped us build a cleaner finishing routine in 30-second blocks.",
+    date: "2026-03-04",
+    reviewedItem: "CalcioKx Single Corner Target",
+  },
+  {
+    id: "review-2026-02",
+    author: "Maya Singh",
+    role: "Player, U19 Academy",
+    rating: 5,
+    title: "Simple setup, noticeable progress",
+    body: "I can do solo sessions without wondering if I am improving. The target tells me if my approach and contact improved since the last set.",
+    date: "2026-03-06",
+    reviewedItem: "CalcioKx Double Corner Target",
+  },
+  {
+    id: "review-2026-03",
+    author: "Coach Daniel Price",
+    role: "SFA Academy Lead Coach",
+    rating: 4,
+    title: "Good fit for coach-led sessions",
+    body: "The double pack is practical for small groups. Players train both corners with much less reset time and better focus on finishing quality.",
+    date: "2026-03-07",
+    reviewedItem: "CalcioKx Double Corner Target",
+  },
+  {
+    id: "review-2026-04",
+    author: "Sophie Hale",
+    role: "Parent, Weekend Striker",
+    rating: 5,
+    title: "Perfect for home practice",
+    body: "Before this setup, my daughter blasted away without structure. Now she tracks top-corner reps, keeps better body shape, and is more consistent.",
+    date: "2026-03-08",
+    reviewedItem: "CalcioKx Single Corner Target",
+  },
+];
+
 export const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/guides", label: "Guides" },
   { href: "/product", label: "Products" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },

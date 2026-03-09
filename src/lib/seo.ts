@@ -31,7 +31,7 @@ export function buildMetadata({
   type = "website",
 }: MetadataInput): Metadata {
   const canonicalUrl = absoluteUrl(path);
-  const imageUrl = absoluteUrl(image);
+  const imageUrl = absoluteUrl(image?.trim() ? image : siteConfig.defaultOgImage);
 
   return {
     title,
