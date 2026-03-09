@@ -1,6 +1,6 @@
 import JsonLd from "@/components/JsonLd";
 import { faqPageItems } from "@/content/site";
-import { buildMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Football Corner Target FAQ",
@@ -15,6 +15,11 @@ export const metadata = buildMetadata({
 });
 
 export default function FaqPage() {
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "FAQ", path: "/faq" },
+  ]);
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -30,7 +35,7 @@ export default function FaqPage() {
 
   return (
     <>
-      <JsonLd data={faqSchema} />
+      <JsonLd data={[breadcrumbSchema, faqSchema]} />
 
       <section className="mx-auto w-full max-w-5xl px-4 pb-18 pt-8 sm:px-6 lg:pb-24">
         <div className="max-w-3xl">

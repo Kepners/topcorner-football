@@ -11,7 +11,7 @@ import {
   productDetailContent,
 } from "@/content/products";
 import { faqPageItems, productSpecs, productVariants, shippingFacts, siteConfig } from "@/content/site";
-import { absoluteUrl, buildMetadata } from "@/lib/seo";
+import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 type ProductVariantPageProps = {
   params: Promise<{ variant: string }>;
@@ -50,11 +50,12 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: product.name,
+    title: `${product.shortName} Football Corner Target`,
     description: detail.metaDescription,
     path: `/product/${variant}`,
     keywords: [
       product.name.toLowerCase(),
+      `${product.shortName.toLowerCase()} football corner target`,
       `${siteConfig.brand.toLowerCase()} ${variant} pack`,
       "football goal corner training target",
       "football corner target",
@@ -81,6 +82,7 @@ export default async function ProductVariantPage({
   const detail = productDetailContent[variant];
   const otherVariantId = variant === "single" ? "double" : "single";
   const otherProduct = getProductVariantById(otherVariantId);
+  const pageFaqItems = faqPageItems.slice(0, 4);
   const compareAtValue =
     variant === "double" ? (getProductVariantById("single")?.priceValue ?? 0) * 2 : null;
 
@@ -88,10 +90,19 @@ export default async function ProductVariantPage({
     notFound();
   }
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/product" },
+    { name: product.name, path: `/product/${variant}` },
+  ]);
+
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
+    sku: product.sku,
+    gtin13: product.gtin13,
+    url: absoluteUrl(`/product/${variant}`),
     description: detail.metaDescription,
     brand: {
       "@type": "Brand",
@@ -104,10 +115,38 @@ export default async function ProductVariantPage({
       url: absoluteUrl(`/product/${variant}`),
       priceCurrency: "GBP",
       price: product.priceValue.toFixed(2),
+      availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: {
         "@type": "Organization",
         name: siteConfig.name,
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0.00",
+          currency: "GBP",
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "GB",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 2,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 2,
+            maxValue: 5,
+            unitCode: "DAY",
+          },
+        },
       },
     },
     additionalProperty: productSpecs.map((spec) => ({
@@ -117,9 +156,22 @@ export default async function ProductVariantPage({
     })),
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: pageFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
-      <JsonLd data={productSchema} />
+      <JsonLd data={[breadcrumbSchema, productSchema, faqSchema]} />
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pb-24">
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
@@ -363,7 +415,7 @@ export default async function ProductVariantPage({
               Support questions
             </p>
             <div className="mt-6 space-y-4">
-              {faqPageItems.slice(0, 4).map((item) => (
+              {pageFaqItems.map((item) => (
                 <details
                   key={item.question}
                   className="rounded-[1.4rem] border border-white/10 bg-white/5 p-5"

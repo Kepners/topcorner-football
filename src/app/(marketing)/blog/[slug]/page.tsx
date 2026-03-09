@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import JsonLd from "@/components/JsonLd";
 import { blogPosts, getAllPostSlugs, getPostBySlug } from "@/content/blog";
-import { absoluteUrl, buildMetadata } from "@/lib/seo";
+import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/content/site";
 
 type BlogArticlePageProps = {
@@ -40,6 +40,7 @@ export async function generateMetadata({
     path: `/blog/${post.slug}`,
     keywords: post.keywords,
     image: post.heroImage,
+    type: "article",
   });
 }
 
@@ -57,13 +58,16 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
     image: [absoluteUrl(post.heroImage)],
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
-    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(`/blog/${post.slug}`),
+    },
     author: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -76,12 +80,20 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
         url: absoluteUrl(siteConfig.defaultOgImage),
       },
     },
+    articleSection: post.category,
+    inLanguage: "en-GB",
     keywords: post.keywords.join(", "),
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
+
   return (
     <>
-      <JsonLd data={articleSchema} />
+      <JsonLd data={[breadcrumbSchema, articleSchema]} />
 
       <article className="mx-auto w-full max-w-5xl px-4 pb-18 pt-8 sm:px-6 lg:pb-24">
         <div className="space-y-6">

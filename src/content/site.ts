@@ -2,6 +2,8 @@ export type ProductVariant = {
   id: "single" | "double";
   name: string;
   shortName: string;
+  sku: string;
+  gtin13: string;
   priceLabel: string;
   priceValue: number;
   description: string;
@@ -23,7 +25,7 @@ export const siteConfig = {
   domain: "topcorner.football",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
   description:
-    "Football goal corner training targets for players and coaches who want sharper finishing, better shooting drills, and faster setup sessions.",
+    "Football corner targets and shooting training aids for players and coaches who want sharper finishing, better drills, and faster setup sessions.",
   defaultOgImage: "/images/brand/topcorner-og.jpg",
   customerDemoVideo: "/videos/customer-training-demo.mp4",
   supportEmail: "orders@topcorner.football",
@@ -38,11 +40,18 @@ export const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+export const supportLinks = [
+  { href: "/shipping", label: "Shipping" },
+  { href: "/returns", label: "Returns" },
+];
+
 export const productVariants: ProductVariant[] = [
   {
     id: "single",
     name: "CalcioKx Single Corner Target",
     shortName: "Single",
+    sku: "5065017325008",
+    gtin13: "5065017325008",
     priceLabel: "GBP 25",
     priceValue: 25,
     description:
@@ -64,6 +73,8 @@ export const productVariants: ProductVariant[] = [
     id: "double",
     name: "CalcioKx Double Corner Target",
     shortName: "Double",
+    sku: "5065017325015",
+    gtin13: "5065017325015",
     priceLabel: "GBP 40",
     priceValue: 40,
     description:
@@ -227,6 +238,27 @@ export const shippingFacts = [
   "Dispatch target: 1-2 working days after order confirmation",
   "Typical delivery window: 2-5 working days",
   "Checkout currently collects UK addresses only",
+];
+
+export const shippingHighlights = [
+  {
+    title: "Shipping cost",
+    body: "Free UK shipping is included in checkout for both the single and double packs.",
+  },
+  {
+    title: "Delivery area",
+    body: "Checkout currently accepts United Kingdom delivery addresses only.",
+  },
+  {
+    title: "Dispatch window",
+    body: "Orders are typically packed and dispatched within 1-2 working days after payment.",
+  },
+];
+
+export const returnsSupportSteps = [
+  "Email orders@topcorner.football with your order number and the issue you need help with.",
+  "Wait for support to confirm the next step before sending any product back.",
+  "Use the same email address from checkout where possible so the order can be matched quickly.",
 ];
 
 export const aboutPrinciples = [

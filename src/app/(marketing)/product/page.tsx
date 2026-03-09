@@ -9,15 +9,17 @@ import {
   productDetailContent,
 } from "@/content/products";
 import { faqPageItems, productVariants, shippingFacts } from "@/content/site";
-import { absoluteUrl, buildMetadata } from "@/lib/seo";
+import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Products",
+  title: "Football Corner Targets",
   description:
-    "Browse the CalcioKx single and double corner target packs, compare the setup that fits your sessions, and go straight to checkout.",
+    "Compare football corner target packs, including the CalcioKx single and double goal targets for solo drills and coach-led sessions.",
   path: "/product",
   keywords: [
-    "football corner target products",
+    "football corner target",
+    "football goal target",
+    "top bins target",
     "calciokx single corner target",
     "calciokx double corner target",
     "football training target packs",
@@ -31,10 +33,16 @@ function formatPrice(value: number) {
 
 export default function ProductPage() {
   const singlePack = getProductVariantById("single");
+  const pageFaqItems = faqPageItems.slice(0, 3);
 
   if (!singlePack) {
     return null;
   }
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/product" },
+  ]);
 
   const productListSchema = {
     "@context": "https://schema.org",
@@ -52,21 +60,41 @@ export default function ProductPage() {
         item: {
           "@type": "Product",
           name: variant.name,
+          sku: variant.sku,
+          gtin13: variant.gtin13,
           image: absoluteUrl(variant.image),
+          brand: {
+            "@type": "Brand",
+            name: "CalcioKx",
+          },
           offers: {
             "@type": "Offer",
             priceCurrency: "GBP",
             price: variant.priceValue.toFixed(2),
             url: absoluteUrl(`/product/${variant.id}`),
+            availability: "https://schema.org/InStock",
           },
         },
       })),
     },
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: pageFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
-      <JsonLd data={productListSchema} />
+      <JsonLd data={[breadcrumbSchema, productListSchema, faqSchema]} />
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-20">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
@@ -321,7 +349,7 @@ export default function ProductPage() {
               Common questions
             </p>
             <div className="mt-6 space-y-4">
-              {faqPageItems.slice(0, 3).map((item) => (
+              {pageFaqItems.map((item) => (
                 <details
                   key={item.question}
                   className="rounded-[1.4rem] border border-white/10 bg-white/5 p-5"

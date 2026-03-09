@@ -20,21 +20,49 @@ import {
 import { buildMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Train Your Shot. Hit The Top Corner.",
+  title: "Football Corner Target Training Aid",
   description:
-    "Football training site for the CalcioKx corner target, with product details, session ideas, and guides for sharper finishing practice.",
+    "Football corner target training aid for sharper finishing, faster setup, and better shooting drills for players and coaches.",
   path: "/",
   keywords: [
+    "football corner target",
+    "football goal target",
+    "top bins target",
     "football shooting drills",
     "football training drills",
-    "top corner football",
+    "football shooting target",
     "improve shooting accuracy football",
-    "football finishing drills",
-    "solo football training",
+    "goal corner training aid",
   ],
 });
 
 export default function HomePage() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: absoluteUrl(siteConfig.defaultOgImage),
+    email: siteConfig.supportEmail,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: siteConfig.supportEmail,
+        areaServed: "GB",
+        availableLanguage: ["en-GB"],
+      },
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    inLanguage: "en-GB",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -48,28 +76,41 @@ export default function HomePage() {
     })),
   };
 
-  const siteSchema = [
-    {
-      "@context": "https://schema.org",
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to use the CalcioKx football corner target",
+    description:
+      "Attach the target to the goal, run your finishing drill, and repeat with a visible top-corner target.",
+    image: absoluteUrl("/images/products/goal-target-angle.jpg"),
+    totalTime: "PT2M",
+    step: howItWorksSteps.map((item) => ({
+      "@type": "HowToStep",
+      name: item.title,
+      text: item.body,
+      image: absoluteUrl("/images/products/goal-installed-3.jpg"),
+    })),
+  };
+
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "TopCorner football training target demo",
+    description:
+      "Customer training footage showing the CalcioKx football corner target attached to a goal during shooting practice.",
+    thumbnailUrl: [absoluteUrl("/images/products/hero-goal-target.jpg")],
+    contentUrl: absoluteUrl(siteConfig.customerDemoVideo),
+    embedUrl: absoluteUrl("/"),
+    uploadDate: "2026-03-07",
+    publisher: {
       "@type": "Organization",
       name: siteConfig.name,
-      url: siteConfig.url,
-      logo: absoluteUrl(siteConfig.defaultOgImage),
-      brand: siteConfig.brand,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${siteConfig.url}/blog?query={search_term_string}`,
-        "query-input": "required name=search_term_string",
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(siteConfig.defaultOgImage),
       },
     },
-    faqSchema,
-  ];
+  };
 
   const heroMediaCards = [
     {
@@ -88,7 +129,9 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={siteSchema} />
+      <JsonLd
+        data={[organizationSchema, websiteSchema, faqSchema, howToSchema, videoSchema]}
+      />
       <SplashIntro />
 
       <section className="relative overflow-hidden">

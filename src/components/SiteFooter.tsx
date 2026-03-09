@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { navLinks, siteConfig } from "@/content/site";
+import { navLinks, shippingFacts, siteConfig, supportLinks } from "@/content/site";
 
 export default function SiteFooter() {
   return (
@@ -36,12 +36,18 @@ export default function SiteFooter() {
 
         <div>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-cream)]">
-            Shipping
+            Support
           </p>
           <div className="space-y-3 text-sm text-[var(--color-mist)]">
-            <p>United Kingdom delivery only</p>
-            <p>Checkout via Stripe</p>
-            <p>Typical delivery: 2-5 working days</p>
+            <p>{shippingFacts[0]}</p>
+            <p>{shippingFacts[2]}</p>
+            {supportLinks.map((link) => (
+              <div key={link.href}>
+                <Link href={link.href} className="transition hover:text-[var(--color-cream)]">
+                  {link.label}
+                </Link>
+              </div>
+            ))}
             <p>Email: {siteConfig.supportEmail}</p>
           </div>
         </div>

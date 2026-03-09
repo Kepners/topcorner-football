@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 
@@ -19,8 +19,13 @@ const displayFont = Bebas_Neue({
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
+export const viewport: Viewport = {
+  themeColor: "#080a0d",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  manifest: "/manifest.webmanifest",
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -28,6 +33,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: [
+    "football corner target",
+    "football goal target",
+    "top bins target",
     "football shooting drills",
     "football training drills",
     "top corner football",
@@ -52,6 +60,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: siteConfig.defaultOgImage,
+        width: 1200,
+        height: 630,
         alt: siteConfig.name,
       },
     ],
@@ -81,14 +91,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
-      <head>
-        <link
-          rel="preload"
-          href="/videos/topcorner-intro.mp4"
-          as="video"
-          type="video/mp4"
-        />
-      </head>
       <body className={`${bodyFont.variable} ${displayFont.variable} antialiased`}>
         {children}
         {gaId ? (
