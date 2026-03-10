@@ -227,7 +227,7 @@ export default function ProductPage() {
                 {productReviewSummary.ratingValue}/5 rating
               </span>
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[var(--color-mist)]">
-                {productReviewSummary.reviewCount} early reviews
+                {productReviewSummary.reviewCount} launch reviews
               </span>
               <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-emerald-300">
                 In stock
@@ -420,6 +420,22 @@ export default function ProductPage() {
                         View pack details
                       </Link>
                     </div>
+
+                    <div className="grid gap-2 text-[0.62rem] uppercase tracking-[0.16em] text-[var(--color-mist)] sm:grid-cols-3">
+                      <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                        Secure checkout
+                      </div>
+                      <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                        Free UK delivery
+                      </div>
+                      <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                        30-day returns
+                      </div>
+                    </div>
+
+                    <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-sky)]">
+                      Dispatch target 1-2 working days. Delivery target 2-5 working days.
+                    </p>
                   </div>
                 </div>
               </article>

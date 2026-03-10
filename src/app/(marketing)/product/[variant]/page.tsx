@@ -368,8 +368,20 @@ export default async function ProductVariantPage({
                 </Link>
               </div>
 
-              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[var(--color-sky)]">
-                Free UK shipping. UK checkout only. Secure Stripe payment.
+              <div className="mt-4 grid gap-2 text-[0.62rem] uppercase tracking-[0.16em] text-[var(--color-mist)] sm:grid-cols-3">
+                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                  Secure checkout
+                </div>
+                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                  Free UK delivery
+                </div>
+                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                  30-day returns
+                </div>
+              </div>
+
+              <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[var(--color-sky)]">
+                Dispatch target 1-2 working days. Delivery target 2-5 working days.
               </p>
             </div>
           </aside>

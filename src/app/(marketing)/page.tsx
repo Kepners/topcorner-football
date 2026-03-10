@@ -188,6 +188,9 @@ export default function HomePage() {
                   Strap this target onto almost any goal in under 2 minutes and
                   turn every shooting session into precision finishing practice.
                 </p>
+                <p className="text-sm uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                  4.8/5 rated from 10 launch reviews by players and coaches
+                </p>
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
@@ -234,8 +237,8 @@ export default function HomePage() {
                     5-star buyer feedback
                   </p>
                   <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
-                    Based on {productReviewSummary.reviewCount} early reviews from coaches,
-                    players, and football parents.
+                    Based on {productReviewSummary.reviewCount} launch reviews from
+                    coaches, players, and football parents.
                   </p>
                 </div>
                 <div className="space-y-2 text-sm leading-7 text-[var(--color-mist)]">
@@ -565,6 +568,22 @@ export default function HomePage() {
                       label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
                     />
                   </div>
+
+                  <div className="grid gap-2 text-[0.62rem] uppercase tracking-[0.16em] text-[var(--color-mist)] sm:grid-cols-3">
+                    <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                      Secure checkout
+                    </div>
+                    <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                      Free UK delivery
+                    </div>
+                    <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
+                      30-day returns
+                    </div>
+                  </div>
+
+                  <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-sky)]">
+                    Dispatch target 1-2 working days. Delivery target 2-5 working days.
+                  </p>
                 </div>
               </div>
             </article>
@@ -707,7 +726,7 @@ export default function HomePage() {
             Who this is for
           </p>
           <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Built for players, coaches, and parents.
+            Built for players, coaches, parents, and clubs.
           </h2>
           <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
             The same target works across home sessions, academy drills, and
@@ -716,7 +735,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {useCases.map((useCase) => (
             <article
               key={useCase.title}

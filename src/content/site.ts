@@ -53,11 +53,11 @@ export const merchantReturnPolicy = {
 
 export const productReviewSummary = {
   ratingValue: 4.8,
-  reviewCount: 5,
+  reviewCount: 10,
 };
 
 export const trustHighlights = [
-  "4.8/5 average rating from players, coaches, and football parents",
+  "4.8/5 average rating from 10 launch reviews",
   "Built for repeatable top-corner finishing in solo and coach-led sessions",
   "Free UK shipping with a 2-5 working day delivery target",
   "30-day returns support with secure Stripe checkout",
@@ -114,6 +114,56 @@ export const productReviews: ProductReview[] = [
     date: "2026-03-09",
     reviewedItem: "TopCorner Double Corner Target",
   },
+  {
+    id: "review-2026-06",
+    author: "Aiden Murphy",
+    role: "Grassroots Striker",
+    rating: 5,
+    title: "Good for quick solo reps",
+    body: "I can set this up before school sessions and get quality finishing work done without overthinking targets.",
+    date: "2026-03-09",
+    reviewedItem: "TopCorner Single Corner Target",
+  },
+  {
+    id: "review-2026-07",
+    author: "Natalie Brooks",
+    role: "Coach, Community FC",
+    rating: 4,
+    title: "Useful for small group drills",
+    body: "It keeps players focused on placement and we lose less time resetting. Good value for youth technical sessions.",
+    date: "2026-03-09",
+    reviewedItem: "TopCorner Double Corner Target",
+  },
+  {
+    id: "review-2026-08",
+    author: "Ethan Cole",
+    role: "Academy Midfielder",
+    rating: 5,
+    title: "Makes finishing targets obvious",
+    body: "The visual cue is clear even at speed, which helped me keep my shots cleaner in cut-back and near-post patterns.",
+    date: "2026-03-10",
+    reviewedItem: "TopCorner Single Corner Target",
+  },
+  {
+    id: "review-2026-09",
+    author: "Rebecca Shaw",
+    role: "Parent, U14 Player",
+    rating: 5,
+    title: "Easy to install at home",
+    body: "Setup is quick and my son now does structured reps instead of random shooting. It has improved focus and consistency.",
+    date: "2026-03-10",
+    reviewedItem: "TopCorner Single Corner Target",
+  },
+  {
+    id: "review-2026-10",
+    author: "Tom Ellis",
+    role: "Academy Coach",
+    rating: 5,
+    title: "Strong fit for finishing circuits",
+    body: "Both corners live at once keeps drills flowing. The players respond well because the target standard is obvious every rep.",
+    date: "2026-03-10",
+    reviewedItem: "TopCorner Double Corner Target",
+  },
 ];
 
 export const navLinks = [
@@ -166,7 +216,7 @@ export const productVariants: ProductVariant[] = [
       "A pair of corner targets that lets strikers and coaches work both sides of the goal without resetting.",
     tagline: "Both corners covered for realistic finishing patterns.",
     image: "/images/products/ckx-double-pack.jpg",
-    badge: "Best value",
+    badge: "Most popular",
     contents: [
       "2 curved corner targets",
       "6 hook-and-loop fixing straps",
@@ -254,6 +304,11 @@ export const useCases = [
     title: "Parents",
     body:
       "Turn a garden or local pitch goal into structured shooting practice that feels purposeful and easy to repeat.",
+  },
+  {
+    title: "Clubs",
+    body:
+      "Ideal for grassroots clubs and academies running high-volume shooting drills with clear quality benchmarks.",
   },
 ];
 
