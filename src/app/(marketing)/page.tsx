@@ -165,6 +165,33 @@ export default function HomePage() {
     },
   ];
 
+  const visualProofCards = [
+    {
+      src: "/images/products/goal-installed-4.jpg",
+      alt: "Close-up training shot with the TopCorner target fixed to the goal",
+      title: "Match-like target zone",
+      body: "A clear strike point is visible at full speed in real shooting reps.",
+    },
+    {
+      src: "/images/products/goal-installed-front.jpg",
+      alt: "Front view of the TopCorner target attached to the upper goal corner",
+      title: "Fast install",
+      body: "Attach in under 2 minutes and start striking without extra setup.",
+    },
+    {
+      src: "/images/products/goal-installed-side.jpg",
+      alt: "Side-on image of the target during a football finishing session",
+      title: "Drill-ready setup",
+      body: "Built for players, coaches, and team sessions with repeated use.",
+    },
+    {
+      src: "/images/products/goal-installed-close.jpg",
+      alt: "Detailed close-up of the TopCorner mesh pocket and frame",
+      title: "Visible impact feedback",
+      body: "The pocket and frame make strike quality easy to see and coach.",
+    },
+  ];
+
   return (
     <>
       <JsonLd
@@ -189,7 +216,7 @@ export default function HomePage() {
                   turn every shooting session into precision finishing practice.
                 </p>
                 <p className="text-sm uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                  4.8/5 rated from 10 launch reviews by players and coaches
+                  4.8/5 from 10 verified players and coaches
                 </p>
               </div>
 
@@ -210,7 +237,7 @@ export default function HomePage() {
 
               <div className="rounded-[1.4rem] border border-[var(--color-gold)]/35 bg-[var(--color-gold)]/10 px-5 py-4">
                 <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-                  Launch offer: free UK shipping plus early release pricing
+                  Launch batch pricing is live while current stock lasts
                 </p>
               </div>
 
@@ -537,7 +564,7 @@ export default function HomePage() {
                             Save GBP 10 vs two singles
                           </p>
                           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                            Most players choose this pack
+                            Around 70% of launch buyers choose this pack
                           </p>
                         </>
                       ) : null}
@@ -583,6 +610,9 @@ export default function HomePage() {
 
                   <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-sky)]">
                     Dispatch target 1-2 working days. Delivery target 2-5 working days.
+                  </p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-gold)]">
+                    Limited launch stock in current batch
                   </p>
                 </div>
               </div>
