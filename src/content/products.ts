@@ -31,7 +31,7 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
   single: {
     eyebrow: "Single pack",
     metaDescription:
-      "Shop the CalcioKx single corner target for solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
+      "Shop the TopCorner single corner target for solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
     offerLine: "Best starting point for solo reps",
     unitLine: "One live corner for focused repetition",
     choiceLine:
@@ -43,40 +43,40 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
     ],
     hero: {
       src: "/images/products/hero-goal-target.jpg",
-      alt: "CalcioKx single corner target attached to the top corner of a football goal",
+      alt: "TopCorner single corner target attached to the top corner of a football goal",
     },
     gallery: [
       {
         src: "/images/products/hero-goal-target.jpg",
-        alt: "CalcioKx single corner target attached to the top corner of a football goal",
+        alt: "TopCorner single corner target attached to the top corner of a football goal",
       },
       {
         src: "/images/products/goal-target-angle.jpg",
-        alt: "Angled football goal view showing the CalcioKx single target in place",
+        alt: "Angled football goal view showing the TopCorner single target in place",
       },
       {
         src: "/images/products/goal-installed-close.jpg",
-        alt: "Close installed view of the CalcioKx single target",
+        alt: "Close installed view of the TopCorner single target",
       },
       {
         src: "/images/products/product-single-angle.jpg",
-        alt: "Studio product view of the CalcioKx single corner target",
+        alt: "Studio product view of the TopCorner single corner target",
         fit: "contain",
         lightPanel: true,
       },
       {
         src: "/images/products/product-detail-joint.jpg",
-        alt: "Close-up of the CalcioKx frame joint and orange corner detail",
+        alt: "Close-up of the TopCorner frame joint and orange corner detail",
       },
       {
         src: "/images/products/product-components.jpg",
-        alt: "CalcioKx single pack components and carry bag laid out on a light background",
+        alt: "TopCorner single pack components and carry bag laid out on a light background",
         fit: "contain",
         lightPanel: true,
       },
       {
         src: "/images/products/product-straps.jpg",
-        alt: "Close-up of the CalcioKx fixing straps and attachment points",
+        alt: "Close-up of the TopCorner fixing straps and attachment points",
       },
     ],
     crossSell: {
@@ -90,7 +90,7 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
   double: {
     eyebrow: "Double pack",
     metaDescription:
-      "Shop the CalcioKx double corner target pack for coach-led sessions, both corners live at once, and better value for group finishing drills.",
+      "Shop the TopCorner double corner target pack for coach-led sessions, both corners live at once, and better value for group finishing drills.",
     offerLine: "Best value for coach-led and group sessions",
     unitLine: "GBP 20 per target when you buy the double pack",
     savingsLine: "Save GBP 10 compared with buying two single packs",
@@ -103,38 +103,38 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
     ],
     hero: {
       src: "/images/products/goal-target-wide.jpg",
-      alt: "Wide football pitch view with the CalcioKx corner target installed on the goal",
+      alt: "Wide football pitch view with the TopCorner corner target installed on the goal",
     },
     gallery: [
       {
         src: "/images/products/goal-target-wide.jpg",
-        alt: "Wide football pitch view with the CalcioKx corner target installed on the goal",
+        alt: "Wide football pitch view with the TopCorner corner target installed on the goal",
       },
       {
         src: "/images/products/goal-installed-front.jpg",
-        alt: "Front view of the CalcioKx target fitted to the goal from just outside the area",
+        alt: "Front view of the TopCorner target fitted to the goal from just outside the area",
       },
       {
         src: "/images/products/goal-installed-side.jpg",
-        alt: "Side angle of the CalcioKx target fitted to the top corner of a goal",
+        alt: "Side angle of the TopCorner target fitted to the top corner of a goal",
       },
       {
         src: "/images/products/product-double-flat.jpg",
-        alt: "CalcioKx double pack product shot on a white background",
+        alt: "TopCorner double pack product shot on a white background",
         fit: "contain",
         lightPanel: true,
       },
       {
         src: "/images/products/goal-installed-4.jpg",
-        alt: "Close installed view of the CalcioKx target on the goal frame",
+        alt: "Close installed view of the TopCorner target on the goal frame",
       },
       {
         src: "/images/products/product-detail-joint.jpg",
-        alt: "Close-up of the CalcioKx frame joint and orange corner detail",
+        alt: "Close-up of the TopCorner frame joint and orange corner detail",
       },
       {
         src: "/images/products/product-straps.jpg",
-        alt: "Close-up of the CalcioKx fixing straps and attachment points",
+        alt: "Close-up of the TopCorner fixing straps and attachment points",
       },
     ],
     crossSell: {

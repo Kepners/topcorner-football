@@ -38,12 +38,12 @@ export const stripe = new Proxy({} as Stripe, {
 
 export const PRODUCTS: Record<"single" | "double", ProductConfig> = {
   single: {
-    name: "CalcioKx Single Corner Target",
+    name: "TopCorner Single Corner Target",
     description: "Single top-corner target for focused solo shooting work.",
     unitAmount: 2500,
   },
   double: {
-    name: "CalcioKx Double Corner Target",
+    name: "TopCorner Double Corner Target",
     description:
       "Double pack for running both corners in team and striker sessions.",
     unitAmount: 4000,

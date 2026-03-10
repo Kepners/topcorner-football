@@ -7,7 +7,7 @@ import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "About TopCorner Football",
   description:
-    "Learn the story behind TopCorner.football and the CalcioKx football corner target brand.",
+    "Learn the story behind TopCorner.football and the TopCorner football corner target brand.",
   path: "/about",
   keywords: [
     "about topcorner football",
@@ -28,7 +28,7 @@ export default function AboutPage() {
     "@type": "AboutPage",
     name: "About TopCorner.football",
     description:
-      "Background on TopCorner.football and the CalcioKx football corner target brand.",
+      "Background on TopCorner.football and the TopCorner football corner target brand.",
     url: absoluteUrl("/about"),
     mainEntity: {
       "@type": "Organization",
@@ -60,7 +60,7 @@ export default function AboutPage() {
               finishing target and repeat the action with intent.
             </p>
             <p>
-              The first product in the brand is the {siteConfig.brand} football
+              The first product in the brand is the TopCorner football
               corner target, designed to make top-corner practice more obvious,
               more repeatable, and easier to coach. The wider site supports that
               product with practical content on shooting drills, solo training,

@@ -89,9 +89,13 @@ export default async function ProductVariantPage({
   }
 
   const detail = productDetailContent[variant];
+  const galleryPreviewImages = detail.gallery.slice(1, 6);
   const otherVariantId = variant === "single" ? "double" : "single";
   const otherProduct = getProductVariantById(otherVariantId);
   const pageFaqItems = faqPageItems.slice(0, 4);
+  const visibleReviews = productReviews.filter((review) =>
+    review.reviewedItem.toLowerCase().includes(product.shortName.toLowerCase())
+  );
   const compareAtValue =
     variant === "double" ? (getProductVariantById("single")?.priceValue ?? 0) * 2 : null;
 
@@ -105,11 +109,7 @@ export default async function ProductVariantPage({
     { name: product.name, path: `/product/${variant}` },
   ]);
 
-  const reviewItems = productReviews
-    .filter((review) =>
-      review.reviewedItem.toLowerCase().includes(product.shortName.toLowerCase())
-    )
-    .map((review) => ({
+  const reviewItems = visibleReviews.map((review) => ({
       "@type": "Review",
       author: {
         "@type": "Person",
@@ -250,18 +250,18 @@ export default async function ProductVariantPage({
             <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-[var(--color-panel)]">
               <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-24 w-24 items-center justify-center rounded-full border border-[var(--color-gold)]/60 bg-[rgba(8,10,13,0.88)] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-sm sm:h-28 sm:w-28">
                 <div className="absolute inset-[6px] rounded-full border border-white/10" />
-                <div className="relative h-7 w-16 sm:h-8 sm:w-[4.5rem]">
+                <div className="relative h-16 w-16 sm:h-20 sm:w-20">
                   <Image
-                    src="/images/brand/calciokx-wordmark.png"
-                    alt="CalcioKx logo"
+                    src="/images/brand/ckx-logo.png"
+                    alt="CKX logo"
                     fill
-                    sizes="112px"
+                    sizes="80px"
                     className="object-contain"
                   />
                 </div>
               </div>
 
-              <div className="relative aspect-[5/4]">
+              <div className="relative aspect-[4/3]">
                 <Image
                   src={detail.hero.src}
                   alt={detail.hero.alt}
@@ -273,23 +273,34 @@ export default async function ProductVariantPage({
               </div>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2">
-              {detail.gallery.slice(1, 3).map((image) => (
-                <div
-                  key={image.src}
-                  className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
-                >
-                  <div className="relative aspect-square">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 640px) 24vw, 100vw"
-                      className={getImageClasses(image.fit, image.lightPanel)}
-                    />
+            <div className="rounded-[1.8rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-5">
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
+                  Quick gallery
+                </p>
+                <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
+                  Installed views and studio shots
+                </p>
+              </div>
+
+              <div className="mt-5 grid gap-4 sm:grid-cols-3 xl:grid-cols-5">
+                {galleryPreviewImages.map((image) => (
+                  <div
+                    key={image.src}
+                    className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-[var(--color-panel)]"
+                  >
+                    <div className="relative aspect-square">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(min-width: 1280px) 10vw, (min-width: 640px) 22vw, 100vw"
+                        className={getImageClasses(image.fit, image.lightPanel)}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -412,19 +423,19 @@ export default async function ProductVariantPage({
               What players report after training.
             </h2>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {reviewItems.map((review) => (
+              {visibleReviews.map((review) => (
                 <article
-                  key={`${review.author}-${review.name}`}
+                  key={review.id}
                   className="rounded-[1.7rem] border border-white/10 bg-[var(--color-panel)] p-6"
                 >
                   <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
                     {review.author}
                   </p>
                   <p className="mt-3 text-sm leading-7 text-[var(--color-cream)]">
-                    "{review.reviewBody}"
+                    "{review.body}"
                   </p>
                   <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                    {review.name}
+                    {review.role}
                   </p>
                 </article>
               ))}
@@ -449,20 +460,32 @@ export default async function ProductVariantPage({
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {detail.gallery.map((image) => (
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {detail.gallery.map((image, index) => (
               <article
                 key={image.src}
-                className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
+                className={`overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] ${
+                  index === 0 ? "md:col-span-2" : ""
+                }`}
               >
-                <div className="relative aspect-[5/4]">
+                <div className={`relative ${index === 0 ? "aspect-[16/9]" : "aspect-[4/5]"}`}>
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw"
+                    sizes={
+                      index === 0
+                        ? "(min-width: 768px) 88vw, 100vw"
+                        : "(min-width: 768px) 42vw, 100vw"
+                    }
                     className={getImageClasses(image.fit, image.lightPanel)}
                   />
+                </div>
+                <div className="border-t border-white/10 px-5 py-4">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
+                    {index === 0 ? "Lead image" : `Gallery image ${index + 1}`}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">{image.alt}</p>
                 </div>
               </article>
             ))}

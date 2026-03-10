@@ -141,7 +141,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             Ready to turn these finishing ideas into a visible training setup?
             See the{" "}
             <Link href="/product" className="text-[var(--color-gold)]">
-              CalcioKx corner target
+              TopCorner corner target
             </Link>{" "}
             or browse the{" "}
             <Link href="/faq" className="text-[var(--color-gold)]">

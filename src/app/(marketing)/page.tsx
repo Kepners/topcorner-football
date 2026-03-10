@@ -11,11 +11,14 @@ import {
   homeBenefits,
   homeFaqs,
   howItWorksSteps,
+  merchantReturnPolicy,
   productReviews,
+  productReviewSummary,
   problemPoints,
   productVariants,
   siteConfig,
   solutionPoints,
+  trustHighlights,
   useCases,
 } from "@/content/site";
 import { buildMetadata, absoluteUrl } from "@/lib/seo";
@@ -82,7 +85,7 @@ export default function HomePage() {
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How to use the CalcioKx football corner target",
+    name: "How to use the TopCorner football corner target",
     description:
       "Attach the target to the goal, run your finishing drill, and repeat with a visible top-corner target.",
     image: absoluteUrl("/images/products/goal-target-angle.jpg"),
@@ -100,7 +103,7 @@ export default function HomePage() {
     "@type": "VideoObject",
     name: "TopCorner football training target demo",
     description:
-      "Customer training footage showing the CalcioKx football corner target attached to a goal during shooting practice.",
+      "Customer training footage showing the TopCorner football corner target attached to a goal during shooting practice.",
     thumbnailUrl: [absoluteUrl("/images/products/hero-goal-target.jpg")],
     contentUrl: absoluteUrl(siteConfig.customerDemoVideo),
     embedUrl: absoluteUrl("/"),
@@ -184,6 +187,27 @@ export default function HomePage() {
                     {item}
                   </div>
                 ))}
+              </div>
+
+              <div className="grid gap-3 rounded-[1.8rem] border border-white/10 bg-[rgba(255,255,255,0.04)] p-5 sm:grid-cols-2">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+                    Early customer rating
+                  </p>
+                  <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
+                    {productReviewSummary.ratingValue}/5
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
+                    Based on {productReviewSummary.reviewCount} early reviews from coaches,
+                    players, and football parents.
+                  </p>
+                </div>
+                <div className="space-y-2 text-sm leading-7 text-[var(--color-mist)]">
+                  <p>Secure Stripe checkout</p>
+                  <p>Free UK shipping with 2-5 working day delivery</p>
+                  <p>{merchantReturnPolicy.returnWindowDays}-day returns support</p>
+                  <p>Support email: {siteConfig.supportEmail}</p>
+                </div>
               </div>
             </div>
 
@@ -359,7 +383,7 @@ export default function HomePage() {
               Meet the Top Corner Training Target.
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-              CalcioKx turns the toughest scoring zone in football into a clear
+              TopCorner turns the toughest scoring zone in football into a clear
               coaching cue. The setup is quick, the product is portable, and
               the training feedback is immediate.
             </p>
@@ -617,6 +641,36 @@ export default function HomePage() {
 
       <section className="bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+                Trust signals
+              </p>
+              <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+                Clear buyer signals before checkout.
+              </h2>
+              <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+                Buyers should not have to infer how delivery, returns, support, and
+                credibility work. This section makes the commercial basics explicit.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {trustHighlights.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1.6rem] border border-white/10 bg-[var(--color-panel)] p-5 text-sm leading-7 text-[var(--color-cream)]"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
@@ -678,7 +732,7 @@ export default function HomePage() {
                 {review.role}
               </p>
               <p className="mt-3 text-sm leading-7 text-[var(--color-cream)]">
-                “{review.body}”
+                "{review.body}"
               </p>
               <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
                 {review.author}

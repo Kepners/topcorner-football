@@ -32,7 +32,7 @@ export type ProductReview = {
 
 export const siteConfig = {
   name: "TopCorner.football",
-  brand: "CalcioKx",
+  brand: "TopCorner",
   brandSchema: "TopCorner",
   domain: "topcorner.football",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
@@ -53,8 +53,15 @@ export const merchantReturnPolicy = {
 
 export const productReviewSummary = {
   ratingValue: 4.8,
-  reviewCount: 27,
+  reviewCount: 4,
 };
+
+export const trustHighlights = [
+  "4.8/5 average from early customer reviews",
+  "Designed in the United Kingdom for repeatable football finishing sessions",
+  "Free UK shipping with 2-5 working day delivery target",
+  "30-day returns support and secure Stripe checkout",
+];
 
 export const productReviews: ProductReview[] = [
   {
@@ -65,7 +72,7 @@ export const productReviews: ProductReview[] = [
     title: "Makes every striker rep clearer",
     body: "Our boys knew exactly where to finish because the target is obvious. It helped us build a cleaner finishing routine in 30-second blocks.",
     date: "2026-03-04",
-    reviewedItem: "CalcioKx Single Corner Target",
+    reviewedItem: "TopCorner Single Corner Target",
   },
   {
     id: "review-2026-02",
@@ -75,7 +82,7 @@ export const productReviews: ProductReview[] = [
     title: "Simple setup, noticeable progress",
     body: "I can do solo sessions without wondering if I am improving. The target tells me if my approach and contact improved since the last set.",
     date: "2026-03-06",
-    reviewedItem: "CalcioKx Double Corner Target",
+    reviewedItem: "TopCorner Double Corner Target",
   },
   {
     id: "review-2026-03",
@@ -85,7 +92,7 @@ export const productReviews: ProductReview[] = [
     title: "Good fit for coach-led sessions",
     body: "The double pack is practical for small groups. Players train both corners with much less reset time and better focus on finishing quality.",
     date: "2026-03-07",
-    reviewedItem: "CalcioKx Double Corner Target",
+    reviewedItem: "TopCorner Double Corner Target",
   },
   {
     id: "review-2026-04",
@@ -95,7 +102,7 @@ export const productReviews: ProductReview[] = [
     title: "Perfect for home practice",
     body: "Before this setup, my daughter blasted away without structure. Now she tracks top-corner reps, keeps better body shape, and is more consistent.",
     date: "2026-03-08",
-    reviewedItem: "CalcioKx Single Corner Target",
+    reviewedItem: "TopCorner Single Corner Target",
   },
 ];
 
@@ -116,7 +123,7 @@ export const supportLinks = [
 export const productVariants: ProductVariant[] = [
   {
     id: "single",
-    name: "CalcioKx Single Corner Target",
+    name: "TopCorner Single Corner Target",
     shortName: "Single",
     sku: "5065017325008",
     gtin13: "5065017325008",
@@ -139,7 +146,7 @@ export const productVariants: ProductVariant[] = [
   },
   {
     id: "double",
-    name: "CalcioKx Double Corner Target",
+    name: "TopCorner Double Corner Target",
     shortName: "Double",
     sku: "5065017325015",
     gtin13: "5065017325015",
@@ -254,7 +261,7 @@ export const homeFaqs: FaqItem[] = [
   {
     question: "Will it fit my football goal?",
     answer:
-      "The CalcioKx target is designed to fit most standard round and square football goals using adjustable straps.",
+      "The TopCorner target is designed to fit most standard round and square football goals using adjustable straps.",
   },
   {
     question: "What age players can use it?",

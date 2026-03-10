@@ -21,7 +21,7 @@ import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Football Corner Targets",
   description:
-    "Compare football corner target packs, including the CalcioKx single and double goal targets for solo drills and coach-led sessions.",
+    "Compare football corner target packs, including the TopCorner single and double goal targets for solo drills and coach-led sessions.",
   path: "/product",
   keywords: [
     "football corner target",
@@ -88,9 +88,9 @@ export default function ProductPage() {
   const productListSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "CalcioKx Corner Target Packs",
+    name: "TopCorner Corner Target Packs",
     description:
-      "Browse the CalcioKx single and double corner target packs for solo sessions, coach-led drills, and group finishing work.",
+      "Browse the TopCorner single and double corner target packs for solo sessions, coach-led drills, and group finishing work.",
     url: absoluteUrl("/product"),
     mainEntity: {
       "@type": "ItemList",
@@ -217,7 +217,7 @@ export default function ProductPage() {
               Start with one live corner for focused solo repetition, or step
               up to both corners ready at once for coach-led drills and group
               finishing work. This page is the fastest way to compare both
-              CalcioKx packs and pick the right setup.
+              TopCorner packs and pick the right setup.
             </p>
           </div>
 
