@@ -432,7 +432,7 @@ export default async function ProductVariantPage({
                     {review.author}
                   </p>
                   <p className="mt-3 text-sm leading-7 text-[var(--color-cream)]">
-                    "{review.body}"
+                    &ldquo;{review.body}&rdquo;
                   </p>
                   <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
                     {review.role}

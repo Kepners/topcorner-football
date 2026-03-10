@@ -11,6 +11,7 @@ export type BlogSection = {
 export type BlogPost = {
   slug: string;
   title: string;
+  metaTitle?: string;
   description: string;
   excerpt: string;
   publishedAt: string;
@@ -22,12 +23,17 @@ export type BlogPost = {
   intro: string[];
   sections: BlogSection[];
   relatedSlugs: string[];
+  references?: {
+    title: string;
+    url: string;
+  }[];
 };
 
 export const blogPosts: BlogPost[] = [
   {
     slug: "how-to-hit-top-corner",
     title: "How To Hit The Top Corner In Football",
+    metaTitle: "How To Hit The Top Corner In Football | Shooting Accuracy Guide",
     description:
       "Learn how to hit the top corner consistently with proven football shooting techniques, drills, and training tips used to improve finishing accuracy.",
     excerpt:
@@ -162,6 +168,28 @@ export const blogPosts: BlogPost[] = [
       "football-shooting-drills",
       "solo-football-training-drills",
       "top-corner-shooting-techniques",
+    ],
+    references: [
+      {
+        title: "5 Drills to Improve Shooting Accuracy - Blayze",
+        url: "https://blayze.io/blog/soccer/5-drills-to-improve-shooting-accuracy",
+      },
+      {
+        title: "The Ultimate Guide To Soccer Shooting - 360Player",
+        url: "https://www.360player.com/blog/the-ultimate-guide-to-soccer-shooting-tips-drills-to-master-proper-technique",
+      },
+      {
+        title: "3 Soccer Shooting Technique Drills to Boost Accuracy - SoccerCamper",
+        url: "https://soccercamper.com/blog/shooting-techniques/",
+      },
+      {
+        title: "Effects of Training Methods and Power on Shooting Accuracy - SciSpace",
+        url: "https://scispace.com/papers/effects-of-training-methods-and-power-on-shooting-accuracy-2uzi6d0ld5",
+      },
+      {
+        title: "Football Drills Shooting Coaching Skills - Sportplan",
+        url: "https://www.sportplan.net/drills/Football/Shooting/practiceIndex.jsp",
+      },
     ],
   },
   {
@@ -319,7 +347,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Why visual targets improve decision quality",
         paragraphs: [
-          "A visible target narrows the player’s focus. Instead of shooting at a general area, they connect their mechanics to a specific outcome. That is a valuable learning loop.",
+          "A visible target narrows the player's focus. Instead of shooting at a general area, they connect their mechanics to a specific outcome. That is a valuable learning loop.",
           "The clearer the target, the easier it is for a coach or a solo player to tell whether the technique solved the problem on that rep.",
         ],
       },

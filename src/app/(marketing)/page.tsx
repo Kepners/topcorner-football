@@ -124,12 +124,21 @@ export default function HomePage() {
       body: "See how the target sits on the goal in a real outdoor setup before you take it into training.",
       src: "/images/products/goal-target-angle.jpg",
       alt: "Angled field photo of the TopCorner training target attached to a goal",
+      aspectClass: "aspect-[5/4]",
     },
     {
       title: "Distance test",
       body: "A wider field view gives a better sense of scale from the edge of the box and beyond.",
       src: "/images/products/goal-target-wide.jpg",
       alt: "Wide football pitch photo showing the TopCorner training target fixed to the goal",
+      aspectClass: "aspect-[5/4]",
+    },
+    {
+      title: "Full frame setup",
+      body: "A portrait shot shows the full installed target and post clearly, which reads better in a tall media frame.",
+      src: "/images/products/goal-installed-1.jpg",
+      alt: "Portrait photo of the TopCorner target fitted to the goal post in a full outdoor view",
+      aspectClass: "aspect-[4/5]",
     },
   ];
 
@@ -237,7 +246,7 @@ export default function HomePage() {
                 key={card.src}
                 className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
               >
-                <div className="relative aspect-[5/4]">
+                <div className={`relative ${card.aspectClass}`}>
                   <Image
                     src={card.src}
                     alt={card.alt}
@@ -256,29 +265,6 @@ export default function HomePage() {
                 </div>
               </article>
             ))}
-
-            <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]">
-              <video
-                className="aspect-[5/4] h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/images/products/hero-goal-target.jpg"
-              >
-                <source src={siteConfig.customerDemoVideo} type="video/mp4" />
-              </video>
-              <div className="space-y-3 p-5">
-                <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
-                  Customer footage
-                </p>
-                <p className="text-sm leading-7 text-[var(--color-mist)]">
-                  A quick session clip shows how the target looks and reacts
-                  when players strike into it at speed.
-                </p>
-              </div>
-            </article>
 
             <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 md:p-7">
               <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
@@ -732,7 +718,7 @@ export default function HomePage() {
                 {review.role}
               </p>
               <p className="mt-3 text-sm leading-7 text-[var(--color-cream)]">
-                "{review.body}"
+                &ldquo;{review.body}&rdquo;
               </p>
               <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
                 {review.author}

@@ -35,7 +35,7 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: post.title,
+    title: post.metaTitle || post.title,
     description: post.description,
     path: `/blog/${post.slug}`,
     keywords: post.keywords,
@@ -83,6 +83,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
     articleSection: post.category,
     inLanguage: "en-GB",
     keywords: post.keywords.join(", "),
+    citation: post.references?.map((reference) => reference.url),
   };
 
   const breadcrumbSchema = buildBreadcrumbSchema([
@@ -189,6 +190,28 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             </section>
           ))}
         </div>
+
+        {post.references?.length ? (
+          <section className="mt-14 rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
+            <h2 className="font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+              Sources
+            </h2>
+            <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+              {post.references.map((reference) => (
+                <li key={reference.url}>
+                  <a
+                    href={reference.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[var(--color-gold)] transition hover:text-[var(--color-cream)]"
+                  >
+                    {reference.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <div className="mt-14 rounded-[2rem] border border-white/10 bg-[rgba(255,255,255,0.02)] p-7">
           <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">

@@ -132,7 +132,7 @@ export const productVariants: ProductVariant[] = [
     description:
       "A single top-corner target for focused repetition on one side of the goal.",
     tagline: "One corner. One clear target. Fast reps.",
-    image: "/images/products/product-single-nobg.png",
+    image: "/images/products/ckx-single-isolated.jpg",
     contents: [
       "1 curved corner target",
       "3 hook-and-loop fixing straps",
@@ -155,7 +155,7 @@ export const productVariants: ProductVariant[] = [
     description:
       "A pair of corner targets that lets strikers and coaches work both sides of the goal without resetting.",
     tagline: "Both corners covered for realistic finishing patterns.",
-    image: "/images/products/product-double-nobg.png",
+    image: "/images/products/ckx-double-pack.jpg",
     badge: "Best value",
     contents: [
       "2 curved corner targets",

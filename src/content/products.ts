@@ -42,41 +42,38 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       "Dispatch target: 1-2 working days",
     ],
     hero: {
-      src: "/images/products/hero-goal-target.jpg",
-      alt: "TopCorner single corner target attached to the top corner of a football goal",
+      src: "/images/products/ckx-single-isolated.jpg",
+      alt: "TopCorner single corner target product shot on a light background",
     },
     gallery: [
       {
-        src: "/images/products/hero-goal-target.jpg",
-        alt: "TopCorner single corner target attached to the top corner of a football goal",
+        src: "/images/products/ckx-single-isolated.jpg",
+        alt: "TopCorner single corner target product shot on a light background",
       },
       {
-        src: "/images/products/goal-target-angle.jpg",
-        alt: "Angled football goal view showing the TopCorner single target in place",
+        src: "/images/products/ckx-single-installed-front.png",
+        alt: "Front installed view of the TopCorner single target fitted to the goal corner",
       },
       {
-        src: "/images/products/goal-installed-close.jpg",
-        alt: "Close installed view of the TopCorner single target",
+        src: "/images/products/ckx-single-installed-angle.png",
+        alt: "Angled outdoor photo showing the TopCorner single target attached to the goal",
       },
       {
-        src: "/images/products/product-single-angle.jpg",
-        alt: "Studio product view of the TopCorner single corner target",
-        fit: "contain",
-        lightPanel: true,
+        src: "/images/products/ckx-single-installed-square.jpg",
+        alt: "Square close-up photo of the TopCorner single target on the goal frame",
       },
       {
-        src: "/images/products/product-detail-joint.jpg",
-        alt: "Close-up of the TopCorner frame joint and orange corner detail",
+        src: "/images/products/ckx-pack-components.jpg",
+        alt: "TopCorner single pack contents laid out with straps, frame pieces, and carry bag",
+        fit: "cover",
       },
       {
-        src: "/images/products/product-components.jpg",
-        alt: "TopCorner single pack components and carry bag laid out on a light background",
-        fit: "contain",
-        lightPanel: true,
+        src: "/images/products/ckx-detail-corner.jpg",
+        alt: "Close-up of the TopCorner corner joint and strap attachment detail",
       },
       {
-        src: "/images/products/product-straps.jpg",
-        alt: "Close-up of the TopCorner fixing straps and attachment points",
+        src: "/images/products/ckx-single-installed-portrait.jpg",
+        alt: "Portrait field photo showing the full installed TopCorner single target and post",
       },
     ],
     crossSell: {
@@ -102,39 +99,33 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       "Dispatch target: 1-2 working days",
     ],
     hero: {
-      src: "/images/products/goal-target-wide.jpg",
-      alt: "Wide football pitch view with the TopCorner corner target installed on the goal",
+      src: "/images/products/ckx-double-pack.jpg",
+      alt: "TopCorner double pack with both targets and carry bag on a light background",
     },
     gallery: [
       {
-        src: "/images/products/goal-target-wide.jpg",
-        alt: "Wide football pitch view with the TopCorner corner target installed on the goal",
+        src: "/images/products/ckx-double-pack.jpg",
+        alt: "TopCorner double pack with both targets and carry bag on a light background",
       },
       {
-        src: "/images/products/goal-installed-front.jpg",
-        alt: "Front view of the TopCorner target fitted to the goal from just outside the area",
+        src: "/images/products/ckx-single-installed-front.png",
+        alt: "Front installed view showing how the TopCorner target sits on the goal corner",
       },
       {
-        src: "/images/products/goal-installed-side.jpg",
-        alt: "Side angle of the TopCorner target fitted to the top corner of a goal",
+        src: "/images/products/ckx-single-installed-angle.png",
+        alt: "Angled outdoor photo showing the TopCorner target fitted on the goal",
       },
       {
-        src: "/images/products/product-double-flat.jpg",
-        alt: "TopCorner double pack product shot on a white background",
-        fit: "contain",
-        lightPanel: true,
+        src: "/images/products/ckx-single-installed-square.jpg",
+        alt: "Square close-up of the TopCorner target on the goal frame during training setup",
       },
       {
-        src: "/images/products/goal-installed-4.jpg",
-        alt: "Close installed view of the TopCorner target on the goal frame",
+        src: "/images/products/ckx-detail-corner.jpg",
+        alt: "Close-up product detail of the TopCorner corner joint and strap section",
       },
       {
-        src: "/images/products/product-detail-joint.jpg",
-        alt: "Close-up of the TopCorner frame joint and orange corner detail",
-      },
-      {
-        src: "/images/products/product-straps.jpg",
-        alt: "Close-up of the TopCorner fixing straps and attachment points",
+        src: "/images/products/ckx-single-installed-portrait.jpg",
+        alt: "Portrait installed view of the TopCorner target on a full goal post",
       },
     ],
     crossSell: {

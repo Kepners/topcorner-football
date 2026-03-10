@@ -11,7 +11,7 @@ import {
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[rgba(8,10,13,0.92)]">
+    <footer className="relative border-t border-white/10 bg-[linear-gradient(180deg,rgba(9,12,16,0.82),rgba(8,10,13,0.94))] backdrop-blur-2xl">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.9fr_1.1fr] lg:px-8">
         <div className="space-y-4">
           <p className="font-display text-3xl uppercase tracking-[0.18em] text-[var(--color-cream)]">
