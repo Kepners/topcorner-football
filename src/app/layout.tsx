@@ -17,7 +17,7 @@ const displayFont = Bebas_Neue({
 });
 
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-2J9LN647GT";
 
 export const viewport: Viewport = {
   themeColor: "#080a0d",
