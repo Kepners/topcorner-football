@@ -1,14 +1,13 @@
 import type { MetadataRoute } from "next";
 
 import { blogPosts } from "@/content/blog";
-import { siteConfig } from "@/content/site";
+import { productVariants, siteConfig } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/product",
-    "/product/single",
-    "/product/double",
+    "/product/corner-target",
     "/guides",
     "/blog",
     "/how-to-hit-top-corner",
@@ -22,12 +21,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/returns",
     "/uk-football-training-target",
   ];
+  const productRoutes = productVariants.map((variant) => `/product/${variant.id}`);
+  const lastModified = new Date("2026-03-10");
 
-  const staticEntries = staticRoutes.map((path) => ({
+  const staticEntries = [...staticRoutes, ...productRoutes].map((path) => ({
     url: `${siteConfig.url}${path}`,
-    lastModified: new Date("2026-03-09"),
-    changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : 0.8,
+    lastModified,
+    changeFrequency:
+      path === "" || path === "/product" || path.startsWith("/product/")
+        ? "weekly"
+        : "monthly",
+    priority:
+      path === ""
+        ? 1
+        : path === "/product" || path.startsWith("/product/")
+          ? 0.9
+          : 0.8,
   })) satisfies MetadataRoute.Sitemap;
 
   const articleEntries = blogPosts.map((post) => ({

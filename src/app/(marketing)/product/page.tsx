@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import BuyButton from "@/components/BuyButton";
 import JsonLd from "@/components/JsonLd";
+import ProductImageGallery from "@/components/ProductImageGallery";
 import {
   getProductVariantById,
   productCompareRows,
@@ -31,7 +31,7 @@ export const metadata = buildMetadata({
     "calciokx double corner target",
     "football training target packs",
   ],
-  image: "/images/products/hero-goal-target.jpg",
+  image: "/images/products/ckx-single-isolated.jpg",
 });
 
 function formatPrice(value: number) {
@@ -204,7 +204,10 @@ export default function ProductPage() {
     <>
       <JsonLd data={[breadcrumbSchema, productListSchema, faqSchema, reviewSchema]} />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-20">
+      <section
+        id="shop"
+        className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-20"
+      >
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
@@ -219,6 +222,17 @@ export default function ProductPage() {
               finishing work. This page is the fastest way to compare both
               TopCorner packs and pick the right setup.
             </p>
+            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em]">
+              <span className="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-4 py-2 text-[var(--color-gold)]">
+                {productReviewSummary.ratingValue}/5 rating
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[var(--color-mist)]">
+                {productReviewSummary.reviewCount} early reviews
+              </span>
+              <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-emerald-300">
+                In stock
+              </span>
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
@@ -243,6 +257,10 @@ export default function ProductPage() {
             const detailHref = `/product/${variant.id}`;
             const compareAtValue =
               variant.id === "double" ? singlePack.priceValue * 2 : null;
+            const galleryImages = detail.gallery.slice(0, 5);
+            const variantReviewCount = productReviews.filter((review) =>
+              review.reviewedItem.toLowerCase().includes(variant.shortName.toLowerCase())
+            ).length;
 
             return (
               <article
@@ -278,32 +296,32 @@ export default function ProductPage() {
                   </div>
                 </div>
 
-                <div className="relative mt-6 grid gap-6 md:grid-cols-[0.82fr_1.18fr]">
-                <div className="relative aspect-square overflow-hidden rounded-[1.7rem] bg-white">
-                  <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-18 w-18 items-center justify-center rounded-full border border-[var(--color-gold)]/50 bg-[rgba(8,10,13,0.88)] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-sm">
-                    <div className="absolute inset-[5px] rounded-full border border-white/10" />
-                    <div className="relative h-10 w-10">
-                      <Image
-                        src="/images/brand/ckx-logo.png"
-                        alt="CKX logo"
-                        fill
-                        sizes="40px"
-                        className="object-contain"
-                      />
+                <div className="relative mt-6 grid gap-6 md:grid-cols-[0.92fr_1.08fr]">
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap gap-2 text-[0.68rem] uppercase tracking-[0.18em]">
+                      <span className="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-3 py-1.5 text-[var(--color-gold)]">
+                        {productReviewSummary.ratingValue}/5 rated
+                      </span>
+                      <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[var(--color-mist)]">
+                        {variantReviewCount || 1} review{variantReviewCount === 1 ? "" : "s"}
+                      </span>
+                      <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-emerald-300">
+                        In stock
+                      </span>
                     </div>
-                  </div>
-                  <Image
-                    src={variant.image}
-                    alt={variant.name}
-                    fill
-                    className="object-contain p-6"
+
+                    <ProductImageGallery
+                      images={galleryImages}
+                      mainAspectClass="aspect-square"
+                      thumbGridClassName="grid-cols-5"
+                      panelClassName="rounded-[1.7rem] border border-white/10 bg-white/5"
                     />
                   </div>
 
                   <div className="space-y-5">
                     <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-5">
                       <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
-                        Offer
+                        Price
                       </p>
                       <p className="mt-3 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                         {variant.priceLabel}
@@ -316,12 +334,34 @@ export default function ProductPage() {
                           as two single packs
                         </p>
                       ) : null}
-                      <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                      <p className="mt-3 text-xs uppercase tracking-[0.18em] text-emerald-300">
+                        In stock for immediate checkout
+                      </p>
+                      <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
                         {detail.offerLine}
                       </p>
                       <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-sky)]">
                         {detail.unitLine}
                       </p>
+                    </div>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-[1.3rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+                          Delivery
+                        </p>
+                        <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
+                          Free UK shipping with 1-2 day dispatch target.
+                        </p>
+                      </div>
+                      <div className="rounded-[1.3rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+                          Returns
+                        </p>
+                        <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
+                          {merchantReturnPolicy.returnWindowDays}-day support on eligible returns.
+                        </p>
+                      </div>
                     </div>
 
                     <div className="rounded-[1.6rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-5">
@@ -344,26 +384,41 @@ export default function ProductPage() {
                       ))}
                     </div>
 
-                    <ul className="space-y-3 text-sm leading-7 text-[var(--color-mist)]">
-                      {variant.benefits.map((benefit) => (
-                        <li key={benefit} className="flex gap-3">
-                          <span className="text-[var(--color-gold)]">+</span>
-                          <span>{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+                          Included
+                        </p>
+                        <ul className="mt-3 space-y-2 text-sm leading-7 text-[var(--color-mist)]">
+                          {variant.contents.map((item) => (
+                            <li key={item}>+ {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+                          Best for
+                        </p>
+                        <ul className="mt-3 space-y-2 text-sm leading-7 text-[var(--color-mist)]">
+                          {variant.benefits.map((benefit) => (
+                            <li key={benefit}>+ {benefit}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
 
                     <div className="grid gap-3 sm:grid-cols-2">
+                      <BuyButton
+                        productId={variant.id}
+                        label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
+                      />
                       <Link
                         href={detailHref}
                         className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
                       >
                         View pack details
                       </Link>
-                      <BuyButton
-                        productId={variant.id}
-                        label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
-                      />
                     </div>
                   </div>
                 </div>
@@ -445,7 +500,7 @@ export default function ProductPage() {
             </Link>
             <Link
               href="/product/double"
-              className="inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+              className="gold-cta inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
             >
               View double pack
             </Link>

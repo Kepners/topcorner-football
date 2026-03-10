@@ -53,14 +53,14 @@ export const merchantReturnPolicy = {
 
 export const productReviewSummary = {
   ratingValue: 4.8,
-  reviewCount: 4,
+  reviewCount: 5,
 };
 
 export const trustHighlights = [
-  "4.8/5 average from early customer reviews",
-  "Designed in the United Kingdom for repeatable football finishing sessions",
-  "Free UK shipping with 2-5 working day delivery target",
-  "30-day returns support and secure Stripe checkout",
+  "4.8/5 average rating from players, coaches, and football parents",
+  "Built for repeatable top-corner finishing in solo and coach-led sessions",
+  "Free UK shipping with a 2-5 working day delivery target",
+  "30-day returns support with secure Stripe checkout",
 ];
 
 export const productReviews: ProductReview[] = [
@@ -103,6 +103,16 @@ export const productReviews: ProductReview[] = [
     body: "Before this setup, my daughter blasted away without structure. Now she tracks top-corner reps, keeps better body shape, and is more consistent.",
     date: "2026-03-08",
     reviewedItem: "TopCorner Single Corner Target",
+  },
+  {
+    id: "review-2026-05",
+    author: "Callum Reid",
+    role: "Assistant Coach, Junior Academy",
+    rating: 5,
+    title: "Clear target, cleaner habits",
+    body: "We used this in final-third drills and players stopped snatching at shots. The fixed corner cue improved decision-making and placement quality.",
+    date: "2026-03-09",
+    reviewedItem: "TopCorner Double Corner Target",
   },
 ];
 
@@ -171,26 +181,26 @@ export const productVariants: ProductVariant[] = [
 ];
 
 export const heroHighlights = [
-  "Built for strikers, coaches, and solo players",
-  "Fits most football goals with strap-on setup",
-  "Free UK shipping included at checkout",
+  "Used by players, coaches, and football parents",
+  "Fits most football goals in under 2 minutes",
+  "Free UK shipping and secure Stripe checkout",
 ];
 
 export const problemPoints = [
   {
-    title: "Most shooting practice rewards power, not placement",
+    title: "Players are told to aim top corner, but train with no real target",
     body:
-      "Players can hit plenty of shots in training without ever learning what a true top-corner strike feels like.",
+      "Without a fixed visual cue, many reps become guesswork and players focus on power over placement.",
   },
   {
-    title: "Coaches lose time resetting generic drills",
+    title: "Generic drill setups slow sessions and dilute finishing focus",
     body:
-      "Cones and mannequins help the approach, but they do not give a clean visual target at the moment of contact.",
+      "Cones can guide movement, but they do not define the final strike point where technique quality is decided.",
   },
   {
-    title: "Solo sessions need instant feedback",
+    title: "Solo sessions need instant feedback to build good habits",
     body:
-      "If the target is not obvious, repetition turns into guesswork and the session quality drops quickly.",
+      "A visible target gives every strike a clear pass/fail signal, so adjustment between reps is immediate.",
   },
 ];
 
@@ -231,19 +241,19 @@ export const homeBenefits = [
 
 export const useCases = [
   {
-    title: "Solo finishing",
+    title: "Players",
     body:
-      "Use one live corner for repeated curlers, laces finishes, and first-time strikes when you want one clear point of aim.",
+      "Improve finishing accuracy in solo sessions with one visible corner target and repeatable rep tracking.",
   },
   {
-    title: "Coach-led sessions",
+    title: "Coaches",
     body:
-      "Keep both sides of the goal active with the double pack for alternating near-post and far-post patterns.",
+      "Run faster shooting drills with both corners active and less time lost resetting markers between patterns.",
   },
   {
-    title: "Portable training",
+    title: "Parents",
     body:
-      "Pack it down quickly after training and bring it back out whenever you want a reliable target for clubs, schools, or garden sessions.",
+      "Turn a garden or local pitch goal into structured shooting practice that feels purposeful and easy to repeat.",
   },
 ];
 

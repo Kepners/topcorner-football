@@ -142,6 +142,29 @@ export default function HomePage() {
     },
   ];
 
+  const competitorRows = [
+    {
+      feature: "Setup time",
+      topCorner: "Under 2 minutes with straps",
+      generic: "Often 10-15 minutes with ties",
+    },
+    {
+      feature: "Attachment style",
+      topCorner: "Hook-and-loop straps",
+      generic: "Mixed tie or rope systems",
+    },
+    {
+      feature: "Portability",
+      topCorner: "Built for fast pack-down and reuse",
+      generic: "Varies by product",
+    },
+    {
+      feature: "Brand focus",
+      topCorner: "Designed in the UK for finishing reps",
+      generic: "General football accessories",
+    },
+  ];
+
   return (
     <>
       <JsonLd
@@ -155,37 +178,38 @@ export default function HomePage() {
           <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative z-10 space-y-8">
               <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
-                Cinematic football training gear
+                Trusted by players, coaches, and football parents
               </div>
               <div className="space-y-5">
                 <h1 className="max-w-3xl font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl lg:text-8xl">
-                  Train Your Shot. Hit The Top Corner.
+                  The fastest way to train top-corner finishing.
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
-                  Turn any goal into a professional shooting training setup with
-                  a strap-on football corner target built for sharper finishing,
-                  cleaner repetition, and faster sessions.
+                  Strap this target onto almost any goal in under 2 minutes and
+                  turn every shooting session into precision finishing practice.
                 </p>
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
-                  href="/product"
-                  className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+                  href="/product#shop"
+                  className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
                 >
-                  Shop now
+                  Get your target
                 </Link>
                 <Link
-                  href="/blog"
+                  href="#watch"
                   className="rounded-full border border-white/15 bg-white/5 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
                 >
-                  Read training guides
+                  Watch it in action
                 </Link>
               </div>
 
-              <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-gold)]">
-                Free UK shipping included at checkout
-              </p>
+              <div className="rounded-[1.4rem] border border-[var(--color-gold)]/35 bg-[var(--color-gold)]/10 px-5 py-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                  Launch offer: free UK shipping plus early release pricing
+                </p>
+              </div>
 
               <div className="grid gap-4 sm:grid-cols-3">
                 {heroHighlights.map((item) => (
@@ -201,10 +225,13 @@ export default function HomePage() {
               <div className="grid gap-3 rounded-[1.8rem] border border-white/10 bg-[rgba(255,255,255,0.04)] p-5 sm:grid-cols-2">
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
-                    Early customer rating
+                    Trusted by players and coaches
                   </p>
                   <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                     {productReviewSummary.ratingValue}/5
+                  </p>
+                  <p className="mt-2 text-sm uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                    5-star buyer feedback
                   </p>
                   <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
                     Based on {productReviewSummary.reviewCount} early reviews from coaches,
@@ -323,12 +350,12 @@ export default function HomePage() {
             The problem
           </p>
           <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Shooting accuracy drops when the target is vague.
+            Most shooting practice fails because players aim at nothing.
           </h2>
           <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            Players usually get plenty of shooting reps. The problem is that
-            many of those reps do not teach precise finishing. The ball gets
-            hit, but the learning loop stays fuzzy.
+            Players hear &ldquo;aim for the top corner,&rdquo; but many training
+            reps still happen without a fixed strike point. That creates wasted shots,
+            inconsistent feedback, and slower technical progress.
           </p>
         </div>
 
@@ -347,15 +374,44 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <article className="rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-7">
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
+              Before
+            </p>
+            <h3 className="mt-4 font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+              Vague shooting sessions
+            </h3>
+            <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+              <li>+ Players chase power more than placement</li>
+              <li>+ Coaches spend extra time resetting drills</li>
+              <li>+ Solo reps turn into guesswork quickly</li>
+            </ul>
+          </article>
+          <article className="rounded-[1.8rem] border border-[var(--color-gold)]/30 bg-[linear-gradient(180deg,rgba(255,196,71,0.1),rgba(255,255,255,0.03))] p-7">
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-gold)]">
+              After
+            </p>
+            <h3 className="mt-4 font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+              Target-led finishing reps
+            </h3>
+            <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-cream)]">
+              <li>+ Every strike has a visible top-corner cue</li>
+              <li>+ Repetition quality is easier to track and coach</li>
+              <li>+ Sessions stay structured from first rep to last</li>
+            </ul>
+          </article>
+        </div>
       </section>
 
       <section className="bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
-            <div className="relative aspect-[5/4]">
+          <div className="relative self-start overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
+            <div className="relative aspect-square">
               <Image
-                src="/images/products/goal-installed-3.jpg"
-                alt="Close-up of the football corner target attached to a goal"
+                src="/images/products/ckx-single-installed-square.jpg"
+                alt="Square installed view of the football corner target attached to the goal"
                 fill
                 className="object-cover"
               />
@@ -390,8 +446,8 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/product"
-                className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]"
+                href="/product#shop"
+                className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]"
               >
                 Browse packs
               </Link>
@@ -406,7 +462,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="shop" className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
+      <section id="shop" className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
         <div className="flex flex-col gap-4 text-center">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
             Browse the packs
@@ -472,6 +528,16 @@ export default function HomePage() {
                       <p className="font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                         {variant.priceLabel}
                       </p>
+                      {variant.id === "double" ? (
+                        <>
+                          <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                            Save GBP 10 vs two singles
+                          </p>
+                          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                            Most players choose this pack
+                          </p>
+                        </>
+                      ) : null}
                     </div>
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
                       Free UK shipping
@@ -567,21 +633,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
+      <section
+        id="watch"
+        className="bg-[rgba(255,255,255,0.02)] py-18 lg:py-24"
+      >
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
               Real customer footage
             </p>
-          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Show the target. Show the finish.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            Watch the target on the goal, see how the ball travels into the
-            pocket, and get a clearer feel for the setup in a normal training
-            environment.
-          </p>
-        </div>
+            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+              Show the target. Show the finish.
+            </h2>
+            <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+              Watch how quickly the target installs, how clear the cue looks in
+              a full-size goal, and how the strike quality improves when the
+              corner is no longer vague.
+            </p>
+          </div>
 
           <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
             <video
@@ -599,13 +668,52 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
+            <div className="relative aspect-[5/4]">
+              <Image
+                src="/images/products/goal-installed-2.jpg"
+                alt="Player striking the ball towards a TopCorner target in the upper goal corner"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+              The goal moment
+            </p>
+            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+              The feeling every striker wants.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--color-mist)]">
+              There is no better sound in football than striking the top
+              corner clean. Train for that moment with a target players can see
+              clearly at full speed, then repeat it until it becomes habit.
+            </p>
+            <Link
+              href="/product#shop"
+              className="gold-cta mt-8 inline-flex rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+            >
+              Train for top bins
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
         <div className="max-w-2xl">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Training ideas
+            Who this is for
           </p>
           <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Three straightforward ways to use the target.
+            Built for players, coaches, and parents.
           </h2>
+          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+            The same target works across home sessions, academy drills, and
+            team training blocks. Pick the pack size based on how many corners
+            you want active.
+          </p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -652,6 +760,46 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
+        <div className="max-w-3xl">
+          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+            Why TopCorner
+          </p>
+          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+            Built to beat generic corner nets.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+            If you are comparing options, the biggest differences are setup
+            speed, attachment design, and how easily the target fits into real
+            training sessions.
+          </p>
+        </div>
+
+        <div className="mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
+          <div className="grid grid-cols-[0.85fr_1fr_1fr] border-b border-white/10 px-6 py-4 text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+            <div>Feature</div>
+            <div>TopCorner</div>
+            <div>Generic nets</div>
+          </div>
+          {competitorRows.map((row) => (
+            <div
+              key={row.feature}
+              className="grid grid-cols-[0.85fr_1fr_1fr] gap-4 border-b border-white/10 px-6 py-5 last:border-b-0"
+            >
+              <div className="text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+                {row.feature}
+              </div>
+              <div className="text-sm leading-7 text-[var(--color-cream)]">
+                {row.topCorner}
+              </div>
+              <div className="text-sm leading-7 text-[var(--color-mist)]">
+                {row.generic}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

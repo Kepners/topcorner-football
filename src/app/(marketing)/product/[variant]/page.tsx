@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import BuyButton from "@/components/BuyButton";
 import JsonLd from "@/components/JsonLd";
+import ProductImageGallery from "@/components/ProductImageGallery";
 import {
   getProductVariantById,
   isProductVariantId,
@@ -28,14 +28,6 @@ type ProductVariantPageProps = {
 
 function formatPrice(value: number) {
   return `GBP ${value}`;
-}
-
-function getImageClasses(fit?: "cover" | "contain", lightPanel?: boolean) {
-  if (fit === "contain") {
-    return `${lightPanel ? "bg-white " : ""}object-contain p-5`;
-  }
-
-  return "object-cover";
 }
 
 export function generateStaticParams() {
@@ -89,7 +81,6 @@ export default async function ProductVariantPage({
   }
 
   const detail = productDetailContent[variant];
-  const galleryPreviewImages = detail.gallery.slice(1, 6);
   const otherVariantId = variant === "single" ? "double" : "single";
   const otherProduct = getProductVariantById(otherVariantId);
   const pageFaqItems = faqPageItems.slice(0, 4);
@@ -247,59 +238,25 @@ export default async function ProductVariantPage({
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.04fr_0.96fr]">
           <div className="space-y-5">
-            <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-[var(--color-panel)]">
-              <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-24 w-24 items-center justify-center rounded-full border border-[var(--color-gold)]/60 bg-[rgba(8,10,13,0.88)] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-sm sm:h-28 sm:w-28">
-                <div className="absolute inset-[6px] rounded-full border border-white/10" />
-                <div className="relative h-16 w-16 sm:h-20 sm:w-20">
-                  <Image
-                    src="/images/brand/ckx-logo.png"
-                    alt="CKX logo"
-                    fill
-                    sizes="80px"
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={detail.hero.src}
-                  alt={detail.hero.alt}
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className={getImageClasses(detail.hero.fit, detail.hero.lightPanel)}
-                />
-              </div>
-            </div>
-
-            <div className="rounded-[1.8rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-5">
-              <div className="flex items-center justify-between gap-4">
+            <div className="rounded-[2.2rem] border border-white/10 bg-[rgba(255,255,255,0.03)] p-5 sm:p-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
-                  Quick gallery
+                  Product gallery
                 </p>
                 <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
-                  Installed views and studio shots
+                  Tap thumbnails to inspect the pack
                 </p>
               </div>
 
-              <div className="mt-5 grid gap-4 sm:grid-cols-3 xl:grid-cols-5">
-                {galleryPreviewImages.map((image) => (
-                  <div
-                    key={image.src}
-                    className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-[var(--color-panel)]"
-                  >
-                    <div className="relative aspect-square">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        sizes="(min-width: 1280px) 10vw, (min-width: 640px) 22vw, 100vw"
-                        className={getImageClasses(image.fit, image.lightPanel)}
-                      />
-                    </div>
-                  </div>
-                ))}
+              <div className="mt-5">
+                <ProductImageGallery
+                  images={detail.gallery}
+                  priority
+                  mainAspectClass="aspect-[4/3]"
+                  thumbGridClassName="grid-cols-4 sm:grid-cols-5"
+                  panelClassName="rounded-[1.7rem] border border-white/10 bg-white/5"
+                  showCaption
+                />
               </div>
             </div>
           </div>
@@ -320,6 +277,9 @@ export default async function ProductVariantPage({
                     {detail.savingsLine}
                   </span>
                 ) : null}
+                <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-emerald-300">
+                  In stock
+                </span>
               </div>
 
               <h1 className="mt-5 font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
@@ -350,6 +310,9 @@ export default async function ProductVariantPage({
                 </p>
                 <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-sky)]">
                   {detail.unitLine}
+                </p>
+                <p className="mt-3 text-xs uppercase tracking-[0.18em] text-emerald-300">
+                  Ready for immediate checkout
                 </p>
               </div>
 
@@ -444,55 +407,6 @@ export default async function ProductVariantPage({
         </section>
       ) : null}
 
-      <section className="border-y border-white/10 bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-              Product gallery
-            </p>
-            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-              A closer look at the {product.shortName.toLowerCase()} pack.
-            </h2>
-            <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-              See the pack installed on the goal, viewed from distance, and
-              broken down into the product details buyers usually check before
-              they order.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {detail.gallery.map((image, index) => (
-              <article
-                key={image.src}
-                className={`overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] ${
-                  index === 0 ? "md:col-span-2" : ""
-                }`}
-              >
-                <div className={`relative ${index === 0 ? "aspect-[16/9]" : "aspect-[4/5]"}`}>
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes={
-                      index === 0
-                        ? "(min-width: 768px) 88vw, 100vw"
-                        : "(min-width: 768px) 42vw, 100vw"
-                    }
-                    className={getImageClasses(image.fit, image.lightPanel)}
-                  />
-                </div>
-                <div className="border-t border-white/10 px-5 py-4">
-                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                    {index === 0 ? "Lead image" : `Gallery image ${index + 1}`}
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">{image.alt}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-18 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-24">
         <div className="rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
@@ -569,7 +483,7 @@ export default async function ProductVariantPage({
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Link
                   href={detail.crossSell.href}
-                  className="inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+                  className="gold-cta inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
                 >
                   {detail.crossSell.label}
                 </Link>

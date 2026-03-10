@@ -73,6 +73,15 @@ a {
   isolation: isolate;
 }
 
+.gold-cta {
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.7);
+  text-shadow:
+    0.6px 0 rgba(0, 0, 0, 0.65),
+    -0.6px 0 rgba(0, 0, 0, 0.65),
+    0 0.6px rgba(0, 0, 0, 0.65),
+    0 -0.6px rgba(0, 0, 0, 0.65);
+}
+
 :where(
     [class*="bg-[var(--color-panel)]"],
     [class*="bg-[rgba(255,255,255,0.03)]"],
