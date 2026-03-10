@@ -279,12 +279,24 @@ export default function ProductPage() {
                 </div>
 
                 <div className="relative mt-6 grid gap-6 md:grid-cols-[0.82fr_1.18fr]">
-                  <div className="relative aspect-square overflow-hidden rounded-[1.7rem] bg-white">
-                    <Image
-                      src={variant.image}
-                      alt={variant.name}
-                      fill
-                      className="object-contain p-6"
+                <div className="relative aspect-square overflow-hidden rounded-[1.7rem] bg-white">
+                  <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-18 w-18 items-center justify-center rounded-full border border-[var(--color-gold)]/50 bg-[rgba(8,10,13,0.88)] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-sm">
+                    <div className="absolute inset-[5px] rounded-full border border-white/10" />
+                    <div className="relative h-10 w-10">
+                      <Image
+                        src="/images/brand/ckx-logo.png"
+                        alt="CKX logo"
+                        fill
+                        sizes="40px"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                  <Image
+                    src={variant.image}
+                    alt={variant.name}
+                    fill
+                    className="object-contain p-6"
                     />
                   </div>
 
