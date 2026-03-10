@@ -173,6 +173,19 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   ))}
                 </ul>
               ) : null}
+              {section.image ? (
+                <div className="relative overflow-hidden rounded-[1.8rem] border border-white/10">
+                  <div className="relative aspect-[16/9]">
+                    <Image
+                      src={section.image.src}
+                      alt={section.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 896px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              ) : null}
             </section>
           ))}
         </div>

@@ -2,6 +2,10 @@ export type BlogSection = {
   heading: string;
   paragraphs: string[];
   bullets?: string[];
+  image?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export type BlogPost = {
@@ -25,88 +29,138 @@ export const blogPosts: BlogPost[] = [
     slug: "how-to-hit-top-corner",
     title: "How To Hit The Top Corner In Football",
     description:
-      "Learn how to strike the top corner with better approach angles, cleaner contact, and smarter shooting practice.",
+      "Learn how to hit the top corner consistently with proven football shooting techniques, drills, and training tips used to improve finishing accuracy.",
     excerpt:
-      "A practical guide to body shape, striking mechanics, and drill design for players who want more accurate finishing.",
-    publishedAt: "2026-03-02",
-    updatedAt: "2026-03-07",
-    readTime: "8 min read",
-    heroImage: "/images/products/goal-installed-2.jpg",
+      "A step-by-step shooting guide covering body shape, striking mechanics, target work, and drills for more accurate finishing.",
+    publishedAt: "2026-03-10",
+    updatedAt: "2026-03-10",
+    readTime: "7 min read",
+    heroImage: "/images/products/goal-target-angle.jpg",
     category: "Finishing",
     keywords: [
       "how to hit the top corner",
       "improve shooting accuracy football",
       "football finishing drills",
+      "top bins football",
+      "how to improve shooting accuracy",
     ],
     intro: [
-      "Players talk about hitting the top corner as if it is magic, but most great finishers build it from repeatable mechanics. The shot looks spectacular because it combines placement, timing, and composure under pressure.",
-      "If you want to hit the top corner more often, stop chasing power first. Start with the approach, your plant foot, and the quality of the contact. When those pieces are stable, the ball can rise with control instead of flying away from the target.",
+      "Every footballer dreams of smashing the ball into the top corner. It is the most satisfying finish in the game, hard for goalkeepers to stop and a sign of real technical quality.",
+      "But consistently hitting the top corner is not luck. It comes from body position, clean contact, target-based repetition, and drills that recreate the pressure of a real finish.",
     ],
     sections: [
       {
-        heading: "Start with a realistic approach angle",
+        heading: "Step 1: Perfect your body position",
         paragraphs: [
-          "The cleanest top-corner finishes usually begin with an angle that opens your body enough to see the far side of the goal. A straight-line sprint often forces rushed contact and makes the shot look harder than it needs to be.",
-          "For curl and placement, use a slightly curved run-up that lets your hips stay balanced. For a driven finish, keep the final stride controlled so your chest and shoulders do not lean back at contact.",
+          "Your body position is the foundation of an accurate shot. Keep your chest slightly over the ball, plant your standing foot beside it, and let your hips face the corner you want to hit.",
+          "Your plant foot works like a pointer. If your balance is good and your body stays over the strike, the shot is much more likely to stay under control instead of flying over the bar.",
         ],
         bullets: [
-          "Take your final two steps under control",
-          "Keep your eyes on the ball until after contact",
-          "Do not sacrifice balance just to shoot earlier",
+          "Keep your chest over the ball",
+          "Plant the standing foot beside the ball",
+          "Aim your hips toward the target corner",
+        ],
+        image: {
+          src: "/images/products/goal-installed-front.jpg",
+          alt: "Front view of the TopCorner target fitted to the goal during shooting practice",
+        },
+      },
+      {
+        heading: "Step 2: Strike with the laces",
+        paragraphs: [
+          "To generate both power and accuracy, strike the ball with the laces of your boot. Lock your ankle, hit through the centre of the ball, and follow through toward the target.",
+          "Clean contact matters more than swinging harder. When the ankle is loose or the follow-through drifts away from the target, the shot loses shape quickly.",
+        ],
+        bullets: [
+          "Lock your ankle before contact",
+          "Strike through the centre of the ball",
+          "Follow through toward the corner you want to hit",
+        ],
+        image: {
+          src: "/images/products/goal-installed-close.jpg",
+          alt: "Close installed view of the TopCorner target showing the upper corner finishing zone",
+        },
+      },
+      {
+        heading: "Step 3: Aim for specific targets",
+        paragraphs: [
+          "One of the biggest mistakes in shooting practice is aiming at nothing in particular. Players improve faster when they aim at a clear area of the goal instead of just hitting shots.",
+          "Using fixed targets trains precision and decision-making together. It also gives immediate feedback on whether your technique actually produced the finish you wanted.",
+        ],
+        bullets: [
+          "Train with visible target zones",
+          "Measure clean hits instead of total shots",
+          "Repeat the same strike until the shape is consistent",
+        ],
+        image: {
+          src: "/images/products/goal-target-wide.jpg",
+          alt: "Wide football pitch view with the TopCorner target installed for accuracy training",
+        },
+      },
+      {
+        heading: "Step 4: Practice both corners",
+        paragraphs: [
+          "Great finishers can score in either corner of the goal. During training, split your reps between the top left and top right, then repeat the same work on your weaker foot.",
+          "That balance builds confidence and makes it easier to finish based on the goalkeeper and angle in front of you rather than forcing one favourite shot every time.",
+        ],
+        bullets: [
+          "10 shots to the top left",
+          "10 shots to the top right",
+          "Repeat the drill on your weaker foot",
         ],
       },
       {
-        heading: "Plant foot position decides more than most players think",
+        heading: "Step 5: Train with game-like drills",
         paragraphs: [
-          "A plant foot that lands too close to the ball smothers the shot. A plant foot that lands too far away weakens contact and reduces control. Your support foot should sit beside the ball with the toe roughly pointed where you want the shot to start.",
-          "Think about striking through a window, not simply at a corner. If the ball starts on the correct line and has the right height, the keeper is under pressure even before the ball bends or dips.",
+          "Match finishing happens quickly, so your training should include movement and decision pressure. First-time finishes, cut-inside shots, turn-and-shoot patterns, and rebound work all help transfer technique into realistic actions.",
+          "Structured drills are useful because they force players to organize the touch, the body shape, and the shot in one sequence instead of treating each rep like an isolated strike.",
         ],
         bullets: [
-          "Plant beside the ball, not behind it",
-          "Keep the knee soft so your body can stay stable",
-          "Point the support foot at the initial flight path",
+          "First-time finishing",
+          "Cut-inside shots",
+          "Turn and shoot drills",
+          "Rebound finishing",
         ],
       },
       {
-        heading: "Contact point creates the flight",
+        heading: "A simple drill to practice top-corner finishing",
         paragraphs: [
-          "To lift the ball accurately, lock the ankle and strike slightly under the middle of the ball while keeping the foot shape consistent. The exact contact point changes depending on whether you want a curled finish or a straight, rising strike.",
-          "For inside-foot curlers, brush across the ball while keeping the swing smooth. For laces finishes, strike through the center with a firm ankle and let the follow-through stay compact enough to preserve control.",
+          "Set a target in each top corner, take twenty shots, and count how many you hit. The goal is to improve your score over time rather than just take random repetitions.",
+          "This works because the drill rewards placement and consistency. Every shot becomes accuracy training rather than a guess at the general shape of the goal.",
         ],
         bullets: [
-          "Inside of the foot for curl and placement",
-          "Laces for a quicker, straighter flight",
-          "Firm ankle on every repetition",
+          "Place one target in each upper corner",
+          "Take 20 shots aiming only at those areas",
+          "Track your hit rate every session",
+        ],
+        image: {
+          src: "/images/products/hero-goal-target.jpg",
+          alt: "TopCorner training target attached to the top corner of a football goal for finishing drills",
+        },
+      },
+      {
+        heading: "Why the top corner is the hardest shot for goalkeepers",
+        paragraphs: [
+          "Shots into the upper corners are difficult to save because they demand maximum reach and leave very little reaction time. When the ball gets there quickly, the goalkeeper has to cover both height and width at once.",
+          "That is why players often talk about top bins as the ideal finish. It is simply one of the hardest zones in the goal for a keeper to attack cleanly.",
         ],
       },
       {
-        heading: "Train the top corner with constraints",
+        heading: "The secret to consistent finishing",
         paragraphs: [
-          "Open shooting practice is useful, but targeted practice is faster. When the goal gives you a visible target in the top corner, you can measure whether your approach, body shape, and contact are actually producing the right result.",
-          "Use a corner target, a marked gate, or a fixed scoring zone. That turns every rep into a decision: was the strike too flat, too central, too high, or too rushed? The clearer the feedback, the quicker the adjustment.",
+          "Players who score regularly do not just shoot more. They train with purpose, repeat the right movement, and aim at specific targets until the strike becomes automatic.",
+          "That is where products like TopCorner help. A visible upper-corner target turns any goal into a more deliberate finishing setup, so every rep has a measurable purpose.",
         ],
         bullets: [
-          "Alternate near-post and far-post top-corner shots",
-          "Shoot after movement, not only from a static start",
-          "Keep score to force concentration late in the set",
-        ],
-      },
-      {
-        heading: "Common mistakes that stop the ball climbing cleanly",
-        paragraphs: [
-          "Most players miss the top corner in the same few ways. They lean back too far, attack the ball too fast, or swing so hard that the shape of the foot changes at impact. All three problems produce inconsistent contact.",
-          "Fix the error before you increase pace. Once the mechanics are stable, build game realism by adding defenders, first-touch triggers, or time pressure.",
-        ],
-        bullets: [
-          "Leaning back creates uncontrolled height",
-          "Overstriding makes the plant foot unstable",
-          "Chasing power reduces accuracy late in the swing",
+          "Technique matters",
+          "Repetition matters",
+          "Target-based training matters",
         ],
       },
     ],
     relatedSlugs: [
       "football-shooting-drills",
-      "how-to-practice-football-shooting-at-home",
+      "solo-football-training-drills",
       "top-corner-shooting-techniques",
     ],
   },
