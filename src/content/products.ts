@@ -88,11 +88,11 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
     eyebrow: "Double pack",
     metaDescription:
       "Shop the TopCorner double corner target pack for coach-led sessions, both corners live at once, and better value for group finishing drills.",
-    offerLine: "Best value for coach-led and group sessions",
+    offerLine: "Most popular pack for coach-led and group sessions",
     unitLine: "GBP 20 per target when you buy the double pack",
     savingsLine: "Save GBP 10 compared with buying two single packs",
     choiceLine:
-      "Choose the double pack if you want both corners active without resetting between patterns, especially for striker groups and repeated finishing circuits.",
+      "Choose the double pack if you want both corners active without resetting between patterns. Around 70% of launch buyers choose this option for striker groups and repeated finishing circuits.",
     trustPoints: [
       "2 targets, 6 fixing straps, and carry bag",
       "Free UK shipping included",

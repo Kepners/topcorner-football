@@ -492,6 +492,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
+        <div className="max-w-3xl">
+          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+            Visual proof
+          </p>
+          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+            See the product working in real sessions.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
+            Before specs and before checkout, buyers should see clear evidence:
+            installed setup, live target zone, and repeatable finishing reps.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {visualProofCards.map((card) => (
+            <article
+              key={card.src}
+              className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)]"
+            >
+              <div className="relative aspect-[4/5]">
+                <Image
+                  src={card.src}
+                  alt={card.alt}
+                  fill
+                  sizes="(min-width: 1024px) 24vw, (min-width: 640px) 48vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-3 p-5">
+                <p className="text-xs uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                  {card.title}
+                </p>
+                <p className="text-sm leading-7 text-[var(--color-mist)]">
+                  {card.body}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="shop" className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
         <div className="flex flex-col gap-4 text-center">
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">

@@ -293,22 +293,22 @@ export const useCases = [
   {
     title: "Players",
     body:
-      "Improve finishing accuracy in solo sessions with one visible corner target and repeatable rep tracking.",
+      "Improve finishing accuracy during solo sessions with a clear top-corner target.",
   },
   {
     title: "Coaches",
     body:
-      "Run faster shooting drills with both corners active and less time lost resetting markers between patterns.",
+      "Run shooting drills with less reset time and clearer finishing feedback.",
   },
   {
     title: "Parents",
     body:
-      "Turn a garden or local pitch goal into structured shooting practice that feels purposeful and easy to repeat.",
+      "Turn a garden goal into a structured training setup for repeatable reps.",
   },
   {
     title: "Clubs",
     body:
-      "Ideal for grassroots clubs and academies running high-volume shooting drills with clear quality benchmarks.",
+      "Durable target setup for club and academy shooting sessions.",
   },
 ];
 
