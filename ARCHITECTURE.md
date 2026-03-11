@@ -1,101 +1,89 @@
-# TopCorner.football — Architecture
+# TopCorner.football - Architecture
 
 ## System Overview
 
-```
-User → Vercel (Next.js) → Stripe Checkout → Success Page
-                                    ↓
-                              Stripe Webhook → Email (Resend)
+```text
+User -> Vercel (Next.js) -> Stripe Checkout -> Success Page
+                                 |
+                                 v
+                          Stripe Webhook -> Email (Resend)
 ```
 
 ## Tech Stack
 
 | Layer | Technology | Reason |
-|-------|-----------|--------|
-| Frontend | Next.js 14 (App Router) | SSR, fast, SEO-friendly |
-| Styling | Tailwind CSS | Rapid development, responsive |
-| Payments | Stripe Checkout | Trusted, handles PCI compliance |
-| Email | Resend | Simple transactional email |
-| Hosting | Vercel | Zero-config Next.js deployment |
-| Domain | topcorner.football | Porkbun DNS → Vercel |
+|-------|------------|--------|
+| Frontend | Next.js 16 (App Router) | SSR, SEO, and modern App Router patterns |
+| Styling | Tailwind CSS | Fast iteration and responsive layouts |
+| Payments | Stripe Checkout | PCI-safe hosted checkout flow |
+| Email | Resend | Transactional email delivery |
+| Hosting | Vercel | Native Next.js deployment target |
+| Domain | topcorner.football | DNS routed to Vercel |
 
 ## Data Flow
 
 ### Purchase Flow
-```
-1. User clicks "Buy Now"
-2. POST /api/checkout → Creates Stripe Checkout Session
-3. Redirect to Stripe-hosted checkout
+```text
+1. User clicks a buy CTA
+2. POST /api/checkout creates a Stripe Checkout Session
+3. Browser redirects to Stripe-hosted checkout
 4. User pays
-5. Stripe redirects to /success?session_id=xxx
-6. Stripe fires webhook to /api/webhooks/stripe
-7. Webhook handler:
-   - Logs order (console/file for MVP)
-   - Sends confirmation email via Resend
-8. Owner checks Stripe dashboard for orders
+5. Stripe redirects to /success?session_id=...
+6. Stripe sends a webhook to /api/webhooks/stripe
+7. Webhook handler records the order and sends confirmation email
+8. Owner reviews the order in Stripe
 ```
 
 ### API Routes
-```
-/api/checkout          POST  → Create Stripe Checkout session
-/api/webhooks/stripe   POST  → Handle Stripe events
+```text
+/api/checkout          POST -> Create Stripe Checkout session
+/api/webhooks/stripe   POST -> Handle Stripe events
 ```
 
-## File Structure (Next.js)
+## File Structure
 
-```
+```text
 topcorner-football/
-├── app/
-│   ├── layout.tsx          # Root layout + fonts
-│   ├── page.tsx            # Homepage
-│   ├── success/
-│   │   └── page.tsx        # Order success page
-│   └── api/
-│       ├── checkout/
-│       │   └── route.ts    # Create checkout session
-│       └── webhooks/
-│           └── stripe/
-│               └── route.ts # Stripe webhook handler
-├── components/
-│   ├── Hero.tsx
-│   ├── ProductSection.tsx
-│   ├── Navbar.tsx
-│   └── Footer.tsx
-├── lib/
-│   ├── stripe.ts           # Stripe client
-│   └── email.ts            # Resend client
-├── public/
-│   └── images/             # Product photos
-├── .env.local              # Local env vars
-└── vercel.json             # Vercel config
+|- src/
+|  |- app/
+|  |  |- layout.tsx
+|  |  |- api/
+|  |  |  |- checkout/route.ts
+|  |  |  |- webhooks/stripe/route.ts
+|  |  |- success/page.tsx
+|  |  |- (marketing)/
+|  |- components/
+|  |- content/
+|  |- lib/
+|- public/
+|- docs/
+|- vercel.json
 ```
 
 ## Environment Variables
 
 ```env
-# Stripe
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
 STRIPE_SECRET_KEY=sk_live_...
 STRIPE_WEBHOOK_SECRET=whsec_...
-
-# Stripe Product
-STRIPE_PRICE_ID=price_...         # Created in Stripe dashboard
-
-# App
 NEXT_PUBLIC_SITE_URL=https://topcorner.football
-
-# Email (Resend)
 RESEND_API_KEY=re_...
 OWNER_EMAIL=kepners@gmail.com
 ```
 
 ## Deployment
 
-1. Push to GitHub → auto-deploys to Vercel
-2. Set env vars in Vercel dashboard
-3. Add topcorner.football in Vercel domains
-4. Update DNS at Porkbun to point to Vercel
+1. Work happens on `main`.
+2. Push to GitHub `main`.
+3. GitHub `origin/main` auto-deploys to Vercel.
+4. Verify the pushed commit exists on `origin/main`.
+5. Confirm Vercel picked up the same commit for deployment.
+
+## Branch Rule
+
+`main` is the only branch of record for this repository.
+There is no parallel `master` deployment workflow anymore.
 
 ---
 
-*Created: March 2026*
+*Updated: March 2026*

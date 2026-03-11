@@ -15,7 +15,7 @@
 ---
 
 ## Project Overview
-**TopCorner.football** — E-commerce website selling premium football corner targets
+**TopCorner.football** - E-commerce website selling premium football corner targets
 
 | Item | Value |
 |------|-------|
@@ -31,8 +31,8 @@
 | Doc | Purpose |
 |-----|---------|
 | [docs/SPEC.md](docs/SPEC.md) | Full project specification |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | System design & data flow |
-| [README.md](README.md) | Quick start & setup |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | System design and data flow |
+| [README.md](README.md) | Quick start and setup |
 
 ---
 
@@ -48,23 +48,23 @@
 | Surface | `#F8F9FA` | Off White | Light sections, cards |
 
 ### Typography
-- Headlines: Bold, impactful — sports brand feel
+- Headlines: Bold, impactful sports-brand feel
 - Body: Clean, readable
 - CTAs: Uppercase, high-contrast
 
 ---
 
 ## Tech Stack
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS
-- **Payments**: Stripe (one-time purchases + optional checkout sessions)
+- **Payments**: Stripe
 - **Hosting**: Vercel
 - **Domain**: topcorner.football
 
 ---
 
 ## Product
-**Football Corner Targets** — Physical product (custom-made corner flags/targets)
+**Football Corner Targets** - Physical product (custom-made corner flags/targets)
 
 Key selling points to highlight on site:
 - Quality materials
@@ -93,34 +93,41 @@ npm run start  # Production server
 
 ---
 
-## MANDATORY: Git & Deploy Workflow
+## MANDATORY: Git and Deploy Workflow
 
-**Two branches. Both must be pushed every time.**
+**Single branch only. `main` is the source of truth for GitHub and Vercel.**
 
 | Branch | Purpose |
 |--------|---------|
-| `master` | Development — all work happens here |
-| `main` | Vercel production — must match master |
+| `main` | Development and production deploy branch |
 
-**After every code change, run ALL of these:**
+**After every job that changes the repo, run all of these:**
 ```bash
 git add <files>
-git commit -m "🔥 feat/fix: description"
-git push origin master          # save to master
-git push origin master:main     # deploy to Vercel (production)
+git commit -m "feat/fix/docs: description"
+git push origin main
+git status -sb
+git ls-remote --heads origin main
 ```
 
-**Never leave changes uncommitted. Never push only to master.**
-If only master is pushed, topcorner.football does NOT update.
+**Definition of done for this repo**
+- Code or docs are changed locally
+- Relevant checks have been run (`lint`, `build`, and browser check when needed)
+- Changes are committed
+- Changes are pushed to `origin/main`
+- Remote `origin/main` has been verified after the push
+
+**Never leave changes uncommitted. Never stop at local edits.**
+If it is not committed and visible on `origin/main`, the job is not done.
 
 ---
 
 ## Available Skills
-- `/ccc:production` — Peter (build features, fix bugs, deploy)
-- `/ccc:sales` — Jason/Jasmine (design, UX, landing page polish)
-- `/cu:seo-expert` — SEO audit & implementation
-- `/cu:distribute` — Submit to directories
-- `/cs:x`, `/cs:linkedin` — Marketing posts
+- `/ccc:production` - Peter (build features, fix bugs, deploy)
+- `/ccc:sales` - Jason/Jasmine (design, UX, landing page polish)
+- `/cu:seo-expert` - SEO audit and implementation
+- `/cu:distribute` - Submit to directories
+- `/cs:x`, `/cs:linkedin` - Marketing posts
 
 ---
 
