@@ -57,10 +57,10 @@ export const productReviewSummary = {
 };
 
 export const trustHighlights = [
-  "4.8/5 average rating from 10 launch reviews",
-  "Built for repeatable top-corner finishing in solo and coach-led sessions",
-  "Free UK shipping with a 2-5 working day delivery target",
-  "30-day returns support with secure Stripe checkout",
+  "Free UK shipping on every order",
+  "Dispatch target: 1-2 working days",
+  "30-day returns support",
+  "Secure Stripe checkout",
 ];
 
 export const productReviews: ProductReview[] = [
@@ -190,8 +190,8 @@ export const productVariants: ProductVariant[] = [
     priceLabel: "GBP 25",
     priceValue: 25,
     description:
-      "A single top-corner target for focused repetition on one side of the goal.",
-    tagline: "One corner. One clear target. Fast reps.",
+      "One live top-corner target for solo reps, home practice, and the lowest starting price.",
+    tagline: "One corner. One clear target. Pure repetition.",
     image: "/images/products/ckx-single-isolated.jpg",
     contents: [
       "1 curved corner target",
@@ -199,9 +199,9 @@ export const productVariants: ProductVariant[] = [
       "Storage bag",
     ],
     benefits: [
-      "Best for solo sessions and technical finishing work",
-      "Fits round and square posts",
-      "Ready in under 2 minutes",
+      "Best for solo finishing and lower-cost entry",
+      "Gives every rep one clear target to attack",
+      "Fits most round and square posts in under 2 minutes",
     ],
   },
   {
@@ -213,26 +213,26 @@ export const productVariants: ProductVariant[] = [
     priceLabel: "GBP 40",
     priceValue: 40,
     description:
-      "A pair of corner targets that lets strikers and coaches work both sides of the goal without resetting.",
-    tagline: "Both corners covered for realistic finishing patterns.",
+      "Two live targets for coach sessions, striker groups, and faster drills with less reset time.",
+    tagline: "Both corners live. Better value. Better flow.",
     image: "/images/products/ckx-double-pack.jpg",
-    badge: "Most popular",
+    badge: "Best value",
     contents: [
       "2 curved corner targets",
       "6 hook-and-loop fixing straps",
       "Storage bag",
     ],
     benefits: [
-      "Best for striker groups and coached shooting circuits",
-      "Train near-post and far-post finishing in one setup",
-      "Cuts down reset time between patterns",
+      "2 targets for GBP 20 each",
+      "Best for coached drills and two-sided finishing patterns",
+      "Saves GBP 10 versus buying two singles",
     ],
   },
 ];
 
 export const heroHighlights = [
-  "Used by players, coaches, and football parents",
-  "Fits most football goals in under 2 minutes",
+  "Fits most round and square goal posts",
+  "Attaches in under 2 minutes",
   "Free UK shipping and secure Stripe checkout",
 ];
 
@@ -255,10 +255,10 @@ export const problemPoints = [
 ];
 
 export const solutionPoints = [
-  "Creates an immediate visual cue in the hardest area for keepers to reach",
-  "Attaches with straps, so there is no drilling, tying, or hardware setup",
-  "Works for finishing drills, free kicks, and solo repetition",
-  "Packs away quickly after training",
+  "Gives the eyes a fixed finish point instead of a vague area of the goal",
+  "Turns every rep into instant pass-or-miss feedback",
+  "Helps players adjust body shape, contact, and placement faster",
+  "Keeps solo sessions and coach-led drills structured from rep one",
 ];
 
 export const howItWorksSteps = [
@@ -283,10 +283,10 @@ export const howItWorksSteps = [
 ];
 
 export const homeBenefits = [
-  "Improve shooting accuracy with a visible target zone",
-  "Train with a setup that feels closer to match finishing",
-  "Fits most football goals used by clubs, schools, and home setups",
-  "Easy to install, remove, and store between sessions",
+  "Clear top-corner cue on every shot",
+  "Faster feedback between reps for players and coaches",
+  "Less reset time in two-sided finishing drills",
+  "Quick to strap on, remove, and store after training",
 ];
 
 export const useCases = [
@@ -314,34 +314,34 @@ export const useCases = [
 
 export const homeFaqs: FaqItem[] = [
   {
-    question: "How do football corner targets work?",
+    question: "Will it fit my goal?",
     answer:
-      "They attach to the top corner of the goal and give players a clear finishing zone to aim for during shooting drills, free kicks, and solo practice.",
-  },
-  {
-    question: "Do corner targets improve shooting accuracy?",
-    answer:
-      "They help because the player is no longer aiming at a vague part of the goal. A fixed visual target makes repetition more deliberate and easier to coach.",
-  },
-  {
-    question: "Will it fit my football goal?",
-    answer:
-      "The TopCorner target is designed to fit most standard round and square football goals using adjustable straps.",
-  },
-  {
-    question: "What age players can use it?",
-    answer:
-      "It works for youth players, teenagers, and adults. Coaches can scale the drill intensity and distance to suit the age group.",
-  },
-  {
-    question: "Is this only for strikers?",
-    answer:
-      "No. It is useful for wingers, attacking midfielders, free-kick takers, and any player working on placement.",
+      "The TopCorner target is designed to fit most standard round and square football goal posts using adjustable straps.",
   },
   {
     question: "How long does setup take?",
     answer:
-      "Most users can attach the target and start training in under 2 minutes.",
+      "Most players can strap it on and start shooting in under 2 minutes.",
+  },
+  {
+    question: "Should I buy the single or double pack?",
+    answer:
+      "Buy single for solo reps and the lower starting price. Buy double if you want both corners live or train with a coach, sibling, or teammate.",
+  },
+  {
+    question: "What is included?",
+    answer:
+      "Each pack includes the target frame, fixing straps, and a carry bag. The double pack includes two targets.",
+  },
+  {
+    question: "How fast is delivery?",
+    answer:
+      "Free UK delivery is included. Orders usually dispatch in 1-2 working days and typically arrive in 2-5 working days.",
+  },
+  {
+    question: "What if it is not right for me?",
+    answer:
+      "Contact support within 30 days for eligible returns or order issues and the team will help with the next step.",
   },
 ];
 

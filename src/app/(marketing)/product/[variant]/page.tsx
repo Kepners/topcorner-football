@@ -301,13 +301,22 @@ export default async function ProductVariantPage({
                   {product.priceLabel}
                 </p>
                 {compareAtValue ? (
-                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
-                    <span className="line-through">
-                      {formatPrice(compareAtValue)}
-                    </span>{" "}
-                    as two single packs
+                  <>
+                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                      2 targets for GBP 20 each
+                    </p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
+                      <span className="line-through">
+                        {formatPrice(compareAtValue)}
+                      </span>{" "}
+                      as two single packs
+                    </p>
+                  </>
+                ) : (
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                    Lowest starting price
                   </p>
-                ) : null}
+                )}
                 <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
                   {detail.offerLine}
                 </p>
@@ -361,7 +370,11 @@ export default async function ProductVariantPage({
               <div className="mt-8 space-y-3">
                 <BuyButton
                   productId={product.id}
-                  label={`Buy ${product.shortName} - ${product.priceLabel}`}
+                  label={
+                    product.id === "double"
+                      ? `Get double value - ${product.priceLabel}`
+                      : `Start with single - ${product.priceLabel}`
+                  }
                 />
                 <Link
                   href="/product"
@@ -385,6 +398,9 @@ export default async function ProductVariantPage({
 
               <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[var(--color-sky)]">
                 Dispatch target 1-2 working days. Delivery target 2-5 working days.
+              </p>
+              <p className="mt-2 text-xs uppercase tracking-[0.16em] text-[var(--color-gold)]">
+                Launch price ends when the current batch sells out
               </p>
             </div>
           </aside>

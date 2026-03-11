@@ -11,7 +11,7 @@ export const metadata = buildMetadata({
   path: "/about",
   keywords: [
     "about topcorner football",
-    "calciokx brand story",
+    "topcorner brand story",
     "football training brand",
   ],
   image: "/images/brand/topcorner-og.jpg",

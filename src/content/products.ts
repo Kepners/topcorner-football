@@ -32,14 +32,14 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
     eyebrow: "Single pack",
     metaDescription:
       "Shop the TopCorner single corner target for solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
-    offerLine: "Best starting point for solo reps",
+    offerLine: "Lower entry price for solo reps",
     unitLine: "One live corner for focused repetition",
     choiceLine:
-      "Choose the single pack if you want the lower entry price and one fixed target for home practice, solo work, or coach-led finishing stations.",
+      "Choose the single pack if you want one clear top-corner target, the lowest entry price, and a setup that moves easily between solo sessions, home practice, and coach-led stations.",
     trustPoints: [
-      "1 target, 3 fixing straps, and carry bag",
+      "Fits most round and square goal posts",
       "Free UK shipping included",
-      "Dispatch target: 1-2 working days",
+      "30-day returns support",
     ],
     hero: {
       src: "/images/products/real-installed-close-1.png",
@@ -64,7 +64,7 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       },
       {
         src: "/images/products/real-pack-components.jpg",
-        alt: "TopCorner single pack contents laid out — frame, net, straps, and carry bag",
+        alt: "TopCorner single pack contents laid out - frame, net, straps, and carry bag",
         fit: "cover",
       },
       {
@@ -88,15 +88,15 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
     eyebrow: "Double pack",
     metaDescription:
       "Shop the TopCorner double corner target pack for coach-led sessions, both corners live at once, and better value for group finishing drills.",
-    offerLine: "Most popular pack for coach-led and group sessions",
+    offerLine: "Best value for coaches and group sessions",
     unitLine: "GBP 20 per target when you buy the double pack",
     savingsLine: "Save GBP 10 compared with buying two single packs",
     choiceLine:
-      "Choose the double pack if you want both corners active without resetting between patterns. Around 70% of launch buyers choose this option for striker groups and repeated finishing circuits.",
+      "Choose the double pack if you want both corners active without resetting between patterns, stronger value per target, and a cleaner setup for coach-led finishing circuits.",
     trustPoints: [
-      "2 targets, 6 fixing straps, and carry bag",
+      "Fits most round and square goal posts",
       "Free UK shipping included",
-      "Dispatch target: 1-2 working days",
+      "30-day returns support",
     ],
     hero: {
       src: "/images/products/real-installed-close-1.png",
@@ -121,7 +121,7 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       },
       {
         src: "/images/products/real-pack-components.jpg",
-        alt: "TopCorner double pack contents laid out — two frames, nets, straps, and carry bag",
+        alt: "TopCorner double pack contents laid out - two frames, nets, straps, and carry bag",
         fit: "cover",
       },
       {

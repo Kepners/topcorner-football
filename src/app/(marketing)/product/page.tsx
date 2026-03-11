@@ -27,8 +27,8 @@ export const metadata = buildMetadata({
     "football corner target",
     "football goal target",
     "top bins target",
-    "calciokx single corner target",
-    "calciokx double corner target",
+    "topcorner single corner target",
+    "topcorner double corner target",
     "football training target packs",
   ],
   image: "/images/products/ckx-single-isolated.jpg",
@@ -41,6 +41,9 @@ function formatPrice(value: number) {
 export default function ProductPage() {
   const singlePack = getProductVariantById("single");
   const pageFaqItems = faqPageItems.slice(0, 3);
+  const prioritizedVariants = [...productVariants].sort(
+    (a, b) => Number(b.id === "double") - Number(a.id === "double")
+  );
 
   if (!singlePack) {
     return null;
@@ -214,13 +217,13 @@ export default function ProductPage() {
               Products
             </p>
             <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
-              Choose the pack that fits your sessions.
+              Choose your pack and check out.
             </h1>
             <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)]">
-              Start with one live corner for focused solo repetition, or step
-              up to both corners ready at once for coach-led drills and group
-              finishing work. This page is the fastest way to compare both
-              TopCorner packs and pick the right setup.
+              Start with the single pack for the lowest entry price, or step up
+              to the double pack for both top corners live at once and stronger
+              value per target. This page is built to help first-time buyers
+              choose fast.
             </p>
             <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em]">
               <span className="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-4 py-2 text-[var(--color-gold)]">
@@ -232,13 +235,17 @@ export default function ProductPage() {
               <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-emerald-300">
                 In stock
               </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[var(--color-mist)]">
+                Launch price ends when the current batch sells out
+              </span>
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {[
               "Free UK shipping included",
               "Dispatch target: 1-2 working days",
+              "30-day returns support",
               "Secure checkout with Stripe",
             ].map((item) => (
               <div
@@ -252,7 +259,7 @@ export default function ProductPage() {
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          {productVariants.map((variant) => {
+          {prioritizedVariants.map((variant) => {
             const detail = productDetailContent[variant.id];
             const detailHref = `/product/${variant.id}`;
             const compareAtValue =
@@ -277,6 +284,9 @@ export default function ProductPage() {
                     <h2 className="mt-3 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
                       {variant.name}
                     </h2>
+                    <p className="mt-3 text-xs uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                      {variant.tagline}
+                    </p>
                     <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--color-mist)]">
                       {variant.description}
                     </p>
@@ -327,13 +337,22 @@ export default function ProductPage() {
                         {variant.priceLabel}
                       </p>
                       {compareAtValue ? (
-                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
-                          <span className="line-through">
-                            {formatPrice(compareAtValue)}
-                          </span>{" "}
-                          as two single packs
+                        <>
+                          <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                            2 targets for GBP 20 each
+                          </p>
+                          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
+                            <span className="line-through">
+                              {formatPrice(compareAtValue)}
+                            </span>{" "}
+                            as two single packs
+                          </p>
+                        </>
+                      ) : (
+                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                          Lowest starting price
                         </p>
-                      ) : null}
+                      )}
                       <p className="mt-3 text-xs uppercase tracking-[0.18em] text-emerald-300">
                         In stock for immediate checkout
                       </p>
@@ -411,7 +430,11 @@ export default function ProductPage() {
                     <div className="grid gap-3 sm:grid-cols-2">
                       <BuyButton
                         productId={variant.id}
-                        label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
+                        label={
+                          variant.id === "double"
+                            ? `Get double value - ${variant.priceLabel}`
+                            : `Start with single - ${variant.priceLabel}`
+                        }
                       />
                       <Link
                         href={detailHref}
@@ -436,6 +459,9 @@ export default function ProductPage() {
                     <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-sky)]">
                       Dispatch target 1-2 working days. Delivery target 2-5 working days.
                     </p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-gold)]">
+                      Launch price ends when the current batch sells out
+                    </p>
                   </div>
                 </div>
               </article>
@@ -454,9 +480,9 @@ export default function ProductPage() {
               Fast side-by-side comparison.
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-              If you want the lightest starting point, go single. If you want
-              both corners active and the stronger price-per-target value, go
-              double.
+              Buy single if you want one clear target at the lowest price. Buy
+              double if you want both corners live and the better value per
+              target.
             </p>
           </div>
 
@@ -492,21 +518,21 @@ export default function ProductPage() {
           <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
             Need a quick answer?
           </p>
-          <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Simple buying rule.
-          </h2>
-          <div className="mt-6 space-y-4 text-sm leading-7 text-[var(--color-mist)]">
-            <p>
-              Choose <span className="text-[var(--color-cream)]">Single</span>{" "}
-              if you want one live corner, the lighter starting price, and a
-              pack that is easy to move between sessions.
-            </p>
-            <p>
-              Choose <span className="text-[var(--color-cream)]">Double</span>{" "}
-              if you want both corners ready at once, better value per target,
-              and less resetting during finishing patterns.
-            </p>
-          </div>
+            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+              Simple buying rule.
+            </h2>
+            <div className="mt-6 space-y-4 text-sm leading-7 text-[var(--color-mist)]">
+              <p>
+                Choose <span className="text-[var(--color-cream)]">Single</span>{" "}
+                if you want one live corner, the lowest starting price, and a
+                pack that is easy to move between solo sessions.
+              </p>
+              <p>
+                Choose <span className="text-[var(--color-cream)]">Double</span>{" "}
+                if you want both corners ready at once, better value per target,
+                and less resetting during finishing patterns.
+              </p>
+            </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/product/single"

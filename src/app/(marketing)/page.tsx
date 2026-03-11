@@ -53,6 +53,9 @@ export default function HomePage() {
     productDetailContent.single.gallery[5],
     productDetailContent.single.gallery[6],
   ];
+  const prioritizedVariants = [...productVariants].sort(
+    (a, b) => Number(b.id === "double") - Number(a.id === "double")
+  );
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -216,18 +219,19 @@ export default function HomePage() {
           <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative z-10 space-y-8">
               <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
-                Trusted by players, coaches, and football parents
+                Football finishing target for players, coaches, and home sessions
               </div>
               <div className="space-y-5">
                 <h1 className="max-w-3xl font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl lg:text-8xl">
-                  The fastest way to train top-corner finishing.
+                  Hit the top corner on purpose.
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
-                  Strap this target onto almost any goal in under 2 minutes and
-                  turn every shooting session into precision finishing practice.
+                  Attach the target in under 2 minutes and turn almost any goal
+                  into deliberate finishing practice for solo players, coaches,
+                  and striker groups.
                 </p>
                 <p className="text-sm uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                  4.8/5 from 10 verified players and coaches
+                  {productReviewSummary.ratingValue}/5 from {productReviewSummary.reviewCount} launch reviews
                 </p>
               </div>
 
@@ -235,19 +239,23 @@ export default function HomePage() {
                 <ShopNowButton
                   href="/product#shop"
                   className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] transition hover:brightness-105"
-                  label="Get your target"
+                  label="Choose your pack"
                 />
                 <Link
                   href="#watch"
                   className="rounded-full border border-white/15 bg-white/5 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
                 >
-                  Watch it in action
+                  Watch it work
                 </Link>
               </div>
 
+              <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-mist)]">
+                Single pack GBP 25 | Double pack GBP 40
+              </p>
+
               <div className="rounded-[1.4rem] border border-[var(--color-gold)]/35 bg-[var(--color-gold)]/10 px-5 py-4">
                 <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-                  Launch price available until this batch sells out
+                  Launch price ends when the current batch sells out
                 </p>
               </div>
 
@@ -265,13 +273,13 @@ export default function HomePage() {
               <div className="grid gap-3 rounded-[1.8rem] border border-white/10 bg-[rgba(255,255,255,0.04)] p-5 sm:grid-cols-2">
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
-                    Trusted by players and coaches
+                    Launch feedback
                   </p>
                   <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                     {productReviewSummary.ratingValue}/5
                   </p>
                   <p className="mt-2 text-sm uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                    5-star buyer feedback
+                    Early buyer rating
                   </p>
                   <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
                     Based on {productReviewSummary.reviewCount} launch reviews from
@@ -338,17 +346,17 @@ export default function HomePage() {
                 Why it works
               </p>
               <p className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)]">
-                Clear target. Cleaner finishing.
+                A real target changes every rep.
               </p>
               <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
-                The target gives players a fixed visual cue in the hardest area
-                for keepers to reach, so every strike is easier to repeat,
-                judge, and coach.
+                Most players do not miss because they lack power. They miss
+                because the target area is vague. A fixed top-corner cue makes
+                placement easier to see, repeat, and correct after every shot.
               </p>
               <ul className="mt-6 space-y-3 text-sm leading-7 text-[var(--color-cream)]">
-                <li>+ Easier visual focus at full speed</li>
-                <li>+ Better solo sessions without extra setup</li>
-                <li>+ Useful for players, coaches, and club sessions</li>
+                <li>+ Clear target on every shot</li>
+                <li>+ Instant feedback after every rep</li>
+                <li>+ Better placement training, not just more shooting</li>
               </ul>
             </div>
           </div>
@@ -515,15 +523,16 @@ export default function HomePage() {
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-              The solution
+              Why this works
             </p>
             <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-              Meet the Top Corner Training Target.
+              A real target improves shooting accuracy faster.
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-              TopCorner turns the toughest scoring zone in football into a clear
-              coaching cue. The setup is quick, the product is portable, and
-              the training feedback is immediate.
+              Most players do not miss because they lack power. They miss
+              because they are aiming at a vague area of the goal. TopCorner
+              gives the eyes a fixed finish point, makes every shot easier to
+              judge, and helps players correct placement between reps.
             </p>
 
             <div className="mt-8 grid gap-4">
@@ -545,7 +554,7 @@ export default function HomePage() {
                 href="/product#shop"
                 className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em]"
               >
-                Browse packs
+                Choose your pack
               </Link>
               <Link
                 href="/faq"
@@ -606,25 +615,25 @@ export default function HomePage() {
             Browse the packs
           </p>
           <h2 className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            One product family. Two pack options.
+            Choose your pack and check out.
           </h2>
           <p className="mx-auto max-w-3xl text-base leading-8 text-[var(--color-mist)]">
-            Choose the setup that matches your training environment. The single
-            pack is ideal for focused solo work. The double pack keeps both
-            corners live for team and striker sessions.
+            The single pack is the lower-cost entry for solo reps. The double
+            pack is the better-value option for coaches, striker groups, and
+            anyone who wants both top corners live at once.
           </p>
           <div>
             <Link
               href="/product"
               className="inline-flex rounded-full border border-white/15 bg-white/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
             >
-              Compare all packs
+              Compare both packs
             </Link>
           </div>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          {productVariants.map((variant) => (
+          {prioritizedVariants.map((variant) => (
             <article
               key={variant.id}
               className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)]"
@@ -653,6 +662,9 @@ export default function HomePage() {
                     <h3 className="mt-3 font-display text-3xl uppercase tracking-[0.1em] text-[var(--color-cream)]">
                       {variant.name}
                     </h3>
+                    <p className="mt-3 text-xs uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                      {variant.tagline}
+                    </p>
                     <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
                       {variant.description}
                     </p>
@@ -669,13 +681,17 @@ export default function HomePage() {
                       {variant.id === "double" ? (
                         <>
                           <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                            Save GBP 10 vs two singles
+                            2 targets for GBP 20 each
                           </p>
                           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                            Around 70% of launch buyers choose this pack
+                            Save GBP 10 vs buying two single packs
                           </p>
                         </>
-                      ) : null}
+                      ) : (
+                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                          Lowest starting price
+                        </p>
+                      )}
                     </div>
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
                       Free UK shipping
@@ -696,11 +712,15 @@ export default function HomePage() {
                       href={`/product/${variant.id}`}
                       className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
                     >
-                      View pack
+                      View details
                     </Link>
                     <BuyButton
                       productId={variant.id}
-                      label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
+                      label={
+                        variant.id === "double"
+                          ? `Get double value - ${variant.priceLabel}`
+                          : `Start with single - ${variant.priceLabel}`
+                      }
                     />
                   </div>
 
@@ -720,7 +740,7 @@ export default function HomePage() {
                     Dispatch target 1-2 working days. Delivery target 2-5 working days.
                   </p>
                   <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-gold)]">
-                    Limited launch stock in current batch
+                    Launch price ends when the current batch sells out
                   </p>
                 </div>
               </div>
@@ -1003,14 +1023,14 @@ export default function HomePage() {
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-18 pt-8 sm:px-6 lg:px-8 lg:pb-24">
         <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-          Real feedback
+          Launch reviews
         </p>
         <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-          What players and coaches are saying.
+          What early buyers say after training with it.
         </h2>
         <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-          Practical feedback from training sessions, built for a realistic finishing
-          process rather than generic claims.
+          Short feedback from coaches, players, and football parents using the
+          target in real finishing sessions.
         </p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">
