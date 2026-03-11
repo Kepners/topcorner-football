@@ -234,7 +234,7 @@ export default function HomePage() {
               <div className="flex flex-col gap-4 sm:flex-row">
                 <ShopNowButton
                   href="/product#shop"
-                  className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+                  className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] transition hover:brightness-105"
                   label="Get your target"
                 />
                 <Link
@@ -247,7 +247,7 @@ export default function HomePage() {
 
               <div className="rounded-[1.4rem] border border-[var(--color-gold)]/35 bg-[var(--color-gold)]/10 px-5 py-4">
                 <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-                  Launch batch pricing is live while current stock lasts
+                  Launch price available until this batch sells out
                 </p>
               </div>
 
@@ -532,7 +532,7 @@ export default function HomePage() {
                   key={item}
                   className="flex items-start gap-4 rounded-[1.3rem] border border-white/10 bg-white/5 p-4"
                 >
-                  <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-gold)] text-xs font-bold text-[var(--color-ink)]">
+                  <span className="gold-fill-text mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-gold)] text-xs font-bold">
                     +
                   </span>
                   <p className="text-sm leading-7 text-[var(--color-cream)]">{item}</p>
@@ -543,7 +543,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/product#shop"
-                className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]"
+                className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em]"
               >
                 Browse packs
               </Link>
@@ -630,7 +630,7 @@ export default function HomePage() {
               className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)]"
             >
               {variant.badge ? (
-                <span className="absolute right-6 top-6 rounded-full bg-[var(--color-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
+                <span className="gold-fill-text absolute right-6 top-6 rounded-full bg-[var(--color-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em]">
                   {variant.badge}
                 </span>
               ) : null}
@@ -850,7 +850,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/product#shop"
-              className="gold-cta mt-8 inline-flex rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+              className="gold-cta mt-8 inline-flex rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] transition hover:brightness-105"
             >
               Train for top bins
             </Link>

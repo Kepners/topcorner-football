@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -13,6 +14,8 @@ type GuideRouteSlug = {
 type GuidePageConfig = {
   title: string;
   description: string;
+  label: string;
+  readTime: string;
   intro: string[];
   sections: {
     heading: string;
@@ -22,6 +25,7 @@ type GuidePageConfig = {
   relatedSlugs: string[];
   keywords: string[];
   image: string;
+  imageAlt: string;
 };
 
 const guideTopicPages: Record<string, GuidePageConfig> = {
@@ -29,7 +33,11 @@ const guideTopicPages: Record<string, GuidePageConfig> = {
     title: "How To Hit The Top Corner In Football",
     description:
       "Learn the approach, contact, and finishing rhythm needed to reach the top corner more consistently.",
+    label: "Finishing",
+    readTime: "7 min read",
     image: "/images/products/goal-installed-3.jpg",
+    imageAlt:
+      "TopCorner target installed on a goal for top-corner finishing practice",
     keywords: [
       "how to hit the top corner",
       "top corner football",
@@ -70,7 +78,10 @@ const guideTopicPages: Record<string, GuidePageConfig> = {
     title: "10 Football Shooting Drills To Improve Accuracy",
     description:
       "A practical list of structured finishing drills for technical improvement, consistency, and better match-like execution.",
+    label: "Drills",
+    readTime: "9 min read",
     image: "/images/products/goal-installed-4.jpg",
+    imageAlt: "Football shooting drill setup using a target in the upper corner",
     keywords: [
       "football shooting drills",
       "finishing drills",
@@ -111,7 +122,10 @@ const guideTopicPages: Record<string, GuidePageConfig> = {
     title: "Free Kick Training Guide",
     description:
       "Train free-kick mechanics with clear routines for spin, touch, and finish direction under realistic reps.",
+    label: "Set Pieces",
+    readTime: "6 min read",
     image: "/images/products/goal-target-angle.jpg",
+    imageAlt: "Goal target installed for free-kick and finishing practice",
     keywords: [
       "free kick training",
       "football free kick training",
@@ -152,7 +166,10 @@ const guideTopicPages: Record<string, GuidePageConfig> = {
     title: "Solo Striker Training",
     description:
       "A simple solo striker routine for improving contact quality, first-time finishing, and target discipline.",
+    label: "Solo Training",
+    readTime: "8 min read",
     image: "/images/products/product-single-flat.jpg",
+    imageAlt: "Single TopCorner target used for solo striker training guidance",
     keywords: [
       "solo football training",
       "striker training routine",
@@ -193,7 +210,10 @@ const guideTopicPages: Record<string, GuidePageConfig> = {
     title: "Improve Finishing Accuracy",
     description:
       "A structured approach to cleaner finishing through movement, contact consistency, and measurable shot standards.",
+    label: "Accuracy",
+    readTime: "7 min read",
     image: "/images/products/product-double-flat.jpg",
+    imageAlt: "Double pack product image representing finishing accuracy training",
     keywords: [
       "improve finishing accuracy",
       "football accuracy trainer",
@@ -309,9 +329,17 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
 
       <article className="mx-auto w-full max-w-5xl px-4 pb-18 pt-8 sm:px-6 lg:pb-24">
         <div className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
-            Guides
-          </p>
+          <div className="flex flex-wrap gap-3">
+            <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
+              Guides
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
+              {page.label}
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-mist)]">
+              {page.readTime}
+            </span>
+          </div>
           <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
             {page.title}
           </h1>
@@ -324,6 +352,36 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
           {page.intro.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+        </div>
+
+        <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
+          <div className="relative aspect-[16/9]">
+            <Image
+              src={page.image}
+              alt={page.imageAlt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 70vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.08),rgba(8,10,13,0.5))]" />
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-6">
+          <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
+            In this guide
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {page.sections.map((section) => (
+              <div
+                key={section.heading}
+                className="rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3 text-sm leading-7 text-[var(--color-cream)]"
+              >
+                {section.heading}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 space-y-12">
@@ -372,7 +430,7 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <Link
               href="/product"
-              className="inline-flex justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]"
+              className="gold-cta inline-flex justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em]"
             >
               Shop the target
             </Link>

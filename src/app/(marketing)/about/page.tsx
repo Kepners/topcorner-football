@@ -101,7 +101,7 @@ export default function AboutPage() {
           <div className="mt-6 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/product"
-              className="rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]"
+              className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.24em]"
             >
               View product
             </Link>

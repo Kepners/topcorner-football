@@ -284,7 +284,7 @@ export default function ProductPage() {
 
                   <div className="flex flex-col items-end gap-3">
                     {variant.badge ? (
-                      <span className="rounded-full bg-[var(--color-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
+                      <span className="gold-fill-text rounded-full bg-[var(--color-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em]">
                         {variant.badge}
                       </span>
                     ) : null}
@@ -516,7 +516,7 @@ export default function ProductPage() {
             </Link>
             <Link
               href="/product/double"
-              className="gold-cta inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
+              className="gold-cta inline-flex items-center justify-center rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] transition hover:brightness-105"
             >
               View double pack
             </Link>

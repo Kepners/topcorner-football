@@ -73,7 +73,9 @@ a {
   isolation: isolate;
 }
 
-.gold-cta {
+.gold-cta,
+.gold-fill-text {
+  color: #fff;
   -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.7);
   text-shadow:
     0.6px 0 rgba(0, 0, 0, 0.65),
