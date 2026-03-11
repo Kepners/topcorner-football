@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { blogPosts } from "@/content/blog";
+import { guideSlugs } from "@/content/guides";
 import { productVariants, siteConfig } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -10,21 +11,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/product/corner-target",
     "/guides",
     "/blog",
-    "/how-to-hit-top-corner",
-    "/football-shooting-drills",
-    "/free-kick-training",
-    "/solo-striker-training",
-    "/improve-finishing-accuracy",
     "/faq",
     "/about",
     "/shipping",
     "/returns",
     "/uk-football-training-target",
   ];
+  const guideRoutes = guideSlugs.map((slug) => `/${slug}`);
   const productRoutes = productVariants.map((variant) => `/product/${variant.id}`);
   const lastModified = new Date("2026-03-10");
 
-  const staticEntries = [...staticRoutes, ...productRoutes].map((path) => ({
+  const staticEntries = [...staticRoutes, ...guideRoutes, ...productRoutes].map((path) => ({
     url: `${siteConfig.url}${path}`,
     lastModified,
     changeFrequency:

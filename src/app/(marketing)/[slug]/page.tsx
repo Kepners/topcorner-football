@@ -4,265 +4,29 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import JsonLd from "@/components/JsonLd";
-import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { getGuidePage, getGuidePath, guideSlugs } from "@/content/guides";
 import { siteConfig } from "@/content/site";
+import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 type GuideRouteSlug = {
   slug: string;
 };
 
-type GuidePageConfig = {
-  title: string;
-  description: string;
-  label: string;
-  readTime: string;
-  intro: string[];
-  sections: {
-    heading: string;
-    paragraphs: string[];
-    bullets?: string[];
-  }[];
-  relatedSlugs: string[];
-  keywords: string[];
-  image: string;
-  imageAlt: string;
-};
-
-const guideTopicPages: Record<string, GuidePageConfig> = {
-  "how-to-hit-top-corner": {
-    title: "How To Hit The Top Corner In Football",
-    description:
-      "Learn the approach, contact, and finishing rhythm needed to reach the top corner more consistently.",
-    label: "Finishing",
-    readTime: "7 min read",
-    image: "/images/products/goal-installed-3.jpg",
-    imageAlt:
-      "TopCorner target installed on a goal for top-corner finishing practice",
-    keywords: [
-      "how to hit the top corner",
-      "top corner football",
-      "football finishing drills",
-    ],
-    intro: [
-      "The top corner is a premium finish position. It is hardest because it forces the player to align shape, contact, and timing in one quick action.",
-      "A visible target makes the process repeatable. You stop guessing and start testing one mechanical cue at a time.",
-    ],
-    sections: [
-      {
-        heading: "Build the setup before you swing",
-        paragraphs: [
-          "Your first cue is the run-up. Keep the approach controlled so your body can organize around the strike.",
-          "Settle the support foot beside the ball and hold the foot shape long enough for the body to stay balanced.",
-        ],
-      },
-      {
-        heading: "Contact quality over raw force",
-        paragraphs: [
-          "A cleaner finish usually comes from stable plant and controlled ankle action, not from swinging harder.",
-          "Train the same movement each rep, then increase challenge through speed and decision pressure.",
-        ],
-        bullets: [
-          "Plant at the right distance",
-          "Lock the ankle through contact",
-          "Finish toward the intended corner window",
-        ],
-      },
-    ],
-    relatedSlugs: [
-      "/improve-finishing-accuracy",
-      "/football-shooting-drills",
-      "/guides",
-    ],
-  },
-  "football-shooting-drills": {
-    title: "10 Football Shooting Drills To Improve Accuracy",
-    description:
-      "A practical list of structured finishing drills for technical improvement, consistency, and better match-like execution.",
-    label: "Drills",
-    readTime: "9 min read",
-    image: "/images/products/goal-installed-4.jpg",
-    imageAlt: "Football shooting drill setup using a target in the upper corner",
-    keywords: [
-      "football shooting drills",
-      "finishing drills",
-      "football accuracy training",
-    ],
-    intro: [
-      "Finishing improves when practice is designed as a sequence, not an endurance session.",
-      "Use a fixed target, track score quality, and keep your reps short so quality never collapses.",
-    ],
-    sections: [
-      {
-        heading: "Progression from simple to pressured shots",
-        paragraphs: [
-          "Start with static targeting and clear rules. As technique settles, add movement and time pressure.",
-          "Keep a simple scoreboard so improvement is visible across sessions.",
-        ],
-        bullets: [
-          "Three blocks per session",
-          "Reset time between reps",
-          "Score only target-valid finishes",
-        ],
-      },
-      {
-        heading: "Keep technique auditable",
-        paragraphs: [
-          "Measure one variable at a time. If everything changes in the same set, you cannot improve your feedback loop.",
-          "The easiest audit is approach shape, support foot, and final touch point.",
-        ],
-      },
-    ],
-    relatedSlugs: [
-      "/how-to-hit-top-corner",
-      "/solo-striker-training",
-      "/free-kick-training",
-    ],
-  },
-  "free-kick-training": {
-    title: "Free Kick Training Guide",
-    description:
-      "Train free-kick mechanics with clear routines for spin, touch, and finish direction under realistic reps.",
-    label: "Set Pieces",
-    readTime: "6 min read",
-    image: "/images/products/goal-target-angle.jpg",
-    imageAlt: "Goal target installed for free-kick and finishing practice",
-    keywords: [
-      "free kick training",
-      "football free kick training",
-      "finishing drills",
-    ],
-    intro: [
-      "Most free-kick misses come from rushing the strike shape.",
-      "A small number of precise reps is more useful than repeating weak, unguided attempts.",
-    ],
-    sections: [
-      {
-        heading: "Create repeatable delivery",
-        paragraphs: [
-          "Choose one setup and keep it stable before increasing variables.",
-          "Track where the ball starts and where it finishes; small changes there usually explain most outcomes.",
-        ],
-      },
-      {
-        heading: "Use match-like constraints",
-        paragraphs: [
-          "Add distance, angle, and timing pressure only after the movement is repeatable.",
-          "When the shot shape is stable, increase reps to add confidence under realistic effort.",
-        ],
-        bullets: [
-          "One cue per rep",
-          "Consistent take-off rhythm",
-          "Score completion from each block",
-        ],
-      },
-    ],
-    relatedSlugs: [
-      "/football-shooting-drills",
-      "/improve-finishing-accuracy",
-      "/how-to-hit-top-corner",
-    ],
-  },
-  "solo-striker-training": {
-    title: "Solo Striker Training",
-    description:
-      "A simple solo striker routine for improving contact quality, first-time finishing, and target discipline.",
-    label: "Solo Training",
-    readTime: "8 min read",
-    image: "/images/products/product-single-flat.jpg",
-    imageAlt: "Single TopCorner target used for solo striker training guidance",
-    keywords: [
-      "solo football training",
-      "striker training routine",
-      "solo finishing drills",
-    ],
-    intro: [
-      "Solo training only works when the session has structure.",
-      "You should leave each session knowing exactly what improved and what was still inconsistent.",
-    ],
-    sections: [
-      {
-        heading: "A three-block solo template",
-        paragraphs: [
-          "Use a first-touch block, a target finish block, and a score-based challenge block.",
-          "This format balances technical volume with cognitive pressure, which is what transfer depends on.",
-        ],
-      },
-      {
-        heading: "Track the right outcomes",
-        paragraphs: [
-          "Not every shot is equal. Track where quality breaks first: touch, body shape, or contact.",
-          "When quality drops, reduce variable load before moving to higher speed work.",
-        ],
-        bullets: [
-          "Keep sessions short and precise",
-          "Only score clean target quality",
-          "Finish with a pressure phase",
-        ],
-      },
-    ],
-    relatedSlugs: [
-      "/improve-finishing-accuracy",
-      "/football-shooting-drills",
-      "/blog/how-to-practice-football-shooting-at-home",
-    ],
-  },
-  "improve-finishing-accuracy": {
-    title: "Improve Finishing Accuracy",
-    description:
-      "A structured approach to cleaner finishing through movement, contact consistency, and measurable shot standards.",
-    label: "Accuracy",
-    readTime: "7 min read",
-    image: "/images/products/product-double-flat.jpg",
-    imageAlt: "Double pack product image representing finishing accuracy training",
-    keywords: [
-      "improve finishing accuracy",
-      "football accuracy trainer",
-      "finishing improvement",
-    ],
-    intro: [
-      "Finishing accuracy improves when your drills force repeatable decision points.",
-      "A target and a simple scoring rule are stronger than random volume alone.",
-    ],
-    sections: [
-      {
-        heading: "Design your accuracy checks",
-        paragraphs: [
-          "Always know the rule of success before a rep starts.",
-          "Measure where and why the rep missed before counting it as progress.",
-        ],
-      },
-      {
-        heading: "Choose consistency over comfort",
-        paragraphs: [
-          "Keep your technical cues simple and constant until they become automatic.",
-          "Then add variability for match-like resilience.",
-        ],
-        bullets: [
-          "Set one primary target per rep",
-          "Reduce noise in setup",
-          "Review missed cues after the set",
-        ],
-      },
-    ],
-    relatedSlugs: [
-      "/solo-striker-training",
-      "/how-to-hit-top-corner",
-      "/football-shooting-drills",
-    ],
-  },
-};
-
-function getGuidePage(slug: string): GuidePageConfig | undefined {
-  return guideTopicPages[slug];
-}
-
-export function generateStaticParams() {
-  return Object.keys(guideTopicPages).map((slug) => ({ slug }));
-}
-
 type GuideTopicPageProps = {
   params: Promise<GuideRouteSlug>;
 };
+
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
+export function generateStaticParams() {
+  return guideSlugs.map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -280,6 +44,7 @@ export async function generateMetadata({
     path: `/${slug}`,
     keywords: page.keywords,
     image: page.image,
+    type: "article",
   });
 }
 
@@ -290,6 +55,10 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
   if (!page) {
     notFound();
   }
+
+  const relatedGuides = page.relatedSlugs
+    .map((relatedSlug) => getGuidePage(relatedSlug))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Home", path: "/" },
@@ -303,6 +72,12 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
     headline: page.title,
     description: page.description,
     image: [absoluteUrl(page.image)],
+    datePublished: page.publishedAt,
+    dateModified: page.updatedAt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(`/${slug}`),
+    },
     author: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -315,37 +90,68 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
         url: absoluteUrl(siteConfig.defaultOgImage),
       },
     },
-    datePublished: "2026-03-09",
-    dateModified: "2026-03-09",
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": absoluteUrl(`/${slug}`),
-    },
+    articleSection: page.label,
+    inLanguage: "en-GB",
+    keywords: page.keywords.join(", "),
+    citation: page.resources?.map((resource) => resource.url),
   };
+
+  const videoSchemas =
+    page.videos?.map((video) => ({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: video.title,
+      description: video.description,
+      embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
+      thumbnailUrl: `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`,
+      uploadDate: page.updatedAt,
+    })) ?? [];
+
+  const utilityBlocks = [
+    { label: "Quick plan", card: page.quickPlan },
+    { label: "Practice block", card: page.drillBlock },
+    { label: "Common misses", card: page.commonMistakes },
+  ].filter((item) => Boolean(item.card));
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema, articleSchema]} />
+      <JsonLd data={[breadcrumbSchema, articleSchema, ...videoSchemas]} />
 
       <article className="mx-auto w-full max-w-5xl px-4 pb-18 pt-8 sm:px-6 lg:pb-24">
         <div className="space-y-6">
-          <div className="flex flex-wrap gap-3">
-            <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
+          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+            <Link href="/guides" className="transition hover:text-[var(--color-cream)]">
               Guides
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-cream)]">
-              {page.label}
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-mist)]">
-              {page.readTime}
-            </span>
+            </Link>
+            <span className="text-white/20">/</span>
+            <span>{page.label}</span>
+            <span className="text-white/20">/</span>
+            <span>{page.readTime}</span>
           </div>
+
           <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
             {page.title}
           </h1>
+
           <p className="max-w-3xl text-base leading-8 text-[var(--color-mist)]">
             {page.description}
           </p>
+
+          <div className="flex flex-wrap gap-6 text-xs uppercase tracking-[0.22em] text-[var(--color-mist)]">
+            <span>Published {formatDate(page.publishedAt)}</span>
+            <span>Updated {formatDate(page.updatedAt)}</span>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            {page.highlights.map((highlight) => (
+              <div
+                key={highlight}
+                className="rounded-[1.2rem] border border-white/10 bg-[var(--color-panel)] px-4 py-3 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]"
+              >
+                {highlight}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 space-y-6 text-base leading-8 text-[var(--color-mist)]">
@@ -354,17 +160,17 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
           ))}
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
+        <div className="relative mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
           <div className="relative aspect-[16/9]">
             <Image
               src={page.image}
               alt={page.imageAlt}
               fill
               priority
-              sizes="(min-width: 1024px) 70vw, 100vw"
+              sizes="(min-width: 1024px) 896px, 100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.08),rgba(8,10,13,0.5))]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.08),rgba(8,10,13,0.48))]" />
           </div>
         </div>
 
@@ -381,10 +187,45 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
                 {section.heading}
               </div>
             ))}
+            {page.videos?.length ? (
+              <div className="rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3 text-sm leading-7 text-[var(--color-cream)]">
+                Watch the technique
+              </div>
+            ) : null}
+            {page.resources?.length ? (
+              <div className="rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3 text-sm leading-7 text-[var(--color-cream)]">
+                Visual guides and references
+              </div>
+            ) : null}
           </div>
         </div>
 
-        <div className="mt-12 space-y-12">
+        {utilityBlocks.length ? (
+          <section className="mt-12 grid gap-5 lg:grid-cols-3">
+            {utilityBlocks.map((item) =>
+              item.card ? (
+                <div
+                  key={item.label}
+                  className="rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-6"
+                >
+                  <p className="text-xs uppercase tracking-[0.26em] text-[var(--color-sky)]">
+                    {item.label}
+                  </p>
+                  <h2 className="mt-4 font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+                    {item.card.title}
+                  </h2>
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+                    {item.card.items.map((entry) => (
+                      <li key={entry}>+ {entry}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null,
+            )}
+          </section>
+        ) : null}
+
+        <div className="mt-14 space-y-12">
           {page.sections.map((section) => (
             <section key={section.heading} className="space-y-5">
               <h2 className="font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
@@ -409,23 +250,98 @@ export default async function GuideTopicPage({ params }: GuideTopicPageProps) {
           ))}
         </div>
 
-        <div className="mt-14 rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
+        {page.videos?.length ? (
+          <section className="mt-14 rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
+            <h2 className="font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+              Watch the technique
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
+              Use these breakdowns to study shape, approach, and contact before
+              the next session.
+            </p>
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
+              {page.videos.map((video) => (
+                <article
+                  key={video.youtubeId}
+                  className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-[rgba(255,255,255,0.02)]"
+                >
+                  <div className="aspect-video">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                      title={video.title}
+                      className="h-full w-full"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+                      {video.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
+                      {video.description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {page.resources?.length ? (
+          <section className="mt-14 rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-7">
+            <h2 className="font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+              Visual Guides And References
+            </h2>
+            <div className="mt-6 grid gap-5 md:grid-cols-2">
+              {page.resources.map((resource) => (
+                <a
+                  key={resource.url}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-[1.5rem] border border-white/10 bg-[rgba(255,255,255,0.02)] p-5 transition hover:border-[var(--color-gold)]/40"
+                >
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+                    {resource.source}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+                    {resource.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
+                    {resource.description}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        <div className="mt-14 rounded-[2rem] border border-white/10 bg-[rgba(255,255,255,0.02)] p-7">
           <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-sky)]">
             Continue learning
           </p>
           <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
-            Use these next guides to keep your sequence coherent:
+            Keep the sequence coherent by moving from this topic into the next
+            technical block.
           </p>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {page.relatedSlugs.map((relatedPath) => (
+          <div className="mt-6 grid gap-5 md:grid-cols-3">
+            {relatedGuides.map((relatedGuide) => (
               <Link
-                key={relatedPath}
-                href={relatedPath}
-                className="rounded-[1.5rem] border border-white/10 bg-[rgba(255,255,255,0.02)] p-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-gold)]"
+                key={relatedGuide.slug}
+                href={getGuidePath(relatedGuide.slug)}
+                className="rounded-[1.5rem] border border-white/10 bg-[var(--color-panel)] p-5 transition hover:border-[var(--color-gold)]/40"
               >
-                {relatedPath}
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
+                  {relatedGuide.label}
+                </p>
+                <p className="mt-3 font-display text-2xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
+                  {relatedGuide.title}
+                </p>
               </Link>
-              ))}
+            ))}
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <Link

@@ -2,64 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import JsonLd from "@/components/JsonLd";
+import { getGuideCards } from "@/content/guides";
 import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 const guideLinks = [
-  {
-    href: "/how-to-hit-top-corner",
-    title: "How To Hit The Top Corner In Football",
-    description:
-      "A practical guide to shot shape, timing, and repeatable finishing cues.",
-    image: "/images/products/goal-target-angle.jpg",
-    alt: "Football goal with TopCorner target installed for top-corner finishing practice",
-    label: "Finishing",
-    readTime: "7 min read",
-    highlights: ["Body shape", "Clean contact", "Target work"],
-  },
-  {
-    href: "/football-shooting-drills",
-    title: "10 Football Shooting Drills To Improve Accuracy",
-    description:
-      "A drill list for solo and coached sessions with target-based finishing.",
-    image: "/images/products/goal-installed-4.jpg",
-    alt: "Player using a goal target during a shooting drill session",
-    label: "Drills",
-    readTime: "9 min read",
-    highlights: ["10 drill ideas", "Solo or coached", "Progression-based"],
-  },
-  {
-    href: "/solo-striker-training",
-    title: "Solo Striker Training Routines",
-    description:
-      "Structured solo routines to improve first touch, movement, and finishing.",
-    image: "/images/products/goal-installed-1.jpg",
-    alt: "Outdoor portrait view of a TopCorner target fitted to a goal",
-    label: "Solo Training",
-    readTime: "8 min read",
-    highlights: ["Three-block session", "Movement patterns", "Target scoring"],
-  },
-  {
-    href: "/free-kick-training",
-    title: "Free Kick Training Guide",
-    description:
-      "A practical guide to free-kick preparation, spin, and finishing under pressure.",
-    image: "/images/products/goal-target-wide.jpg",
-    alt: "Wide football pitch photo showing a goal target used for free-kick practice",
-    label: "Set Pieces",
-    readTime: "6 min read",
-    highlights: ["Approach rhythm", "Spin control", "Match-like reps"],
-  },
-  {
-    href: "/improve-finishing-accuracy",
-    title: "Improve Finishing Accuracy",
-    description:
-      "A practical system for building cleaner contact and decision-making in finite drill blocks.",
-    image: "/images/products/goal-installed-close.jpg",
-    alt: "Close-up of a goal target showing the upper-corner finishing zone",
-    label: "Accuracy",
-    readTime: "7 min read",
-    highlights: ["Consistency checks", "Decision quality", "Session review"],
-  },
+  ...getGuideCards(),
   {
     href: "/blog/how-to-practice-football-shooting-at-home",
     title: "How To Practice Football Shooting At Home",
@@ -71,7 +18,7 @@ const guideLinks = [
     readTime: "8 min read",
     highlights: ["Safe setup", "Limited-space drills", "Structured reps"],
   },
-] as const;
+];
 
 export const metadata = buildMetadata({
   title: "Football Shooting Guides",
@@ -129,13 +76,13 @@ export default function GuidesPage() {
             Guides
           </p>
           <h1 className="mt-4 font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl">
-            Practical shooting guides with real visual context.
+            Practical football guides with real visual context.
           </h1>
           <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">
-            Good guide hubs lead with images, clear outcomes, and articles that
-            feel usable before the click. Start with technique, drills, solo
-            routines, or home practice and open the guide that matches the
-            session you want to run.
+            These guides now carry step-by-step session structure, visual
+            references, and technique study blocks instead of thin placeholder
+            copy. Start with finishing, drills, set pieces, or home practice
+            and open the guide that matches the session you want to run.
           </p>
         </div>
 
