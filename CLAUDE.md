@@ -93,6 +93,28 @@ npm run start  # Production server
 
 ---
 
+## MANDATORY: Git & Deploy Workflow
+
+**Two branches. Both must be pushed every time.**
+
+| Branch | Purpose |
+|--------|---------|
+| `master` | Development — all work happens here |
+| `main` | Vercel production — must match master |
+
+**After every code change, run ALL of these:**
+```bash
+git add <files>
+git commit -m "🔥 feat/fix: description"
+git push origin master          # save to master
+git push origin master:main     # deploy to Vercel (production)
+```
+
+**Never leave changes uncommitted. Never push only to master.**
+If only master is pushed, topcorner.football does NOT update.
+
+---
+
 ## Available Skills
 - `/ccc:production` — Peter (build features, fix bugs, deploy)
 - `/ccc:sales` — Jason/Jasmine (design, UX, landing page polish)
