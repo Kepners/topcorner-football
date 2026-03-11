@@ -4,7 +4,10 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import SplashIntro from "@/components/SplashIntro";
 import BuyButton from "@/components/BuyButton";
+import ProductImageGallery from "@/components/ProductImageGallery";
+import ShopNowButton from "@/components/ShopNowButton";
 import { blogPosts } from "@/content/blog";
+import { productDetailContent } from "@/content/products";
 import {
   blogLeadIn,
   heroHighlights,
@@ -42,6 +45,14 @@ export const metadata = buildMetadata({
 
 export default function HomePage() {
   const featuredReviews = productReviews.slice(0, 3);
+  const homeGalleryImages = [
+    productDetailContent.single.gallery[2],
+    productDetailContent.single.gallery[1],
+    productDetailContent.double.gallery[0],
+    productDetailContent.single.gallery[4],
+    productDetailContent.single.gallery[5],
+    productDetailContent.single.gallery[6],
+  ];
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -221,12 +232,11 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Link
+                <ShopNowButton
                   href="/product#shop"
                   className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] transition hover:brightness-105"
-                >
-                  Get your target
-                </Link>
+                  label="Get your target"
+                />
                 <Link
                   href="#watch"
                   className="rounded-full border border-white/15 bg-white/5 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
@@ -370,6 +380,62 @@ export default function HomePage() {
             <p className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-mist)]">
               UK shipping
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-18 sm:px-6 lg:px-8 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
+          <div>
+            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
+              Product gallery
+            </p>
+            <h2 className="mt-4 font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
+              Real photos, not placeholder filler.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--color-mist)]">
+              Buyers should be able to inspect the fit on the goal, the scale
+              from distance, and the actual pack contents before they ever hit
+              checkout.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-5">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                  What the gallery proves
+                </p>
+                <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+                  <li>+ How the target sits on the goal in a real outdoor setup</li>
+                  <li>+ What arrives in the pack before the order is placed</li>
+                  <li>+ The joint, straps, and net pocket detail up close</li>
+                </ul>
+              </div>
+              <div className="rounded-[1.8rem] border border-white/10 bg-[var(--color-panel)] p-5">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                  What happens next
+                </p>
+                <div className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+                  <p>Pick the single pack for one live corner.</p>
+                  <p>Pick the double pack for both corners active at once.</p>
+                  <p>Use the buy buttons below to go straight into checkout.</p>
+                </div>
+              </div>
+            </div>
+            <Link
+              href="/product"
+              className="mt-8 inline-flex rounded-full border border-white/15 bg-white/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-cream)] transition hover:border-white/30 hover:bg-white/8"
+            >
+              Open full product page
+            </Link>
+          </div>
+
+          <div className="rounded-[2.1rem] border border-white/10 bg-[var(--color-panel)] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
+            <ProductImageGallery
+              images={homeGalleryImages}
+              mainAspectClass="aspect-[5/4]"
+              thumbGridClassName="grid-cols-3 sm:grid-cols-6"
+              panelClassName="rounded-[1.8rem] border border-white/10 bg-white/5"
+              showCaption
+            />
           </div>
         </div>
       </section>

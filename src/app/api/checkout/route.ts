@@ -4,6 +4,20 @@ import { PRODUCTS, SHIPPING, getStripe } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
+function getSiteUrl(req: NextRequest) {
+  const forwardedProto = req.headers.get("x-forwarded-proto");
+  const forwardedHost = req.headers.get("x-forwarded-host");
+  const host = forwardedHost ?? req.headers.get("host");
+
+  if (host) {
+    const fallbackProtocol = host.includes("localhost") ? "http" : "https";
+
+    return `${forwardedProto ?? fallbackProtocol}://${host}`;
+  }
+
+  return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { productId } = await req.json();
@@ -13,7 +27,7 @@ export async function POST(req: NextRequest) {
     }
 
     const product = PRODUCTS[productId as keyof typeof PRODUCTS];
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = getSiteUrl(req);
     const stripe = getStripe();
 
     const session = await stripe.checkout.sessions.create({

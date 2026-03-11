@@ -6,8 +6,8 @@
   --color-mist: #a9b2be;
   --color-gold: #ffc447;
   --color-sky: #6dd0d6;
-  --color-panel: rgba(16, 20, 25, 0.62);
-  --color-panel-border: rgba(255, 255, 255, 0.24);
+  --color-panel: rgba(14, 18, 24, 0.48);
+  --color-panel-border: rgba(255, 255, 255, 0.28);
 }
 
 html {
@@ -19,9 +19,9 @@ body {
   isolation: isolate;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top right, rgba(109, 208, 214, 0.14), transparent 28%),
-    radial-gradient(circle at top left, rgba(255, 196, 71, 0.14), transparent 22%),
-    radial-gradient(circle at bottom center, rgba(255, 255, 255, 0.04), transparent 36%),
+    radial-gradient(circle at top right, rgba(109, 208, 214, 0.18), transparent 28%),
+    radial-gradient(circle at top left, rgba(255, 196, 71, 0.18), transparent 22%),
+    radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.06), transparent 34%),
     linear-gradient(180deg, #080a0d 0%, #0b1116 100%);
   color: var(--color-cream);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
@@ -34,9 +34,9 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 0%, rgba(255, 196, 71, 0.1), transparent 30%),
-    radial-gradient(circle at 88% 14%, rgba(109, 208, 214, 0.08), transparent 26%),
-    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.05), transparent 42%);
+    radial-gradient(circle at 12% 0%, rgba(255, 196, 71, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 14%, rgba(109, 208, 214, 0.12), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.06), transparent 42%);
 }
 
 body::after {
@@ -90,18 +90,21 @@ a {
   ) {
   background-image:
     linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.05) 48%,
-      rgba(255, 255, 255, 0.015)
+      140deg,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.08) 34%,
+      rgba(255, 255, 255, 0.03) 58%,
+      rgba(255, 196, 71, 0.06)
     ),
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 34%);
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(109, 208, 214, 0.12), transparent 28%);
   box-shadow:
-    0 28px 80px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.26),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
+    0 32px 100px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 18px 18px 40px rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(34px) saturate(185%) brightness(1.04);
+  -webkit-backdrop-filter: blur(34px) saturate(185%) brightness(1.04);
 }
 
 :where([class*="bg-[rgba(255,255,255,0.02)]"]) {

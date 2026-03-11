@@ -227,7 +227,10 @@ export default async function ProductVariantPage({
     <>
       <JsonLd data={[breadcrumbSchema, productSchema, faqSchema]} />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pb-24">
+      <section
+        id="shop"
+        className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pb-24"
+      >
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.24em] text-[var(--color-sky)]">
           <Link href="/product" className="transition hover:text-[var(--color-cream)]">
             Products

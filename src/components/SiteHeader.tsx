@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import ShopNowButton from "@/components/ShopNowButton";
 import { navLinks } from "@/content/site";
 
 export default function SiteHeader() {
@@ -39,12 +40,11 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <Link
+        <ShopNowButton
           href="/product#shop"
           className="gold-cta rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] shadow-[0_10px_30px_rgba(255,196,71,0.22)] transition hover:brightness-105"
-        >
-          Shop now
-        </Link>
+          label="Shop now"
+        />
       </div>
     </header>
   );
