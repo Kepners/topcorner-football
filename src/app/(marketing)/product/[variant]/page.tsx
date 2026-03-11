@@ -13,8 +13,6 @@ import {
 import {
   faqPageItems,
   productReviews,
-  merchantReturnPolicy,
-  productReviewSummary,
   productSpecs,
   productVariants,
   shippingFacts,
@@ -84,9 +82,20 @@ export default async function ProductVariantPage({
   const otherVariantId = variant === "single" ? "double" : "single";
   const otherProduct = getProductVariantById(otherVariantId);
   const pageFaqItems = faqPageItems.slice(0, 4);
+  const onlineStoreId = absoluteUrl("/#online-store");
+  const shippingServiceId = absoluteUrl("/shipping#uk-standard-shipping");
+  const returnPolicyId = absoluteUrl("/returns#standard-return-policy");
   const visibleReviews = productReviews.filter((review) =>
     review.reviewedItem.toLowerCase().includes(product.shortName.toLowerCase())
   );
+  const variantRatingValue = visibleReviews.length
+    ? Number(
+        (
+          visibleReviews.reduce((total, review) => total + review.rating, 0) /
+          visibleReviews.length
+        ).toFixed(1)
+      )
+    : null;
   const compareAtValue =
     variant === "double" ? (getProductVariantById("single")?.priceValue ?? 0) * 2 : null;
 
@@ -101,29 +110,25 @@ export default async function ProductVariantPage({
   ]);
 
   const reviewItems = visibleReviews.map((review) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: review.author,
-      },
-      datePublished: review.date,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      name: review.title,
-      reviewBody: review.body,
-      publisher: {
-        "@type": "Organization",
-        name: "TopCorner.football",
-      },
-      itemReviewed: {
-        "@type": "Product",
-        name: review.reviewedItem,
-      },
-    }));
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: review.author,
+    },
+    datePublished: review.date,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: review.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    name: review.title,
+    reviewBody: review.body,
+    publisher: {
+      "@type": "Organization",
+      name: "TopCorner.football",
+    },
+  }));
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -151,58 +156,30 @@ export default async function ProductVariantPage({
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: {
-        "@type": "Organization",
-        name: siteConfig.name,
+        "@id": onlineStoreId,
       },
       shippingDetails: {
         "@type": "OfferShippingDetails",
-        shippingRate: {
-          "@type": "MonetaryAmount",
-          value: "0.00",
-          currency: "GBP",
-        },
-        shippingDestination: {
-          "@type": "DefinedRegion",
-          addressCountry: "GB",
-        },
-        deliveryTime: {
-          "@type": "ShippingDeliveryTime",
-          handlingTime: {
-            "@type": "QuantitativeValue",
-            minValue: 1,
-            maxValue: 2,
-            unitCode: "DAY",
-          },
-          transitTime: {
-            "@type": "QuantitativeValue",
-            minValue: 2,
-            maxValue: 5,
-            unitCode: "DAY",
-          },
+        hasShippingService: {
+          "@id": shippingServiceId,
         },
       },
       hasMerchantReturnPolicy: {
-        "@type": "MerchantReturnPolicy",
-        applicableCountry: "GB",
-        returnPolicyCategory: merchantReturnPolicy.returnPolicyCategory,
-        returnWindow: {
-          "@type": "MerchantReturnFiniteReturnWindow",
-          value: merchantReturnPolicy.returnWindowDays,
-          unitCode: "DAY",
-        },
-        returnMethod: merchantReturnPolicy.returnMethod,
-        returnFees: merchantReturnPolicy.returnFees,
-        merchantReturnLink: absoluteUrl("/returns"),
+        "@id": returnPolicyId,
       },
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: productReviewSummary.ratingValue,
-      reviewCount: productReviewSummary.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    review: reviewItems,
+    ...(variantRatingValue
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: variantRatingValue,
+            reviewCount: visibleReviews.length,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : {}),
+    ...(reviewItems.length ? { review: reviewItems } : {}),
     additionalProperty: productSpecs.map((spec) => ({
       "@type": "PropertyValue",
       name: spec.label,

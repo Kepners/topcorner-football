@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import JsonLd from "@/components/JsonLd";
-import { returnsSupportSteps, siteConfig } from "@/content/site";
+import { merchantReturnPolicy, returnsSupportSteps, siteConfig } from "@/content/site";
 import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -17,6 +17,8 @@ export const metadata = buildMetadata({
 });
 
 export default function ReturnsPage() {
+  const onlineStoreId = absoluteUrl("/#online-store");
+  const returnPolicyId = absoluteUrl("/returns#standard-return-policy");
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Home", path: "/" },
     { name: "Returns", path: "/returns" },
@@ -32,9 +34,28 @@ export default function ReturnsPage() {
     inLanguage: "en-GB",
   };
 
+  const returnPolicySchema = {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "@id": onlineStoreId,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      "@id": returnPolicyId,
+      applicableCountry: "GB",
+      returnPolicyCountry: "GB",
+      returnPolicyCategory: merchantReturnPolicy.returnPolicyCategory,
+      merchantReturnDays: merchantReturnPolicy.returnWindowDays,
+      returnMethod: merchantReturnPolicy.returnMethod,
+      returnFees: merchantReturnPolicy.returnFees,
+      merchantReturnLink: absoluteUrl("/returns"),
+    },
+  };
+
   return (
     <>
-      <JsonLd data={[breadcrumbSchema, supportSchema]} />
+      <JsonLd data={[breadcrumbSchema, supportSchema, returnPolicySchema]} />
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-18 pt-8 sm:px-6 lg:px-8 lg:pb-24">
         <div className="max-w-3xl">

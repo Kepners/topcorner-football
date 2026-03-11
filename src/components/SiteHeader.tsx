@@ -6,7 +6,7 @@ import { navLinks } from "@/content/site";
 
 export default function SiteHeader() {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[linear-gradient(180deg,rgba(10,14,19,0.88),rgba(10,14,19,0.64))] shadow-[0_18px_50px_rgba(0,0,0,0.3)] backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[linear-gradient(180deg,rgba(10,14,19,0.96),rgba(10,14,19,0.9))] shadow-[0_18px_40px_rgba(0,0,0,0.24)] backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
           <span className="relative inline-flex h-11 w-11 overflow-hidden rounded-full border border-[var(--color-gold)]/50 bg-[var(--color-gold)]/10 shadow-[0_0_30px_rgba(255,196,71,0.16)]">

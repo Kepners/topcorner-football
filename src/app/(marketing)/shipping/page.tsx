@@ -1,5 +1,5 @@
 import JsonLd from "@/components/JsonLd";
-import { shippingFacts, shippingHighlights } from "@/content/site";
+import { shippingFacts, shippingHighlights, siteConfig } from "@/content/site";
 import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -15,6 +15,8 @@ export const metadata = buildMetadata({
 });
 
 export default function ShippingPage() {
+  const onlineStoreId = absoluteUrl("/#online-store");
+  const shippingServiceId = absoluteUrl("/shipping#uk-standard-shipping");
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Home", path: "/" },
     { name: "Shipping", path: "/shipping" },
@@ -30,9 +32,44 @@ export default function ShippingPage() {
     inLanguage: "en-GB",
   };
 
+  const shippingPolicySchema = {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "@id": onlineStoreId,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    hasShippingService: [
+      {
+        "@type": "ShippingService",
+        "@id": shippingServiceId,
+        name: "Free UK standard shipping",
+        description:
+          "Free standard shipping to United Kingdom delivery addresses for all TopCorner orders.",
+        shippingConditions: [
+          {
+            "@type": "ShippingConditions",
+            shippingOrigin: {
+              "@type": "DefinedRegion",
+              addressCountry: "GB",
+            },
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "GB",
+            },
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0.00",
+              currency: "GBP",
+            },
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
-      <JsonLd data={[breadcrumbSchema, shippingPageSchema]} />
+      <JsonLd data={[breadcrumbSchema, shippingPageSchema, shippingPolicySchema]} />
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-18 pt-8 sm:px-6 lg:px-8 lg:pb-24">
         <div className="max-w-3xl">

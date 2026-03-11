@@ -59,7 +59,8 @@ export default function HomePage() {
 
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "OnlineStore",
+    "@id": absoluteUrl("/#online-store"),
     name: siteConfig.name,
     url: siteConfig.url,
     logo: absoluteUrl(siteConfig.defaultOgImage),

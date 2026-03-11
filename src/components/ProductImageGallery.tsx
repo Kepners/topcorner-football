@@ -162,7 +162,7 @@ export default function ProductImageGallery({
 
       {isLightboxOpen ? (
         <div className="fixed inset-0 z-[80] bg-[rgba(8,10,13,0.92)] p-4 sm:p-6">
-          <div className="mx-auto flex h-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[rgba(10,14,19,0.82)] shadow-[0_40px_140px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
+          <div className="mx-auto flex h-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[rgba(10,14,19,0.94)] shadow-[0_32px_96px_rgba(0,0,0,0.46)] backdrop-blur-md">
             <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-6">
               <div>
                 <p className="text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-sky)]">
