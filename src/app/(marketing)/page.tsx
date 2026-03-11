@@ -440,8 +440,8 @@ export default function HomePage() {
           <div className="relative self-start overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--color-panel)]">
             <div className="relative aspect-square">
               <Image
-                src="/images/products/ckx-single-installed-square.jpg"
-                alt="Square installed view of the football corner target attached to the goal"
+                src="/images/products/real-installed-close-1.png"
+                alt="TopCorner training target close-up installed on a goal post corner outdoors"
                 fill
                 className="object-cover"
               />
