@@ -3,7 +3,7 @@
 ## System Overview
 
 ```text
-User -> Vercel (Next.js) -> Stripe Checkout -> Success Page
+User -> Next.js (Coolify/Contabo) -> Stripe Checkout -> Success Page
                                  |
                                  v
                           Stripe Webhook -> Email (Resend)
@@ -17,8 +17,8 @@ User -> Vercel (Next.js) -> Stripe Checkout -> Success Page
 | Styling | Tailwind CSS | Fast iteration and responsive layouts |
 | Payments | Stripe Checkout | PCI-safe hosted checkout flow |
 | Email | Resend | Transactional email delivery |
-| Hosting | Vercel | Native Next.js deployment target |
-| Domain | topcorner.football | DNS routed to Vercel |
+| Hosting | Coolify on Contabo VPS (94.72.97.251) | Self-hosted Docker deployment |
+| Domain | topcorner.football | DNS routed to Contabo VPS |
 
 ## Data Flow
 
@@ -57,7 +57,7 @@ topcorner-football/
 |  |- lib/
 |- public/
 |- docs/
-|- vercel.json
+|- vercel.json              (legacy — may be removed)
 ```
 
 ## Environment Variables
@@ -75,9 +75,9 @@ OWNER_EMAIL=kepners@gmail.com
 
 1. Work happens on `main`.
 2. Push to GitHub `main`.
-3. GitHub `origin/main` auto-deploys to Vercel.
+3. GitHub `origin/main` auto-deploys via Coolify on Contabo VPS.
 4. Verify the pushed commit exists on `origin/main`.
-5. Confirm Vercel picked up the same commit for deployment.
+5. Confirm Coolify picked up the same commit for deployment.
 
 ## Branch Rule
 

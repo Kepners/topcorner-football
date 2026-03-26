@@ -75,7 +75,7 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 - Tailwind CSS
 - Stripe Checkout (hosted)
 - Resend (order confirmation email)
-- Vercel (hosting)
+- Coolify on Contabo VPS (self-hosted)
 - topcorner.football (domain)
 
 ---
