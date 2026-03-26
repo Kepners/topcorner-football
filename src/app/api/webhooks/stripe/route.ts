@@ -97,27 +97,43 @@ export async function POST(req: NextRequest) {
       process.env.RESEND_FROM_EMAIL ||
       "TopCorner.football <orders@topcorner.football>";
 
-    if (resendApiKey && ownerEmail) {
+    if (!resendApiKey) {
+      console.error(
+        "RESEND_API_KEY is not set — skipping all order emails for session",
+        session.id,
+      );
+    } else {
       const resend = new Resend(resendApiKey);
 
-      try {
-        await resend.emails.send({
-          from: fromEmail,
-          to: ownerEmail,
-          subject: `New order: ${session.metadata?.productName ?? "TopCorner.football"}`,
-          html: `
-            <h2>New order received</h2>
-            <p><strong>Items:</strong><br />${lineItemSummary}</p>
-            <p><strong>Total paid:</strong> ${formatMoney(session.amount_total)}</p>
-            <p><strong>Customer:</strong> ${escapeHtml(customerName)}</p>
-            <p><strong>Email:</strong> ${escapeHtml(customerEmail ?? "Not provided")}</p>
-            <p><strong>Phone:</strong> ${escapeHtml(customerPhone ?? "Not provided")}</p>
-            <p><strong>Shipping address:</strong><br />${formatAddress(shippingAddress)}</p>
-            <p><strong>Stripe session:</strong> ${escapeHtml(session.id)}</p>
-          `,
-        });
+      if (ownerEmail) {
+        try {
+          await resend.emails.send({
+            from: fromEmail,
+            to: ownerEmail,
+            subject: `New order: ${session.metadata?.productName ?? "TopCorner.football"}`,
+            html: `
+              <h2>New order received</h2>
+              <p><strong>Items:</strong><br />${lineItemSummary}</p>
+              <p><strong>Total paid:</strong> ${formatMoney(session.amount_total)}</p>
+              <p><strong>Customer:</strong> ${escapeHtml(customerName)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(customerEmail ?? "Not provided")}</p>
+              <p><strong>Phone:</strong> ${escapeHtml(customerPhone ?? "Not provided")}</p>
+              <p><strong>Shipping address:</strong><br />${formatAddress(shippingAddress)}</p>
+              <p><strong>Stripe session:</strong> ${escapeHtml(session.id)}</p>
+            `,
+          });
+        } catch (error) {
+          console.error("Failed to send owner notification email", error);
+        }
+      } else {
+        console.error(
+          "OWNER_EMAIL is not set — skipping internal order notification for session",
+          session.id,
+        );
+      }
 
-        if (customerEmail) {
+      if (customerEmail) {
+        try {
           await resend.emails.send({
             from: fromEmail,
             to: customerEmail,
@@ -133,9 +149,9 @@ export async function POST(req: NextRequest) {
               <p>UK delivery typically takes 2-5 working days once dispatched.</p>
             `,
           });
+        } catch (error) {
+          console.error("Failed to send customer confirmation email", error);
         }
-      } catch (error) {
-        console.error("Failed to send order email", error);
       }
     }
   }
