@@ -21,7 +21,7 @@
 |------|-------|
 | Type | Web App (Next.js) |
 | Repo | github.com/Kepners/topcorner-football |
-| Hosting | Vercel |
+| Hosting | Contabo VPS (94.72.97.251) |
 | Payments | Stripe |
 | Domain | topcorner.football |
 
@@ -58,7 +58,7 @@
 - **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS
 - **Payments**: Stripe
-- **Hosting**: Vercel
+- **Hosting**: Contabo VPS (94.72.97.251)
 - **Domain**: topcorner.football
 
 ---
@@ -95,7 +95,7 @@ npm run start  # Production server
 
 ## MANDATORY: Git and Deploy Workflow
 
-**Single branch only. `main` is the source of truth for GitHub and Vercel.**
+**Single branch only. `main` is the source of truth for GitHub and production.**
 
 | Branch | Purpose |
 |--------|---------|
