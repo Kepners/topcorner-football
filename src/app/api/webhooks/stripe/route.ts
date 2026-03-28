@@ -2,7 +2,7 @@ import type Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-import { getStripe } from "@/lib/stripe";
+import { PRODUCTS, getStripe } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +33,25 @@ function formatAddress(address?: Stripe.Address | null) {
   ]
     .filter(Boolean)
     .join("<br />");
+}
+
+function isTopCornerCheckoutSession(session: Stripe.Checkout.Session) {
+  const productId = session.metadata?.productId;
+
+  if (!productId || !(productId in PRODUCTS)) {
+    return false;
+  }
+
+  const product = PRODUCTS[productId as keyof typeof PRODUCTS];
+  const subtotalMatches =
+    typeof session.amount_subtotal === "number" &&
+    session.amount_subtotal === product.unitAmount;
+
+  return (
+    session.metadata?.productName === product.name &&
+    subtotalMatches &&
+    session.mode === "payment"
+  );
 }
 
 export async function POST(req: NextRequest) {
@@ -71,6 +90,21 @@ export async function POST(req: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const ownerEmail = process.env.OWNER_EMAIL;
     const session = event.data.object as Stripe.Checkout.Session;
+
+    if (!isTopCornerCheckoutSession(session)) {
+      console.log("Ignoring non-TopCorner checkout session", {
+        eventId: event.id,
+        sessionId: session.id,
+        amountSubtotal: session.amount_subtotal,
+        currency: session.currency,
+        successUrl: session.success_url,
+        productId: session.metadata?.productId ?? null,
+        productName: session.metadata?.productName ?? null,
+      });
+
+      return NextResponse.json({ received: true, ignored: true });
+    }
+
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
       limit: 10,
     });
