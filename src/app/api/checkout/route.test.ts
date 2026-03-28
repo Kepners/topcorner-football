@@ -127,6 +127,16 @@ describe("POST /api/checkout", () => {
           },
         },
       ],
+      branding_settings: {
+        background_color: "#ffffff",
+        border_style: "rounded",
+        button_color: "#1B5E20",
+        display_name: "TopCorner Football",
+        logo: {
+          type: "url",
+          url: "https://www.topcorner.football/images/brand/topcorner-og.jpg",
+        },
+      },
       success_url:
         "https://www.topcorner.football/success?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: "https://www.topcorner.football/product/single",

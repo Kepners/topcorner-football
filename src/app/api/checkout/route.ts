@@ -4,6 +4,14 @@ import { PRODUCTS, SHIPPING, getStripe } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
+const CHECKOUT_BRANDING = {
+  backgroundColor: "#ffffff",
+  borderStyle: "rounded" as const,
+  buttonColor: "#1B5E20",
+  displayName: "TopCorner Football",
+  logoPath: "/images/brand/topcorner-og.jpg",
+} as const;
+
 function getSiteUrl(req: NextRequest) {
   const forwardedProto = req.headers.get("x-forwarded-proto");
   const forwardedHost = req.headers.get("x-forwarded-host");
@@ -71,6 +79,16 @@ export async function POST(req: NextRequest) {
           },
         },
       ],
+      branding_settings: {
+        background_color: CHECKOUT_BRANDING.backgroundColor,
+        border_style: CHECKOUT_BRANDING.borderStyle,
+        button_color: CHECKOUT_BRANDING.buttonColor,
+        display_name: CHECKOUT_BRANDING.displayName,
+        logo: {
+          type: "url",
+          url: `${siteUrl}${CHECKOUT_BRANDING.logoPath}`,
+        },
+      },
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/product/${productId}`,
       metadata: {
