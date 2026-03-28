@@ -2,19 +2,23 @@
   "name": "topcorner-next",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "caniuse-lite": "1.0.30001774"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/run-next.mjs build",
     "start": "node scripts/run-next.mjs start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run"
   },
   "dependencies": {
     "@stripe/stripe-js": "^8.8.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "resend": "^6.9.3",
-    "stripe": "^20.4.0"
+    "resend": "6.9.3",
+    "stripe": "20.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -24,6 +28,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.2"
   }
 }
