@@ -6,7 +6,11 @@ import { useEffect, useRef } from "react";
 
 import { trackPageView } from "@/lib/analytics";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const LEGACY_GA_ID = "G-FRJ07NK6TG";
+const PRIMARY_GA_ID = "G-2J9LN647GT";
+const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GA_ID =
+  configuredGaId === LEGACY_GA_ID ? PRIMARY_GA_ID : configuredGaId ?? PRIMARY_GA_ID;
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
