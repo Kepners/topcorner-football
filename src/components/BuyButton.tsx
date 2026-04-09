@@ -2,10 +2,17 @@
 
 import { useState } from "react";
 
+import { trackBeginCheckout } from "@/lib/analytics";
+
 interface BuyButtonProps {
   productId: "single" | "double";
   label: string;
 }
+
+const PRODUCT_INFO: Record<string, { name: string; price: number }> = {
+  single: { name: "TopCorner Single Corner Target", price: 25 },
+  double: { name: "TopCorner Double Corner Target", price: 40 },
+};
 
 function getFriendlyCheckoutError(message?: string) {
   if (!message) {
@@ -41,6 +48,14 @@ export default function BuyButton({ productId, label }: BuyButtonProps) {
       const data = await res.json();
 
       if (res.ok && data.url) {
+        const info = PRODUCT_INFO[productId];
+        if (info) {
+          trackBeginCheckout({
+            id: productId,
+            name: info.name,
+            price: info.price,
+          });
+        }
         window.location.href = data.url;
       } else {
         setError(getFriendlyCheckoutError(data.error));

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { siteConfig } from "@/content/site";
 import "./globals.css";
 
@@ -17,7 +17,6 @@ const displayFont = Bebas_Neue({
 });
 
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-2J9LN647GT";
 
 export const viewport: Viewport = {
   themeColor: "#080a0d",
@@ -93,22 +92,7 @@ export default function RootLayout({
     <html lang="en-GB">
       <body className={`${bodyFont.variable} ${displayFont.variable} antialiased`}>
         {children}
-        {gaId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}');
-              `}
-            </Script>
-          </>
-        ) : null}
+        <GoogleAnalytics />
       </body>
     </html>
   );

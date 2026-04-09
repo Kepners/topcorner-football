@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+
+import PurchaseTracker from "@/components/PurchaseTracker";
 
 export const metadata: Metadata = {
   title: "Order confirmed",
@@ -16,6 +19,9 @@ export const metadata: Metadata = {
 export default function SuccessPage() {
   return (
     <div className="min-h-screen bg-[var(--color-ink)] px-4 py-16 text-[var(--color-cream)] sm:px-6 lg:px-8">
+      <Suspense>
+        <PurchaseTracker />
+      </Suspense>
       <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-[var(--color-panel)] p-8 sm:p-10">
         <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">
           Order confirmed
