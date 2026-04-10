@@ -38,7 +38,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
   description:
     "Football corner targets and shooting training aids for players and coaches who want sharper finishing, better drills, and faster setup sessions.",
-  defaultOgImage: "/images/brand/topcorner-og.jpg",
+  defaultOgImage: "/images/brand/topcorner-og.jpg?v=20260410",
   customerDemoVideo: "/videos/customer-training-demo.mp4",
   supportEmail: "orders@topcorner.football",
   locale: "en_GB",
