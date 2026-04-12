@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
     "topcorner brand story",
     "football training brand",
   ],
-  image: "/images/brand/topcorner-og.jpg",
+  image: "/images/brand/topcorner-og-20260412.jpg",
 });
 
 export default function AboutPage() {
