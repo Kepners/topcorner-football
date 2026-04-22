@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { siteConfig } from "@/content/site";
@@ -93,6 +94,11 @@ export default function RootLayout({
       <body className={`${bodyFont.variable} ${displayFont.variable} antialiased`}>
         {children}
         <GoogleAnalytics />
+        <Script
+          src="https://analytics.buildsales.homes/script.js"
+          data-website-id="b0c3500b-ba6c-4564-a5f8-b90266e94b28"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
