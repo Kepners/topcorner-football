@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/product",
-    "/product/corner-target",
     "/guides",
     "/blog",
     "/faq",
@@ -19,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const guideRoutes = guideSlugs.map((slug) => `/${slug}`);
   const productRoutes = productVariants.map((variant) => `/product/${variant.id}`);
-  const lastModified = new Date("2026-03-10");
+  const lastModified = new Date("2026-04-27");
 
   const staticEntries = [...staticRoutes, ...guideRoutes, ...productRoutes].map((path) => ({
     url: `${siteConfig.url}${path}`,

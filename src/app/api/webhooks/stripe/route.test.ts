@@ -7,13 +7,13 @@ const { products, getStripeMock } = vi.hoisted(() => ({
     single: {
       name: "TopCorner Single Corner Target",
       description: "Single top-corner target for focused solo shooting work.",
-      unitAmount: 2500,
+      unitAmount: 1999,
     },
     double: {
       name: "TopCorner Double Corner Target",
       description:
         "Double pack for running both corners in team and striker sessions.",
-      unitAmount: 4000,
+      unitAmount: 3499,
     },
   },
   getStripeMock: vi.fn(),

@@ -25,7 +25,7 @@ type ProductVariantPageProps = {
 };
 
 function formatPrice(value: number) {
-  return `GBP ${value}`;
+  return `GBP ${value.toFixed(2)}`;
 }
 
 export function generateStaticParams() {
@@ -49,7 +49,7 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `${product.shortName} Football Corner Target`,
+    title: `${product.shortName} Football Corner Target - ${product.priceLabel}`,
     description: detail.metaDescription,
     path: `/product/${variant}`,
     keywords: [
@@ -88,14 +88,6 @@ export default async function ProductVariantPage({
   const visibleReviews = productReviews.filter((review) =>
     review.reviewedItem.toLowerCase().includes(product.shortName.toLowerCase())
   );
-  const variantRatingValue = visibleReviews.length
-    ? Number(
-        (
-          visibleReviews.reduce((total, review) => total + review.rating, 0) /
-          visibleReviews.length
-        ).toFixed(1)
-      )
-    : null;
   const compareAtValue =
     variant === "double" ? (getProductVariantById("single")?.priceValue ?? 0) * 2 : null;
 
@@ -108,27 +100,6 @@ export default async function ProductVariantPage({
     { name: "Products", path: "/product" },
     { name: product.name, path: `/product/${variant}` },
   ]);
-
-  const reviewItems = visibleReviews.map((review) => ({
-    "@type": "Review",
-    author: {
-      "@type": "Person",
-      name: review.author,
-    },
-    datePublished: review.date,
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: review.rating,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    name: review.title,
-    reviewBody: review.body,
-    publisher: {
-      "@type": "Organization",
-      name: "TopCorner.football",
-    },
-  }));
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -168,18 +139,6 @@ export default async function ProductVariantPage({
         "@id": returnPolicyId,
       },
     },
-    ...(variantRatingValue
-      ? {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: variantRatingValue,
-            reviewCount: visibleReviews.length,
-            bestRating: 5,
-            worstRating: 1,
-          },
-        }
-      : {}),
-    ...(reviewItems.length ? { review: reviewItems } : {}),
     additionalProperty: productSpecs.map((spec) => ({
       "@type": "PropertyValue",
       name: spec.label,
@@ -280,7 +239,7 @@ export default async function ProductVariantPage({
                 {compareAtValue ? (
                   <>
                     <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                      2 targets for GBP 20 each
+                      2 targets for about GBP 17.50 each
                     </p>
                     <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
                       <span className="line-through">
@@ -291,7 +250,7 @@ export default async function ProductVariantPage({
                   </>
                 ) : (
                   <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                    Lowest starting price
+                    Lowest launch price
                   </p>
                 )}
                 <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
@@ -347,11 +306,7 @@ export default async function ProductVariantPage({
               <div className="mt-8 space-y-3">
                 <BuyButton
                   productId={product.id}
-                  label={
-                    product.id === "double"
-                      ? `Get double value - ${product.priceLabel}`
-                      : `Start with single - ${product.priceLabel}`
-                  }
+                  label={`Buy ${product.shortName} - ${product.priceLabel}`}
                 />
                 <Link
                   href="/product"
@@ -384,7 +339,7 @@ export default async function ProductVariantPage({
         </div>
       </section>
 
-      {reviewItems.length ? (
+      {visibleReviews.length ? (
         <section className="border-y border-white/10 bg-[rgba(255,255,255,0.02)] py-18 lg:py-24">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-sky)]">

@@ -1,7 +1,7 @@
 # TopCorner.football — Product Specification
 
 **Status:** CONFIRMED — Ready to build
-**Updated:** March 2026
+**Updated:** April 27, 2026
 
 ---
 
@@ -15,13 +15,13 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 ### Single Corner Target
 - **Name**: CalcioKx 1x Curved Corner Target & Bag
 - **SKU**: 5065017325008
-- **Price**: £25.00
+- **Price**: £19.99 launch price
 - **Contents**: 1x corner target + velcro straps + storage bag
 
 ### Double Corner Target
 - **Name**: CalcioKx 2x Curved Corner Target & Bag
 - **SKU**: 5065017325015
-- **Price**: £40.00
+- **Price**: £34.99 launch price
 - **Contents**: 2x corner targets + velcro straps + storage bag
 
 ### Product Details
@@ -37,9 +37,9 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 ## Pricing & Shipping (CONFIRMED)
 | Item | Price |
 |------|-------|
-| Single (1x) | £25.00 |
-| Double (2x) | £40.00 |
-| Shipping | £5.00 flat rate |
+| Single (1x) | £19.99 launch price |
+| Double (2x) | £34.99 launch price |
+| Shipping | Free UK shipping |
 | Region | UK only |
 
 ---
@@ -68,10 +68,14 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 - Shipping timeline
 - CTA: share / social
 
+### Merchant Feed (`/merchant-feed.xml`)
+- RSS product feed for Google Merchant Center free listings
+- Includes product ID, title, description, link, image, price, availability, condition, GTIN, brand, product category, and UK free shipping
+
 ---
 
 ## Tech Stack
-- Next.js 14 (App Router)
+- Next.js 16 (App Router)
 - Tailwind CSS
 - Stripe Checkout (hosted)
 - Resend (order confirmation email)
@@ -85,9 +89,9 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
-STRIPE_PRICE_ID_SINGLE=      # £25 product
-STRIPE_PRICE_ID_DOUBLE=      # £40 product
-STRIPE_SHIPPING_RATE_ID=     # £5 flat rate UK
+STRIPE_PRICE_ID_SINGLE=      # £19.99 product
+STRIPE_PRICE_ID_DOUBLE=      # £34.99 product
+STRIPE_SHIPPING_RATE_ID=     # optional; checkout currently uses free UK shipping
 NEXT_PUBLIC_SITE_URL=https://topcorner.football
 RESEND_API_KEY=
 OWNER_EMAIL=kepners@gmail.com
@@ -106,4 +110,4 @@ OWNER_EMAIL=kepners@gmail.com
 
 ---
 
-*Last updated: March 2026 — All details confirmed, ready to build.*
+*Last updated: April 27, 2026 - launch pricing and free UK shipping updated.*

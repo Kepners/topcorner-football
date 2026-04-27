@@ -37,7 +37,7 @@ export const siteConfig = {
   domain: "topcorner.football",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.topcorner.football",
   description:
-    "Football corner targets and shooting training aids for players and coaches who want sharper finishing, better drills, and faster setup sessions.",
+    "Football corner targets that strap to most goals in under 2 minutes for sharper shooting practice, better finishing drills, and faster coach-led sessions.",
   defaultOgImage: "/images/brand/topcorner-og-20260412.jpg",
   customerDemoVideo: "/videos/customer-training-demo.mp4",
   supportEmail: "orders@topcorner.football",
@@ -51,13 +51,8 @@ export const merchantReturnPolicy = {
   returnFees: "https://schema.org/FreeReturn",
 };
 
-export const productReviewSummary = {
-  ratingValue: 4.8,
-  reviewCount: 10,
-};
-
 export const trustHighlights = [
-  "Free UK shipping on every order",
+  "Free UK shipping on launch orders",
   "Dispatch target: 1-2 working days",
   "30-day returns support",
   "Secure Stripe checkout",
@@ -187,10 +182,10 @@ export const productVariants: ProductVariant[] = [
     shortName: "Single",
     sku: "5065017325008",
     gtin13: "5065017325008",
-    priceLabel: "GBP 25",
-    priceValue: 25,
+    priceLabel: "GBP 19.99",
+    priceValue: 19.99,
     description:
-      "One live top-corner target for solo reps, home practice, and the lowest starting price.",
+      "One live top-corner target for solo reps, home practice, and the lowest launch price.",
     tagline: "One corner. One clear target. Pure repetition.",
     image: "/images/products/ckx-single-isolated.jpg",
     contents: [
@@ -199,7 +194,7 @@ export const productVariants: ProductVariant[] = [
       "Storage bag",
     ],
     benefits: [
-      "Best for solo finishing and lower-cost entry",
+      "Best for solo finishing and the lowest-cost entry",
       "Gives every rep one clear target to attack",
       "Fits most round and square posts in under 2 minutes",
     ],
@@ -210,8 +205,8 @@ export const productVariants: ProductVariant[] = [
     shortName: "Double",
     sku: "5065017325015",
     gtin13: "5065017325015",
-    priceLabel: "GBP 40",
-    priceValue: 40,
+    priceLabel: "GBP 34.99",
+    priceValue: 34.99,
     description:
       "Two live targets for coach sessions, striker groups, and faster drills with less reset time.",
     tagline: "Both corners live. Better value. Better flow.",
@@ -223,9 +218,9 @@ export const productVariants: ProductVariant[] = [
       "Storage bag",
     ],
     benefits: [
-      "2 targets for GBP 20 each",
+      "2 targets for about GBP 17.50 each",
       "Best for coached drills and two-sided finishing patterns",
-      "Saves GBP 10 versus buying two singles",
+      "Saves GBP 4.99 versus buying two singles",
     ],
   },
 ];
@@ -233,7 +228,7 @@ export const productVariants: ProductVariant[] = [
 export const heroHighlights = [
   "Fits most round and square goal posts",
   "Attaches in under 2 minutes",
-  "Free UK shipping and secure Stripe checkout",
+  "Launch pricing with secure Stripe checkout",
 ];
 
 export const problemPoints = [

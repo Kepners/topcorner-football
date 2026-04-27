@@ -31,11 +31,11 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
   single: {
     eyebrow: "Single pack",
     metaDescription:
-      "Shop the TopCorner single corner target for solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
-    offerLine: "Lower entry price for solo reps",
+      "Shop the TopCorner single football corner target for solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
+    offerLine: "Launch price for solo reps",
     unitLine: "One live corner for focused repetition",
     choiceLine:
-      "Choose the single pack if you want one clear top-corner target, the lowest entry price, and a setup that moves easily between solo sessions, home practice, and coach-led stations.",
+      "Choose the single pack if you want one clear top-corner target, the lowest launch price, and a setup that moves easily between solo sessions, home practice, and coach-led stations.",
     trustPoints: [
       "Fits most round and square goal posts",
       "Free UK shipping included",
@@ -81,7 +81,7 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       label: "View double pack",
       title: "Want both corners live?",
       body:
-        "Move up to the double pack when you want near-post and far-post patterns ready in the same session, with a GBP 10 saving against two singles.",
+        "Move up to the double pack when you want near-post and far-post patterns ready in the same session, with a GBP 4.99 saving against two singles.",
     },
   },
   double: {
@@ -89,8 +89,8 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
     metaDescription:
       "Shop the TopCorner double corner target pack for coach-led sessions, both corners live at once, and better value for group finishing drills.",
     offerLine: "Best value for coaches and group sessions",
-    unitLine: "GBP 20 per target when you buy the double pack",
-    savingsLine: "Save GBP 10 compared with buying two single packs",
+    unitLine: "About GBP 17.50 per target when you buy the double pack",
+    savingsLine: "Save GBP 4.99 compared with buying two single packs",
     choiceLine:
       "Choose the double pack if you want both corners active without resetting between patterns, stronger value per target, and a cleaner setup for coach-led finishing circuits.",
     trustPoints: [
@@ -146,8 +146,8 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
 export const productCompareRows = [
   {
     label: "Price",
-    single: "GBP 25",
-    double: "GBP 40",
+    single: "GBP 19.99",
+    double: "GBP 34.99",
   },
   {
     label: "In the pack",
@@ -166,8 +166,8 @@ export const productCompareRows = [
   },
   {
     label: "Value angle",
-    single: "Lower starting price",
-    double: "Save GBP 10 vs two singles",
+    single: "Lowest launch price",
+    double: "Save GBP 4.99 vs two singles",
   },
   {
     label: "Delivery",

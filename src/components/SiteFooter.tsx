@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import {
   navLinks,
-  productReviewSummary,
   shippingFacts,
   siteConfig,
   supportLinks,
@@ -26,14 +25,14 @@ export default function SiteFooter() {
           </p>
           <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-              Customer proof
+              Launch offer
             </p>
             <p className="mt-3 font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
-              {productReviewSummary.ratingValue}/5
+              From GBP 19.99
             </p>
             <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
-              Based on {productReviewSummary.reviewCount} early customer reviews from players,
-              parents, and coaches.
+              Single and double football corner target packs are live with free
+              UK shipping and secure Stripe checkout.
             </p>
           </div>
         </div>

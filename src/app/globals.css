@@ -101,37 +101,6 @@ a {
   border-color: var(--color-panel-border);
 }
 
-.intro-stage {
-  clip-path: circle(150vmax at 76% 18%);
-  transition:
-    clip-path 900ms cubic-bezier(0.78, 0.04, 0.18, 1),
-    opacity 800ms ease;
-}
-
-.intro-stage[data-phase="playing"] .intro-copy,
-.intro-stage[data-phase="logo"] .intro-copy,
-.intro-stage[data-phase="leaving"] .intro-copy {
-  transition:
-    opacity 500ms ease,
-    transform 500ms ease;
-}
-
-.intro-stage[data-phase="playing"] .intro-copy {
-  opacity: 0;
-  transform: translateY(18px);
-}
-
-.intro-stage[data-phase="logo"] .intro-copy,
-.intro-stage[data-phase="leaving"] .intro-copy {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.intro-stage[data-phase="leaving"] {
-  clip-path: circle(0 at 76% 18%);
-  opacity: 0;
-}
-
 @keyframes route-enter {
   from {
     opacity: 0;
@@ -208,10 +177,6 @@ a {
     scroll-behavior: auto;
   }
 
-  .intro-stage,
-  .intro-stage[data-phase="playing"] .intro-copy,
-  .intro-stage[data-phase="logo"] .intro-copy,
-  .intro-stage[data-phase="leaving"] .intro-copy,
   .route-shell,
   .route-shell > section,
   .route-shell > article,

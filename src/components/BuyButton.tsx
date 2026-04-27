@@ -10,8 +10,8 @@ interface BuyButtonProps {
 }
 
 const PRODUCT_INFO: Record<string, { name: string; price: number }> = {
-  single: { name: "TopCorner Single Corner Target", price: 25 },
-  double: { name: "TopCorner Double Corner Target", price: 40 },
+  single: { name: "TopCorner Single Corner Target", price: 19.99 },
+  double: { name: "TopCorner Double Corner Target", price: 34.99 },
 };
 
 function getFriendlyCheckoutError(message?: string) {

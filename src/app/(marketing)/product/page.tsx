@@ -12,16 +12,15 @@ import {
   productReviews,
   faqPageItems,
   merchantReturnPolicy,
-  productReviewSummary,
   productVariants,
   shippingFacts,
 } from "@/content/site";
 import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Football Corner Targets",
+  title: "Football Corner Targets From GBP 19.99",
   description:
-    "Compare football corner target packs, including the TopCorner single and double goal targets for solo drills and coach-led sessions.",
+    "Compare TopCorner single and double football corner target packs from GBP 19.99 for solo shooting drills, coach-led sessions, and home training.",
   path: "/product",
   keywords: [
     "football corner target",
@@ -35,7 +34,7 @@ export const metadata = buildMetadata({
 });
 
 function formatPrice(value: number) {
-  return `GBP ${value}`;
+  return `GBP ${value.toFixed(2)}`;
 }
 
 export default function ProductPage() {
@@ -108,23 +107,23 @@ export default function ProductPage() {
               Choose your pack and check out.
             </h1>
             <p className="max-w-2xl text-base leading-8 text-[var(--color-mist)]">
-              Start with the single pack for the lowest entry price, or step up
+              Start with the single pack for the lowest launch price, or step up
               to the double pack for both top corners live at once and stronger
-              value per target. This page is built to help first-time buyers
-              choose fast.
+              value per target. This page is built to help first-time buyers choose
+              fast, see the offer clearly, and go straight to secure checkout.
             </p>
             <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em]">
               <span className="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-4 py-2 text-[var(--color-gold)]">
-                {productReviewSummary.ratingValue}/5 rating
+                Launch price live
               </span>
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[var(--color-mist)]">
-                {productReviewSummary.reviewCount} launch reviews
+                Single GBP 19.99
               </span>
               <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-emerald-300">
                 In stock
               </span>
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[var(--color-mist)]">
-                Launch price ends when the current batch sells out
+                Double GBP 34.99
               </span>
             </div>
           </div>
@@ -198,10 +197,10 @@ export default function ProductPage() {
                   <div className="space-y-4">
                     <div className="flex flex-wrap gap-2 text-[0.68rem] uppercase tracking-[0.18em]">
                       <span className="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-3 py-1.5 text-[var(--color-gold)]">
-                        {productReviewSummary.ratingValue}/5 rated
+                        Launch price
                       </span>
                       <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[var(--color-mist)]">
-                        {variantReviewCount || 1} review{variantReviewCount === 1 ? "" : "s"}
+                        {variantReviewCount} feedback note{variantReviewCount === 1 ? "" : "s"}
                       </span>
                       <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-emerald-300">
                         In stock
@@ -227,7 +226,7 @@ export default function ProductPage() {
                       {compareAtValue ? (
                         <>
                           <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                            2 targets for GBP 20 each
+                            2 targets for about GBP 17.50 each
                           </p>
                           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
                             <span className="line-through">
@@ -238,7 +237,7 @@ export default function ProductPage() {
                         </>
                       ) : (
                         <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                          Lowest starting price
+                          Lowest launch price
                         </p>
                       )}
                       <p className="mt-3 text-xs uppercase tracking-[0.18em] text-emerald-300">
@@ -318,11 +317,7 @@ export default function ProductPage() {
                     <div className="grid gap-3 sm:grid-cols-2">
                       <BuyButton
                         productId={variant.id}
-                        label={
-                          variant.id === "double"
-                            ? `Get double value - ${variant.priceLabel}`
-                            : `Start with single - ${variant.priceLabel}`
-                        }
+                        label={`Buy ${variant.shortName} - ${variant.priceLabel}`}
                       />
                       <Link
                         href={detailHref}
@@ -412,7 +407,7 @@ export default function ProductPage() {
             <div className="mt-6 space-y-4 text-sm leading-7 text-[var(--color-mist)]">
               <p>
                 Choose <span className="text-[var(--color-cream)]">Single</span>{" "}
-                if you want one live corner, the lowest starting price, and a
+                if you want one live corner, the lowest launch price, and a
                 pack that is easy to move between solo sessions.
               </p>
               <p>
