@@ -88,8 +88,11 @@ export default async function ProductVariantPage({
   const visibleReviews = productReviews.filter((review) =>
     review.reviewedItem.toLowerCase().includes(product.shortName.toLowerCase())
   );
+  const singlePackPrice = getProductVariantById("single")?.priceValue ?? 0;
   const compareAtValue =
-    variant === "double" ? (getProductVariantById("single")?.priceValue ?? 0) * 2 : null;
+    variant === "double" && singlePackPrice * 2 > product.priceValue
+      ? singlePackPrice * 2
+      : null;
 
   if (!otherProduct) {
     notFound();
@@ -131,6 +134,15 @@ export default async function ProductVariantPage({
       },
       shippingDetails: {
         "@type": "OfferShippingDetails",
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "GB",
+        },
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "5.00",
+          currency: "GBP",
+        },
         hasShippingService: {
           "@id": shippingServiceId,
         },
@@ -236,21 +248,27 @@ export default async function ProductVariantPage({
                 <p className="mt-3 font-display text-5xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
                   {product.priceLabel}
                 </p>
-                {compareAtValue ? (
+                {variant === "double" ? (
                   <>
                     <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                      2 targets for about GBP 17.50 each
+                      2 targets at GBP 10.00 each
                     </p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
-                      <span className="line-through">
-                        {formatPrice(compareAtValue)}
-                      </span>{" "}
-                      as two single packs
-                    </p>
+                    {compareAtValue ? (
+                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-mist)]">
+                        <span className="line-through">
+                          {formatPrice(compareAtValue)}
+                        </span>{" "}
+                        as two single packs
+                      </p>
+                    ) : (
+                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
+                        Same per-target price as single
+                      </p>
+                    )}
                   </>
                 ) : (
                   <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                    Lowest launch price
+                    Lowest product price
                   </p>
                 )}
                 <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
@@ -321,7 +339,7 @@ export default async function ProductVariantPage({
                   Secure checkout
                 </div>
                 <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
-                  Free UK delivery
+                  GBP 5 delivery
                 </div>
                 <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
                   30-day returns
@@ -332,7 +350,7 @@ export default async function ProductVariantPage({
                 Dispatch target 1-2 working days. Delivery target 2-5 working days.
               </p>
               <p className="mt-2 text-xs uppercase tracking-[0.16em] text-[var(--color-gold)]">
-                Launch price ends when the current batch sells out
+                Reduced price applies to the current batch
               </p>
             </div>
           </aside>

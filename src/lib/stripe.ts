@@ -7,9 +7,9 @@ type ProductConfig = {
 };
 
 export const SHIPPING = {
-  amount: 0,
+  amount: 500,
   currency: "gbp",
-  displayName: "Free UK Shipping",
+  displayName: "UK Standard Delivery",
   minBusinessDays: 2,
   maxBusinessDays: 5,
 } as const;
@@ -40,12 +40,12 @@ export const PRODUCTS: Record<"single" | "double", ProductConfig> = {
   single: {
     name: "TopCorner Single Corner Target",
     description: "Single top-corner target for focused solo shooting work.",
-    unitAmount: 1999,
+    unitAmount: 1000,
   },
   double: {
     name: "TopCorner Double Corner Target",
     description:
       "Double pack for running both corners in team and striker sessions.",
-    unitAmount: 3499,
+    unitAmount: 2000,
   },
 };

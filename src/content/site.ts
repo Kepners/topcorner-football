@@ -52,7 +52,7 @@ export const merchantReturnPolicy = {
 };
 
 export const trustHighlights = [
-  "Free UK shipping on launch orders",
+  "GBP 5.00 UK delivery on all orders",
   "Dispatch target: 1-2 working days",
   "30-day returns support",
   "Secure Stripe checkout",
@@ -182,10 +182,10 @@ export const productVariants: ProductVariant[] = [
     shortName: "Single",
     sku: "5065017325008",
     gtin13: "5065017325008",
-    priceLabel: "GBP 19.99",
-    priceValue: 19.99,
+    priceLabel: "GBP 10.00",
+    priceValue: 10,
     description:
-      "One live top-corner target for solo reps, home practice, and the lowest launch price.",
+      "One live top-corner target for solo reps, home practice, and the lowest product price.",
     tagline: "One corner. One clear target. Pure repetition.",
     image: "/images/products/ckx-single-isolated.jpg",
     contents: [
@@ -205,22 +205,22 @@ export const productVariants: ProductVariant[] = [
     shortName: "Double",
     sku: "5065017325015",
     gtin13: "5065017325015",
-    priceLabel: "GBP 34.99",
-    priceValue: 34.99,
+    priceLabel: "GBP 20.00",
+    priceValue: 20,
     description:
       "Two live targets for coach sessions, striker groups, and faster drills with less reset time.",
-    tagline: "Both corners live. Better value. Better flow.",
+    tagline: "Both corners live. Same per-target price. Better flow.",
     image: "/images/products/ckx-double-pack.jpg",
-    badge: "Best value",
+    badge: "Two-pack",
     contents: [
       "2 curved corner targets",
       "6 hook-and-loop fixing straps",
       "Storage bag",
     ],
     benefits: [
-      "2 targets for about GBP 17.50 each",
+      "2 targets at GBP 10.00 each",
       "Best for coached drills and two-sided finishing patterns",
-      "Saves GBP 4.99 versus buying two singles",
+      "Keeps both top corners active without resetting",
     ],
   },
 ];
@@ -228,7 +228,7 @@ export const productVariants: ProductVariant[] = [
 export const heroHighlights = [
   "Fits most round and square goal posts",
   "Attaches in under 2 minutes",
-  "Launch pricing with secure Stripe checkout",
+  "Reduced pricing with secure Stripe checkout",
 ];
 
 export const problemPoints = [
@@ -321,7 +321,7 @@ export const homeFaqs: FaqItem[] = [
   {
     question: "Should I buy the single or double pack?",
     answer:
-      "Buy single for solo reps and the lower starting price. Buy double if you want both corners live or train with a coach, sibling, or teammate.",
+      "Buy single for solo reps and the lower product price. Buy double if you want both corners live or train with a coach, sibling, or teammate.",
   },
   {
     question: "What is included?",
@@ -331,7 +331,7 @@ export const homeFaqs: FaqItem[] = [
   {
     question: "How fast is delivery?",
     answer:
-      "Free UK delivery is included. Orders usually dispatch in 1-2 working days and typically arrive in 2-5 working days.",
+      "UK delivery costs GBP 5.00. Orders usually dispatch in 1-2 working days and typically arrive in 2-5 working days.",
   },
   {
     question: "What if it is not right for me?",
@@ -355,7 +355,7 @@ export const faqPageItems: FaqItem[] = [
   {
     question: "Where do you ship?",
     answer:
-      "The current checkout flow is set up for United Kingdom delivery only, with free shipping included at checkout.",
+      "The current checkout flow is set up for United Kingdom delivery only, with GBP 5.00 delivery added at checkout.",
   },
 ];
 
@@ -365,11 +365,11 @@ export const productSpecs = [
   { label: "Goal fit", value: "Most standard round and square posts" },
   { label: "Setup time", value: "Under 2 minutes" },
   { label: "Origin", value: "Designed in the United Kingdom" },
-  { label: "Shipping", value: "Free United Kingdom shipping" },
+  { label: "Shipping", value: "GBP 5.00 United Kingdom delivery" },
 ];
 
 export const shippingFacts = [
-  "Free UK shipping is included at checkout",
+  "GBP 5.00 UK delivery is added at checkout",
   "Dispatch target: 1-2 working days after order confirmation",
   "Typical delivery window: 2-5 working days",
   "Checkout currently collects UK addresses only",
@@ -378,7 +378,7 @@ export const shippingFacts = [
 export const shippingHighlights = [
   {
     title: "Shipping cost",
-    body: "Free UK shipping is included in checkout for both the single and double packs.",
+    body: "UK delivery costs GBP 5.00 in checkout for both the single and double packs.",
   },
   {
     title: "Delivery area",

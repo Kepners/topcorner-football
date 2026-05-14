@@ -55,8 +55,8 @@ export default function UkFootballTrainingTargetPage() {
             sessions.
           </p>
           <p>
-            Checkout is currently UK-only at the moment, with free shipping included
-            at checkout and dispatch windows set for local delivery.
+            Checkout is currently UK-only at the moment, with GBP 5.00 delivery
+            added at checkout and dispatch windows set for local delivery.
           </p>
           <p>
             For shipping details, see{" "}

@@ -7,13 +7,13 @@ const { products, getStripeMock } = vi.hoisted(() => ({
     single: {
       name: "TopCorner Single Corner Target",
       description: "Single top-corner target for focused solo shooting work.",
-      unitAmount: 1999,
+      unitAmount: 1000,
     },
     double: {
       name: "TopCorner Double Corner Target",
       description:
         "Double pack for running both corners in team and striker sessions.",
-      unitAmount: 3499,
+      unitAmount: 2000,
     },
   },
   getStripeMock: vi.fn(),
@@ -110,11 +110,12 @@ describe("POST /api/webhooks/stripe", () => {
       id: "cs_topcorner",
       mode: "payment",
       amount_subtotal: products.single.unitAmount,
-      amount_total: products.single.unitAmount,
+      amount_total: products.single.unitAmount + 500,
       currency: "gbp",
       metadata: {
         productId: "single",
         productName: products.single.name,
+        productPrice: products.single.unitAmount.toString(),
       },
       customer_details: {
         name: "Alex Striker",

@@ -5,7 +5,7 @@ import { absoluteUrl, buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "UK Shipping Information",
   description:
-    "Shipping details for TopCorner.football orders, including UK delivery coverage, dispatch timing, and checkout support.",
+    "Shipping details for TopCorner.football orders, including GBP 5.00 UK delivery, dispatch timing, and checkout support.",
   path: "/shipping",
   keywords: [
     "topcorner football shipping",
@@ -27,7 +27,7 @@ export default function ShippingPage() {
     "@type": "WebPage",
     name: "TopCorner.football shipping information",
     description:
-      "UK shipping details for TopCorner.football orders, including free delivery, dispatch timing, and checkout coverage.",
+      "UK shipping details for TopCorner.football orders, including GBP 5.00 delivery, dispatch timing, and checkout coverage.",
     url: absoluteUrl("/shipping"),
     inLanguage: "en-GB",
   };
@@ -42,9 +42,9 @@ export default function ShippingPage() {
       {
         "@type": "ShippingService",
         "@id": shippingServiceId,
-        name: "Free UK standard shipping",
+        name: "GBP 5 UK standard delivery",
         description:
-          "Free standard shipping to United Kingdom delivery addresses for all TopCorner orders.",
+          "Standard delivery to United Kingdom delivery addresses for GBP 5.00 on all TopCorner orders.",
         shippingConditions: [
           {
             "@type": "ShippingConditions",
@@ -58,7 +58,7 @@ export default function ShippingPage() {
             },
             shippingRate: {
               "@type": "MonetaryAmount",
-              value: "0.00",
+              value: "5.00",
               currency: "GBP",
             },
           },

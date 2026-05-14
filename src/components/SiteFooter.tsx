@@ -25,14 +25,14 @@ export default function SiteFooter() {
           </p>
           <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-              Launch offer
+              Reduced offer
             </p>
             <p className="mt-3 font-display text-3xl uppercase tracking-[0.08em] text-[var(--color-cream)]">
-              From GBP 19.99
+              From GBP 10.00
             </p>
             <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
-              Single and double football corner target packs are live with free
-              UK shipping and secure Stripe checkout.
+              Single and double football corner target packs are live with GBP
+              5.00 UK delivery and secure Stripe checkout.
             </p>
           </div>
         </div>

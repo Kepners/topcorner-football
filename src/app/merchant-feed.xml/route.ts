@@ -51,13 +51,13 @@ ${buildAdditionalImages(product.id)}
     <g:shipping>
       <g:country>GB</g:country>
       <g:service>Standard UK delivery</g:service>
-      <g:price>0.00 GBP</g:price>
+      <g:price>5.00 GBP</g:price>
     </g:shipping>
   </item>`;
 }
 
 export function GET() {
-  const updatedAt = "2026-04-27T00:00:00+00:00";
+  const updatedAt = "2026-05-14T00:00:00+00:00";
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
 <channel>

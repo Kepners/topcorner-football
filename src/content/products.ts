@@ -31,14 +31,14 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
   single: {
     eyebrow: "Single pack",
     metaDescription:
-      "Shop the TopCorner single football corner target for solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
-    offerLine: "Launch price for solo reps",
+      "Shop the TopCorner single football corner target for GBP 10.00, solo finishing sessions, one live top-corner target, and fast setup on most football goals.",
+    offerLine: "Reduced price for solo reps",
     unitLine: "One live corner for focused repetition",
     choiceLine:
-      "Choose the single pack if you want one clear top-corner target, the lowest launch price, and a setup that moves easily between solo sessions, home practice, and coach-led stations.",
+      "Choose the single pack if you want one clear top-corner target, the lowest product price, and a setup that moves easily between solo sessions, home practice, and coach-led stations.",
     trustPoints: [
       "Fits most round and square goal posts",
-      "Free UK shipping included",
+      "GBP 5.00 UK delivery",
       "30-day returns support",
     ],
     hero: {
@@ -81,21 +81,20 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       label: "View double pack",
       title: "Want both corners live?",
       body:
-        "Move up to the double pack when you want near-post and far-post patterns ready in the same session, with a GBP 4.99 saving against two singles.",
+        "Move up to the double pack when you want near-post and far-post patterns ready in the same session, with the same GBP 10.00 per-target price.",
     },
   },
   double: {
     eyebrow: "Double pack",
     metaDescription:
-      "Shop the TopCorner double corner target pack for coach-led sessions, both corners live at once, and better value for group finishing drills.",
-    offerLine: "Best value for coaches and group sessions",
-    unitLine: "About GBP 17.50 per target when you buy the double pack",
-    savingsLine: "Save GBP 4.99 compared with buying two single packs",
+      "Shop the TopCorner double corner target pack for GBP 20.00, coach-led sessions, both corners live at once, and cleaner group finishing drills.",
+    offerLine: "Reduced price for coaches and group sessions",
+    unitLine: "GBP 10.00 per target when you buy the double pack",
     choiceLine:
-      "Choose the double pack if you want both corners active without resetting between patterns, stronger value per target, and a cleaner setup for coach-led finishing circuits.",
+      "Choose the double pack if you want both corners active without resetting between patterns, the same GBP 10.00 per-target price, and a cleaner setup for coach-led finishing circuits.",
     trustPoints: [
       "Fits most round and square goal posts",
-      "Free UK shipping included",
+      "GBP 5.00 UK delivery",
       "30-day returns support",
     ],
     hero: {
@@ -138,7 +137,7 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
       label: "View single pack",
       title: "Only need one live corner?",
       body:
-        "The single pack keeps the setup lighter for solo sessions, smaller spaces, and players who want one clear target at the lower starting price.",
+        "The single pack keeps the setup lighter for solo sessions, smaller spaces, and players who want one clear target at the lower product price.",
     },
   },
 };
@@ -146,8 +145,8 @@ export const productDetailContent: Record<ProductVariantId, ProductDetailContent
 export const productCompareRows = [
   {
     label: "Price",
-    single: "GBP 19.99",
-    double: "GBP 34.99",
+    single: "GBP 10.00",
+    double: "GBP 20.00",
   },
   {
     label: "In the pack",
@@ -166,13 +165,13 @@ export const productCompareRows = [
   },
   {
     label: "Value angle",
-    single: "Lowest launch price",
-    double: "Save GBP 4.99 vs two singles",
+    single: "Lowest product price",
+    double: "Same GBP 10.00 per target",
   },
   {
     label: "Delivery",
-    single: "Free UK shipping",
-    double: "Free UK shipping",
+    single: "GBP 5.00 UK delivery",
+    double: "GBP 5.00 UK delivery",
   },
 ];
 

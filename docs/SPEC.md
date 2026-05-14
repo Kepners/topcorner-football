@@ -15,13 +15,13 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 ### Single Corner Target
 - **Name**: CalcioKx 1x Curved Corner Target & Bag
 - **SKU**: 5065017325008
-- **Price**: £19.99 launch price
+- **Price**: £10 reduced price
 - **Contents**: 1x corner target + velcro straps + storage bag
 
 ### Double Corner Target
 - **Name**: CalcioKx 2x Curved Corner Target & Bag
 - **SKU**: 5065017325015
-- **Price**: £34.99 launch price
+- **Price**: £20 reduced price
 - **Contents**: 2x corner targets + velcro straps + storage bag
 
 ### Product Details
@@ -37,9 +37,9 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 ## Pricing & Shipping (CONFIRMED)
 | Item | Price |
 |------|-------|
-| Single (1x) | £19.99 launch price |
-| Double (2x) | £34.99 launch price |
-| Shipping | Free UK shipping |
+| Single (1x) | £10 reduced price |
+| Double (2x) | £20 reduced price |
+| Shipping | £5 UK delivery |
 | Region | UK only |
 
 ---
@@ -70,7 +70,7 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 
 ### Merchant Feed (`/merchant-feed.xml`)
 - RSS product feed for Google Merchant Center free listings
-- Includes product ID, title, description, link, image, price, availability, condition, GTIN, brand, product category, and UK free shipping
+- Includes product ID, title, description, link, image, price, availability, condition, GTIN, brand, product category, and £5 UK delivery
 
 ---
 
@@ -89,9 +89,6 @@ TopCorner.football is a direct-to-consumer e-commerce website selling CalcioKx f
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
-STRIPE_PRICE_ID_SINGLE=      # £19.99 product
-STRIPE_PRICE_ID_DOUBLE=      # £34.99 product
-STRIPE_SHIPPING_RATE_ID=     # optional; checkout currently uses free UK shipping
 NEXT_PUBLIC_SITE_URL=https://topcorner.football
 RESEND_API_KEY=
 OWNER_EMAIL=kepners@gmail.com
@@ -110,4 +107,4 @@ OWNER_EMAIL=kepners@gmail.com
 
 ---
 
-*Last updated: April 27, 2026 - launch pricing and free UK shipping updated.*
+*Last updated: May 14, 2026 - reduced pricing and £5 UK delivery updated.*

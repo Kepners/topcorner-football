@@ -43,13 +43,16 @@ function isTopCornerCheckoutSession(session: Stripe.Checkout.Session) {
   }
 
   const product = PRODUCTS[productId as keyof typeof PRODUCTS];
+  const metadataUnitAmount = Number(session.metadata?.productPrice);
   const subtotalMatches =
+    Number.isInteger(metadataUnitAmount) &&
     typeof session.amount_subtotal === "number" &&
-    session.amount_subtotal === product.unitAmount;
+    session.amount_subtotal === metadataUnitAmount;
 
   return (
     session.metadata?.productName === product.name &&
     subtotalMatches &&
+    session.currency === "gbp" &&
     session.mode === "payment"
   );
 }

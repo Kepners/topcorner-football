@@ -25,9 +25,9 @@ import {
 import { buildMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Football Corner Targets From GBP 19.99 | TopCorner",
+  title: "Football Corner Targets From GBP 10.00 | TopCorner",
   description:
-    "Football corner targets that strap to most goals in under 2 minutes. Shop single and double TopCorner target packs for players, coaches, and home shooting drills.",
+    "Football corner targets that strap to most goals in under 2 minutes. Shop single packs for GBP 10.00 or double packs for GBP 20.00, with GBP 5.00 UK delivery.",
   path: "/",
   keywords: [
     "football corner target",
@@ -217,7 +217,7 @@ export default function HomePage() {
           <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative z-10 space-y-8">
               <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--color-sky)]">
-                Launch price: single GBP 19.99 | double GBP 34.99
+                Reduced price: single GBP 10.00 | double GBP 20.00
               </div>
               <div className="space-y-5">
                 <h1 className="max-w-3xl font-display text-5xl uppercase leading-[0.9] tracking-[0.08em] text-[var(--color-cream)] sm:text-6xl lg:text-8xl">
@@ -245,7 +245,7 @@ export default function HomePage() {
               </div>
 
               <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-mist)]">
-                Single pack GBP 19.99 | Double pack GBP 34.99 | Free UK shipping
+                Single pack GBP 10.00 | Double pack GBP 20.00 | GBP 5.00 UK delivery
               </p>
             </div>
 
@@ -276,7 +276,7 @@ export default function HomePage() {
           <div className="relative z-10 mt-8 grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
             <div className="rounded-[1.4rem] border border-[var(--color-gold)]/35 bg-[var(--color-gold)]/10 px-5 py-4">
               <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">
-                Launch price ends when the current batch sells out
+                Reduced price applies to the current batch
               </p>
             </div>
 
@@ -298,19 +298,19 @@ export default function HomePage() {
                 Why buy now
               </p>
               <p className="mt-2 font-display text-4xl uppercase tracking-[0.08em] text-[var(--color-gold)]">
-                Save on launch packs
+                Reduced pack pricing
               </p>
               <p className="mt-2 text-sm uppercase tracking-[0.18em] text-[var(--color-gold)]">
                 Lower price, same fast setup
               </p>
               <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
-                The double pack now works out at about GBP 17.50 per target,
-                making it the stronger choice for coaches and group sessions.
+                Both packs now work out at GBP 10.00 per target, keeping the
+                single simple and the double ready for both corners.
               </p>
             </div>
             <div className="space-y-2 text-sm leading-7 text-[var(--color-mist)]">
               <p>Secure Stripe checkout</p>
-              <p>Free UK shipping with 2-5 working day delivery</p>
+              <p>GBP 5.00 UK delivery with a 2-5 working day target</p>
               <p>{merchantReturnPolicy.returnWindowDays}-day returns support</p>
               <p>Support email: {siteConfig.supportEmail}</p>
             </div>
@@ -384,10 +384,10 @@ export default function HomePage() {
           </div>
           <div>
             <p className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-gold)]">
-              Free
+              GBP 5
             </p>
             <p className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-mist)]">
-              UK shipping
+              UK delivery
             </p>
           </div>
         </div>
@@ -520,7 +520,7 @@ export default function HomePage() {
                 Need targets for a squad?
               </h2>
               <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--color-mist)]">
-                Ask about 4-pack and 8-pack launch pricing for grassroots clubs,
+                Ask about 4-pack and 8-pack club pricing for grassroots clubs,
                 academies, and coach-led finishing groups. Include your club,
                 target quantity, and delivery postcode for a quick answer.
               </p>
@@ -650,12 +650,12 @@ export default function HomePage() {
             Browse the packs
           </p>
           <h2 className="font-display text-4xl uppercase tracking-[0.12em] text-[var(--color-cream)] sm:text-5xl">
-            Pick the launch pack that fits your sessions.
+            Pick the reduced-price pack that fits your sessions.
           </h2>
           <p className="mx-auto max-w-3xl text-base leading-8 text-[var(--color-mist)]">
             The single pack is the lower-cost entry for solo reps. The double
-            pack is the better-value option for coaches, striker groups, and
-            anyone who wants both top corners live at once.
+            pack keeps the same per-target price for coaches, striker groups,
+            and anyone who wants both top corners live at once.
           </p>
           <div>
             <Link
@@ -716,20 +716,20 @@ export default function HomePage() {
                       {variant.id === "double" ? (
                         <>
                           <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-gold)]">
-                            2 targets for about GBP 17.50 each
+                            2 targets at GBP 10.00 each
                           </p>
                           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                            Save GBP 4.99 vs buying two single packs
+                            Both top corners live in one pack
                           </p>
                         </>
                       ) : (
                         <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--color-cream)]">
-                          Lowest launch price
+                          Lowest product price
                         </p>
                       )}
                     </div>
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-sky)]">
-                      Free UK shipping
+                      GBP 5.00 UK delivery
                     </p>
                   </div>
 
@@ -760,7 +760,7 @@ export default function HomePage() {
                       Secure checkout
                     </div>
                     <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
-                      Free UK delivery
+                      GBP 5 delivery
                     </div>
                     <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-center">
                       30-day returns
@@ -771,7 +771,7 @@ export default function HomePage() {
                     Dispatch target 1-2 working days. Delivery target 2-5 working days.
                   </p>
                   <p className="text-xs uppercase tracking-[0.16em] text-[var(--color-gold)]">
-                    Launch price ends when the current batch sells out
+                    Reduced price applies to the current batch
                   </p>
                 </div>
               </div>
