@@ -15,6 +15,9 @@
       "statusBar.foreground": "#3C3144",
       "sideBar.background": "#FBF7FD",
       "editorGroupHeader.tabsBackground": "#F0E6F5"
+    },
+    "files.exclude": {
+      ".claude/settings.local.json": true
     }
   }
 }
